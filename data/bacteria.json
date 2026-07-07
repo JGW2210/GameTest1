@@ -1,0 +1,1601 @@
+{
+  "meta": {
+    "count": 159,
+    "phyla": 9,
+    "genera": 78,
+    "source": "curated-seed",
+    "generatedAt": "2026-07-07T22:56:45.220Z"
+  },
+  "records": [
+    {
+      "kingdom": "Bacteria",
+      "phylum": "Bacillota",
+      "class": "Bacilli",
+      "order": "Lactobacillales",
+      "family": "Aerococcaceae",
+      "genus": "Abiotrophia",
+      "species": "defectiva",
+      "notes": "Endocarditis"
+    },
+    {
+      "kingdom": "Bacteria",
+      "phylum": "Pseudomonadota",
+      "class": "Betaproteobacteria",
+      "order": "Burkholderiales",
+      "family": "Alcaligenaceae",
+      "genus": "Achromobacter",
+      "species": "xylosoxidans",
+      "notes": "Opportunistic infection"
+    },
+    {
+      "kingdom": "Bacteria",
+      "phylum": "Pseudomonadota",
+      "class": "Gammaproteobacteria",
+      "order": "Pseudomonadales",
+      "family": "Moraxellaceae",
+      "genus": "Acinetobacter",
+      "species": "baumannii",
+      "notes": "Nosocomial pneumonia, sepsis"
+    },
+    {
+      "kingdom": "Bacteria",
+      "phylum": "Pseudomonadota",
+      "class": "Gammaproteobacteria",
+      "order": "Pseudomonadales",
+      "family": "Moraxellaceae",
+      "genus": "Acinetobacter",
+      "species": "lwoffii",
+      "notes": "Opportunistic infection"
+    },
+    {
+      "kingdom": "Bacteria",
+      "phylum": "Actinomycetota",
+      "class": "Actinomycetia",
+      "order": "Actinomycetales",
+      "family": "Actinomycetaceae",
+      "genus": "Actinomyces",
+      "species": "israelii",
+      "notes": "Actinomycosis"
+    },
+    {
+      "kingdom": "Bacteria",
+      "phylum": "Actinomycetota",
+      "class": "Actinomycetia",
+      "order": "Actinomycetales",
+      "family": "Actinomycetaceae",
+      "genus": "Actinomyces",
+      "species": "naeslundii",
+      "notes": "Actinomycosis, caries"
+    },
+    {
+      "kingdom": "Bacteria",
+      "phylum": "Bacillota",
+      "class": "Bacilli",
+      "order": "Lactobacillales",
+      "family": "Aerococcaceae",
+      "genus": "Aerococcus",
+      "species": "urinae",
+      "notes": "UTI"
+    },
+    {
+      "kingdom": "Bacteria",
+      "phylum": "Pseudomonadota",
+      "class": "Gammaproteobacteria",
+      "order": "Aeromonadales",
+      "family": "Aeromonadaceae",
+      "genus": "Aeromonas",
+      "species": "caviae",
+      "notes": "Gastroenteritis"
+    },
+    {
+      "kingdom": "Bacteria",
+      "phylum": "Pseudomonadota",
+      "class": "Gammaproteobacteria",
+      "order": "Aeromonadales",
+      "family": "Aeromonadaceae",
+      "genus": "Aeromonas",
+      "species": "hydrophila",
+      "notes": "Gastroenteritis, wound infection"
+    },
+    {
+      "kingdom": "Bacteria",
+      "phylum": "Pseudomonadota",
+      "class": "Gammaproteobacteria",
+      "order": "Pasteurellales",
+      "family": "Pasteurellaceae",
+      "genus": "Aggregatibacter",
+      "species": "actinomycetemcomitans",
+      "notes": "Periodontitis, endocarditis"
+    },
+    {
+      "kingdom": "Bacteria",
+      "phylum": "Pseudomonadota",
+      "class": "Gammaproteobacteria",
+      "order": "Pasteurellales",
+      "family": "Pasteurellaceae",
+      "genus": "Aggregatibacter",
+      "species": "aphrophilus",
+      "notes": "Endocarditis"
+    },
+    {
+      "kingdom": "Bacteria",
+      "phylum": "Pseudomonadota",
+      "class": "Alphaproteobacteria",
+      "order": "Rickettsiales",
+      "family": "Anaplasmataceae",
+      "genus": "Anaplasma",
+      "species": "phagocytophilum",
+      "notes": "Human granulocytic anaplasmosis"
+    },
+    {
+      "kingdom": "Bacteria",
+      "phylum": "Campylobacterota",
+      "class": "Campylobacteria",
+      "order": "Campylobacterales",
+      "family": "Arcobacteraceae",
+      "genus": "Arcobacter",
+      "species": "butzleri",
+      "notes": "Enteritis"
+    },
+    {
+      "kingdom": "Bacteria",
+      "phylum": "Bacillota",
+      "class": "Bacilli",
+      "order": "Bacillales",
+      "family": "Bacillaceae",
+      "genus": "Bacillus",
+      "species": "anthracis",
+      "notes": "Anthrax"
+    },
+    {
+      "kingdom": "Bacteria",
+      "phylum": "Bacillota",
+      "class": "Bacilli",
+      "order": "Bacillales",
+      "family": "Bacillaceae",
+      "genus": "Bacillus",
+      "species": "cereus",
+      "notes": "Food poisoning"
+    },
+    {
+      "kingdom": "Bacteria",
+      "phylum": "Bacillota",
+      "class": "Bacilli",
+      "order": "Bacillales",
+      "family": "Bacillaceae",
+      "genus": "Bacillus",
+      "species": "subtilis",
+      "notes": "Rarely pathogenic"
+    },
+    {
+      "kingdom": "Bacteria",
+      "phylum": "Bacillota",
+      "class": "Bacilli",
+      "order": "Bacillales",
+      "family": "Bacillaceae",
+      "genus": "Bacillus",
+      "species": "thuringiensis",
+      "notes": "Opportunistic infection"
+    },
+    {
+      "kingdom": "Bacteria",
+      "phylum": "Bacteroidota",
+      "class": "Bacteroidia",
+      "order": "Bacteroidales",
+      "family": "Bacteroidaceae",
+      "genus": "Bacteroides",
+      "species": "fragilis",
+      "notes": "Intra-abdominal abscess"
+    },
+    {
+      "kingdom": "Bacteria",
+      "phylum": "Bacteroidota",
+      "class": "Bacteroidia",
+      "order": "Bacteroidales",
+      "family": "Bacteroidaceae",
+      "genus": "Bacteroides",
+      "species": "thetaiotaomicron",
+      "notes": "Opportunistic infection"
+    },
+    {
+      "kingdom": "Bacteria",
+      "phylum": "Pseudomonadota",
+      "class": "Alphaproteobacteria",
+      "order": "Rhizobiales",
+      "family": "Bartonellaceae",
+      "genus": "Bartonella",
+      "species": "bacilliformis",
+      "notes": "Carrión's disease"
+    },
+    {
+      "kingdom": "Bacteria",
+      "phylum": "Pseudomonadota",
+      "class": "Alphaproteobacteria",
+      "order": "Rhizobiales",
+      "family": "Bartonellaceae",
+      "genus": "Bartonella",
+      "species": "henselae",
+      "notes": "Cat-scratch disease"
+    },
+    {
+      "kingdom": "Bacteria",
+      "phylum": "Pseudomonadota",
+      "class": "Alphaproteobacteria",
+      "order": "Rhizobiales",
+      "family": "Bartonellaceae",
+      "genus": "Bartonella",
+      "species": "quintana",
+      "notes": "Trench fever"
+    },
+    {
+      "kingdom": "Bacteria",
+      "phylum": "Pseudomonadota",
+      "class": "Betaproteobacteria",
+      "order": "Burkholderiales",
+      "family": "Alcaligenaceae",
+      "genus": "Bordetella",
+      "species": "bronchiseptica",
+      "notes": "Respiratory infection"
+    },
+    {
+      "kingdom": "Bacteria",
+      "phylum": "Pseudomonadota",
+      "class": "Betaproteobacteria",
+      "order": "Burkholderiales",
+      "family": "Alcaligenaceae",
+      "genus": "Bordetella",
+      "species": "parapertussis",
+      "notes": "Whooping-cough-like illness"
+    },
+    {
+      "kingdom": "Bacteria",
+      "phylum": "Pseudomonadota",
+      "class": "Betaproteobacteria",
+      "order": "Burkholderiales",
+      "family": "Alcaligenaceae",
+      "genus": "Bordetella",
+      "species": "pertussis",
+      "notes": "Whooping cough"
+    },
+    {
+      "kingdom": "Bacteria",
+      "phylum": "Spirochaetota",
+      "class": "Spirochaetia",
+      "order": "Spirochaetales",
+      "family": "Borreliaceae",
+      "genus": "Borrelia",
+      "species": "burgdorferi",
+      "notes": "Lyme disease"
+    },
+    {
+      "kingdom": "Bacteria",
+      "phylum": "Spirochaetota",
+      "class": "Spirochaetia",
+      "order": "Spirochaetales",
+      "family": "Borreliaceae",
+      "genus": "Borrelia",
+      "species": "hermsii",
+      "notes": "Relapsing fever"
+    },
+    {
+      "kingdom": "Bacteria",
+      "phylum": "Spirochaetota",
+      "class": "Spirochaetia",
+      "order": "Spirochaetales",
+      "family": "Borreliaceae",
+      "genus": "Borrelia",
+      "species": "recurrentis",
+      "notes": "Relapsing fever"
+    },
+    {
+      "kingdom": "Bacteria",
+      "phylum": "Spirochaetota",
+      "class": "Spirochaetia",
+      "order": "Brachyspirales",
+      "family": "Brachyspiraceae",
+      "genus": "Brachyspira",
+      "species": "pilosicoli",
+      "notes": "Intestinal spirochaetosis"
+    },
+    {
+      "kingdom": "Bacteria",
+      "phylum": "Pseudomonadota",
+      "class": "Alphaproteobacteria",
+      "order": "Rhizobiales",
+      "family": "Brucellaceae",
+      "genus": "Brucella",
+      "species": "abortus",
+      "notes": "Brucellosis"
+    },
+    {
+      "kingdom": "Bacteria",
+      "phylum": "Pseudomonadota",
+      "class": "Alphaproteobacteria",
+      "order": "Rhizobiales",
+      "family": "Brucellaceae",
+      "genus": "Brucella",
+      "species": "melitensis",
+      "notes": "Brucellosis"
+    },
+    {
+      "kingdom": "Bacteria",
+      "phylum": "Pseudomonadota",
+      "class": "Alphaproteobacteria",
+      "order": "Rhizobiales",
+      "family": "Brucellaceae",
+      "genus": "Brucella",
+      "species": "suis",
+      "notes": "Brucellosis"
+    },
+    {
+      "kingdom": "Bacteria",
+      "phylum": "Pseudomonadota",
+      "class": "Betaproteobacteria",
+      "order": "Burkholderiales",
+      "family": "Burkholderiaceae",
+      "genus": "Burkholderia",
+      "species": "cepacia",
+      "notes": "Cystic fibrosis lung infection"
+    },
+    {
+      "kingdom": "Bacteria",
+      "phylum": "Pseudomonadota",
+      "class": "Betaproteobacteria",
+      "order": "Burkholderiales",
+      "family": "Burkholderiaceae",
+      "genus": "Burkholderia",
+      "species": "mallei",
+      "notes": "Glanders"
+    },
+    {
+      "kingdom": "Bacteria",
+      "phylum": "Pseudomonadota",
+      "class": "Betaproteobacteria",
+      "order": "Burkholderiales",
+      "family": "Burkholderiaceae",
+      "genus": "Burkholderia",
+      "species": "pseudomallei",
+      "notes": "Melioidosis"
+    },
+    {
+      "kingdom": "Bacteria",
+      "phylum": "Campylobacterota",
+      "class": "Campylobacteria",
+      "order": "Campylobacterales",
+      "family": "Campylobacteraceae",
+      "genus": "Campylobacter",
+      "species": "coli",
+      "notes": "Enteritis"
+    },
+    {
+      "kingdom": "Bacteria",
+      "phylum": "Campylobacterota",
+      "class": "Campylobacteria",
+      "order": "Campylobacterales",
+      "family": "Campylobacteraceae",
+      "genus": "Campylobacter",
+      "species": "fetus",
+      "notes": "Systemic infection"
+    },
+    {
+      "kingdom": "Bacteria",
+      "phylum": "Campylobacterota",
+      "class": "Campylobacteria",
+      "order": "Campylobacterales",
+      "family": "Campylobacteraceae",
+      "genus": "Campylobacter",
+      "species": "jejuni",
+      "notes": "Enteritis, Guillain-Barré trigger"
+    },
+    {
+      "kingdom": "Bacteria",
+      "phylum": "Bacteroidota",
+      "class": "Flavobacteriia",
+      "order": "Flavobacteriales",
+      "family": "Flavobacteriaceae",
+      "genus": "Capnocytophaga",
+      "species": "canimorsus",
+      "notes": "Sepsis after dog bite"
+    },
+    {
+      "kingdom": "Bacteria",
+      "phylum": "Pseudomonadota",
+      "class": "Gammaproteobacteria",
+      "order": "Cardiobacteriales",
+      "family": "Cardiobacteriaceae",
+      "genus": "Cardiobacterium",
+      "species": "hominis",
+      "notes": "Endocarditis"
+    },
+    {
+      "kingdom": "Bacteria",
+      "phylum": "Chlamydiota",
+      "class": "Chlamydiia",
+      "order": "Chlamydiales",
+      "family": "Chlamydiaceae",
+      "genus": "Chlamydia",
+      "species": "pneumoniae",
+      "notes": "Atypical pneumonia"
+    },
+    {
+      "kingdom": "Bacteria",
+      "phylum": "Chlamydiota",
+      "class": "Chlamydiia",
+      "order": "Chlamydiales",
+      "family": "Chlamydiaceae",
+      "genus": "Chlamydia",
+      "species": "psittaci",
+      "notes": "Psittacosis"
+    },
+    {
+      "kingdom": "Bacteria",
+      "phylum": "Chlamydiota",
+      "class": "Chlamydiia",
+      "order": "Chlamydiales",
+      "family": "Chlamydiaceae",
+      "genus": "Chlamydia",
+      "species": "trachomatis",
+      "notes": "Trachoma, chlamydia (STI)"
+    },
+    {
+      "kingdom": "Bacteria",
+      "phylum": "Pseudomonadota",
+      "class": "Gammaproteobacteria",
+      "order": "Enterobacterales",
+      "family": "Enterobacteriaceae",
+      "genus": "Citrobacter",
+      "species": "freundii",
+      "notes": "UTI, neonatal meningitis"
+    },
+    {
+      "kingdom": "Bacteria",
+      "phylum": "Pseudomonadota",
+      "class": "Gammaproteobacteria",
+      "order": "Enterobacterales",
+      "family": "Enterobacteriaceae",
+      "genus": "Citrobacter",
+      "species": "koseri",
+      "notes": "Neonatal meningitis"
+    },
+    {
+      "kingdom": "Bacteria",
+      "phylum": "Bacillota",
+      "class": "Clostridia",
+      "order": "Clostridiales",
+      "family": "Peptostreptococcaceae",
+      "genus": "Clostridioides",
+      "species": "difficile",
+      "notes": "Pseudomembranous colitis"
+    },
+    {
+      "kingdom": "Bacteria",
+      "phylum": "Bacillota",
+      "class": "Clostridia",
+      "order": "Clostridiales",
+      "family": "Clostridiaceae",
+      "genus": "Clostridium",
+      "species": "botulinum",
+      "notes": "Botulism"
+    },
+    {
+      "kingdom": "Bacteria",
+      "phylum": "Bacillota",
+      "class": "Clostridia",
+      "order": "Clostridiales",
+      "family": "Clostridiaceae",
+      "genus": "Clostridium",
+      "species": "perfringens",
+      "notes": "Gas gangrene, food poisoning"
+    },
+    {
+      "kingdom": "Bacteria",
+      "phylum": "Bacillota",
+      "class": "Clostridia",
+      "order": "Clostridiales",
+      "family": "Clostridiaceae",
+      "genus": "Clostridium",
+      "species": "septicum",
+      "notes": "Gas gangrene"
+    },
+    {
+      "kingdom": "Bacteria",
+      "phylum": "Bacillota",
+      "class": "Clostridia",
+      "order": "Clostridiales",
+      "family": "Clostridiaceae",
+      "genus": "Clostridium",
+      "species": "tetani",
+      "notes": "Tetanus"
+    },
+    {
+      "kingdom": "Bacteria",
+      "phylum": "Actinomycetota",
+      "class": "Actinomycetia",
+      "order": "Mycobacteriales",
+      "family": "Corynebacteriaceae",
+      "genus": "Corynebacterium",
+      "species": "diphtheriae",
+      "notes": "Diphtheria"
+    },
+    {
+      "kingdom": "Bacteria",
+      "phylum": "Actinomycetota",
+      "class": "Actinomycetia",
+      "order": "Mycobacteriales",
+      "family": "Corynebacteriaceae",
+      "genus": "Corynebacterium",
+      "species": "jeikeium",
+      "notes": "Device-associated sepsis"
+    },
+    {
+      "kingdom": "Bacteria",
+      "phylum": "Actinomycetota",
+      "class": "Actinomycetia",
+      "order": "Mycobacteriales",
+      "family": "Corynebacteriaceae",
+      "genus": "Corynebacterium",
+      "species": "ulcerans",
+      "notes": "Diphtheria-like illness"
+    },
+    {
+      "kingdom": "Bacteria",
+      "phylum": "Pseudomonadota",
+      "class": "Gammaproteobacteria",
+      "order": "Legionellales",
+      "family": "Coxiellaceae",
+      "genus": "Coxiella",
+      "species": "burnetii",
+      "notes": "Q fever"
+    },
+    {
+      "kingdom": "Bacteria",
+      "phylum": "Pseudomonadota",
+      "class": "Gammaproteobacteria",
+      "order": "Enterobacterales",
+      "family": "Enterobacteriaceae",
+      "genus": "Cronobacter",
+      "species": "sakazakii",
+      "notes": "Neonatal meningitis"
+    },
+    {
+      "kingdom": "Bacteria",
+      "phylum": "Actinomycetota",
+      "class": "Actinomycetia",
+      "order": "Propionibacteriales",
+      "family": "Propionibacteriaceae",
+      "genus": "Cutibacterium",
+      "species": "acnes",
+      "notes": "Acne, device infection"
+    },
+    {
+      "kingdom": "Bacteria",
+      "phylum": "Pseudomonadota",
+      "class": "Gammaproteobacteria",
+      "order": "Enterobacterales",
+      "family": "Hafniaceae",
+      "genus": "Edwardsiella",
+      "species": "tarda",
+      "notes": "Wound infection, gastroenteritis"
+    },
+    {
+      "kingdom": "Bacteria",
+      "phylum": "Pseudomonadota",
+      "class": "Alphaproteobacteria",
+      "order": "Rickettsiales",
+      "family": "Anaplasmataceae",
+      "genus": "Ehrlichia",
+      "species": "chaffeensis",
+      "notes": "Human monocytic ehrlichiosis"
+    },
+    {
+      "kingdom": "Bacteria",
+      "phylum": "Pseudomonadota",
+      "class": "Betaproteobacteria",
+      "order": "Neisseriales",
+      "family": "Neisseriaceae",
+      "genus": "Eikenella",
+      "species": "corrodens",
+      "notes": "Bite-wound infection"
+    },
+    {
+      "kingdom": "Bacteria",
+      "phylum": "Bacteroidota",
+      "class": "Flavobacteriia",
+      "order": "Flavobacteriales",
+      "family": "Flavobacteriaceae",
+      "genus": "Elizabethkingia",
+      "species": "meningoseptica",
+      "notes": "Neonatal meningitis"
+    },
+    {
+      "kingdom": "Bacteria",
+      "phylum": "Pseudomonadota",
+      "class": "Gammaproteobacteria",
+      "order": "Enterobacterales",
+      "family": "Enterobacteriaceae",
+      "genus": "Enterobacter",
+      "species": "cloacae",
+      "notes": "Nosocomial infection"
+    },
+    {
+      "kingdom": "Bacteria",
+      "phylum": "Pseudomonadota",
+      "class": "Gammaproteobacteria",
+      "order": "Enterobacterales",
+      "family": "Enterobacteriaceae",
+      "genus": "Enterobacter",
+      "species": "hormaechei",
+      "notes": "Bloodstream infection"
+    },
+    {
+      "kingdom": "Bacteria",
+      "phylum": "Bacillota",
+      "class": "Bacilli",
+      "order": "Lactobacillales",
+      "family": "Enterococcaceae",
+      "genus": "Enterococcus",
+      "species": "faecalis",
+      "notes": "UTI, endocarditis"
+    },
+    {
+      "kingdom": "Bacteria",
+      "phylum": "Bacillota",
+      "class": "Bacilli",
+      "order": "Lactobacillales",
+      "family": "Enterococcaceae",
+      "genus": "Enterococcus",
+      "species": "faecium",
+      "notes": "Nosocomial infection (VRE)"
+    },
+    {
+      "kingdom": "Bacteria",
+      "phylum": "Bacillota",
+      "class": "Bacilli",
+      "order": "Lactobacillales",
+      "family": "Enterococcaceae",
+      "genus": "Enterococcus",
+      "species": "gallinarum",
+      "notes": "Bacteraemia"
+    },
+    {
+      "kingdom": "Bacteria",
+      "phylum": "Pseudomonadota",
+      "class": "Gammaproteobacteria",
+      "order": "Enterobacterales",
+      "family": "Enterobacteriaceae",
+      "genus": "Escherichia",
+      "species": "albertii",
+      "notes": "Enteric infection"
+    },
+    {
+      "kingdom": "Bacteria",
+      "phylum": "Pseudomonadota",
+      "class": "Gammaproteobacteria",
+      "order": "Enterobacterales",
+      "family": "Enterobacteriaceae",
+      "genus": "Escherichia",
+      "species": "coli",
+      "notes": "Gastroenteritis, UTI, sepsis"
+    },
+    {
+      "kingdom": "Bacteria",
+      "phylum": "Pseudomonadota",
+      "class": "Gammaproteobacteria",
+      "order": "Enterobacterales",
+      "family": "Enterobacteriaceae",
+      "genus": "Escherichia",
+      "species": "fergusonii",
+      "notes": "Opportunistic infection"
+    },
+    {
+      "kingdom": "Bacteria",
+      "phylum": "Bacillota",
+      "class": "Clostridia",
+      "order": "Clostridiales",
+      "family": "Peptoniphilaceae",
+      "genus": "Finegoldia",
+      "species": "magna",
+      "notes": "Soft-tissue infection"
+    },
+    {
+      "kingdom": "Bacteria",
+      "phylum": "Pseudomonadota",
+      "class": "Gammaproteobacteria",
+      "order": "Thiotrichales",
+      "family": "Francisellaceae",
+      "genus": "Francisella",
+      "species": "tularensis",
+      "notes": "Tularemia"
+    },
+    {
+      "kingdom": "Bacteria",
+      "phylum": "Fusobacteriota",
+      "class": "Fusobacteriia",
+      "order": "Fusobacteriales",
+      "family": "Fusobacteriaceae",
+      "genus": "Fusobacterium",
+      "species": "necrophorum",
+      "notes": "Lemierre's syndrome"
+    },
+    {
+      "kingdom": "Bacteria",
+      "phylum": "Fusobacteriota",
+      "class": "Fusobacteriia",
+      "order": "Fusobacteriales",
+      "family": "Fusobacteriaceae",
+      "genus": "Fusobacterium",
+      "species": "nucleatum",
+      "notes": "Periodontitis, colorectal links"
+    },
+    {
+      "kingdom": "Bacteria",
+      "phylum": "Actinomycetota",
+      "class": "Actinomycetia",
+      "order": "Actinomycetales",
+      "family": "Actinomycetaceae",
+      "genus": "Gardnerella",
+      "species": "vaginalis",
+      "notes": "Bacterial vaginosis"
+    },
+    {
+      "kingdom": "Bacteria",
+      "phylum": "Bacillota",
+      "class": "Bacilli",
+      "order": "Lactobacillales",
+      "family": "Carnobacteriaceae",
+      "genus": "Granulicatella",
+      "species": "adiacens",
+      "notes": "Endocarditis"
+    },
+    {
+      "kingdom": "Bacteria",
+      "phylum": "Pseudomonadota",
+      "class": "Gammaproteobacteria",
+      "order": "Pasteurellales",
+      "family": "Pasteurellaceae",
+      "genus": "Haemophilus",
+      "species": "ducreyi",
+      "notes": "Chancroid"
+    },
+    {
+      "kingdom": "Bacteria",
+      "phylum": "Pseudomonadota",
+      "class": "Gammaproteobacteria",
+      "order": "Pasteurellales",
+      "family": "Pasteurellaceae",
+      "genus": "Haemophilus",
+      "species": "influenzae",
+      "notes": "Meningitis, epiglottitis"
+    },
+    {
+      "kingdom": "Bacteria",
+      "phylum": "Pseudomonadota",
+      "class": "Gammaproteobacteria",
+      "order": "Pasteurellales",
+      "family": "Pasteurellaceae",
+      "genus": "Haemophilus",
+      "species": "parainfluenzae",
+      "notes": "Endocarditis"
+    },
+    {
+      "kingdom": "Bacteria",
+      "phylum": "Pseudomonadota",
+      "class": "Gammaproteobacteria",
+      "order": "Enterobacterales",
+      "family": "Hafniaceae",
+      "genus": "Hafnia",
+      "species": "alvei",
+      "notes": "Gastroenteritis"
+    },
+    {
+      "kingdom": "Bacteria",
+      "phylum": "Campylobacterota",
+      "class": "Campylobacteria",
+      "order": "Campylobacterales",
+      "family": "Helicobacteraceae",
+      "genus": "Helicobacter",
+      "species": "cinaedi",
+      "notes": "Bacteraemia, cellulitis"
+    },
+    {
+      "kingdom": "Bacteria",
+      "phylum": "Campylobacterota",
+      "class": "Campylobacteria",
+      "order": "Campylobacterales",
+      "family": "Helicobacteraceae",
+      "genus": "Helicobacter",
+      "species": "pylori",
+      "notes": "Peptic ulcers, gastric cancer"
+    },
+    {
+      "kingdom": "Bacteria",
+      "phylum": "Pseudomonadota",
+      "class": "Betaproteobacteria",
+      "order": "Neisseriales",
+      "family": "Neisseriaceae",
+      "genus": "Kingella",
+      "species": "kingae",
+      "notes": "Septic arthritis (children)"
+    },
+    {
+      "kingdom": "Bacteria",
+      "phylum": "Pseudomonadota",
+      "class": "Gammaproteobacteria",
+      "order": "Enterobacterales",
+      "family": "Enterobacteriaceae",
+      "genus": "Klebsiella",
+      "species": "aerogenes",
+      "notes": "Nosocomial infection"
+    },
+    {
+      "kingdom": "Bacteria",
+      "phylum": "Pseudomonadota",
+      "class": "Gammaproteobacteria",
+      "order": "Enterobacterales",
+      "family": "Enterobacteriaceae",
+      "genus": "Klebsiella",
+      "species": "oxytoca",
+      "notes": "Antibiotic-associated colitis"
+    },
+    {
+      "kingdom": "Bacteria",
+      "phylum": "Pseudomonadota",
+      "class": "Gammaproteobacteria",
+      "order": "Enterobacterales",
+      "family": "Enterobacteriaceae",
+      "genus": "Klebsiella",
+      "species": "pneumoniae",
+      "notes": "Pneumonia, UTI"
+    },
+    {
+      "kingdom": "Bacteria",
+      "phylum": "Pseudomonadota",
+      "class": "Gammaproteobacteria",
+      "order": "Legionellales",
+      "family": "Legionellaceae",
+      "genus": "Legionella",
+      "species": "longbeachae",
+      "notes": "Pneumonia"
+    },
+    {
+      "kingdom": "Bacteria",
+      "phylum": "Pseudomonadota",
+      "class": "Gammaproteobacteria",
+      "order": "Legionellales",
+      "family": "Legionellaceae",
+      "genus": "Legionella",
+      "species": "pneumophila",
+      "notes": "Legionnaires' disease"
+    },
+    {
+      "kingdom": "Bacteria",
+      "phylum": "Spirochaetota",
+      "class": "Spirochaetia",
+      "order": "Leptospirales",
+      "family": "Leptospiraceae",
+      "genus": "Leptospira",
+      "species": "interrogans",
+      "notes": "Leptospirosis"
+    },
+    {
+      "kingdom": "Bacteria",
+      "phylum": "Fusobacteriota",
+      "class": "Fusobacteriia",
+      "order": "Fusobacteriales",
+      "family": "Leptotrichiaceae",
+      "genus": "Leptotrichia",
+      "species": "buccalis",
+      "notes": "Bacteraemia"
+    },
+    {
+      "kingdom": "Bacteria",
+      "phylum": "Bacillota",
+      "class": "Bacilli",
+      "order": "Bacillales",
+      "family": "Listeriaceae",
+      "genus": "Listeria",
+      "species": "ivanovii",
+      "notes": "Listeriosis (rare)"
+    },
+    {
+      "kingdom": "Bacteria",
+      "phylum": "Bacillota",
+      "class": "Bacilli",
+      "order": "Bacillales",
+      "family": "Listeriaceae",
+      "genus": "Listeria",
+      "species": "monocytogenes",
+      "notes": "Listeriosis"
+    },
+    {
+      "kingdom": "Bacteria",
+      "phylum": "Actinomycetota",
+      "class": "Actinomycetia",
+      "order": "Micrococcales",
+      "family": "Micrococcaceae",
+      "genus": "Micrococcus",
+      "species": "luteus",
+      "notes": "Opportunistic infection"
+    },
+    {
+      "kingdom": "Bacteria",
+      "phylum": "Pseudomonadota",
+      "class": "Gammaproteobacteria",
+      "order": "Pseudomonadales",
+      "family": "Moraxellaceae",
+      "genus": "Moraxella",
+      "species": "catarrhalis",
+      "notes": "Otitis media, bronchitis"
+    },
+    {
+      "kingdom": "Bacteria",
+      "phylum": "Pseudomonadota",
+      "class": "Gammaproteobacteria",
+      "order": "Enterobacterales",
+      "family": "Morganellaceae",
+      "genus": "Morganella",
+      "species": "morganii",
+      "notes": "UTI, sepsis"
+    },
+    {
+      "kingdom": "Bacteria",
+      "phylum": "Actinomycetota",
+      "class": "Actinomycetia",
+      "order": "Mycobacteriales",
+      "family": "Mycobacteriaceae",
+      "genus": "Mycobacterium",
+      "species": "abscessus",
+      "notes": "Pulmonary & skin infection"
+    },
+    {
+      "kingdom": "Bacteria",
+      "phylum": "Actinomycetota",
+      "class": "Actinomycetia",
+      "order": "Mycobacteriales",
+      "family": "Mycobacteriaceae",
+      "genus": "Mycobacterium",
+      "species": "avium",
+      "notes": "Disseminated MAC infection"
+    },
+    {
+      "kingdom": "Bacteria",
+      "phylum": "Actinomycetota",
+      "class": "Actinomycetia",
+      "order": "Mycobacteriales",
+      "family": "Mycobacteriaceae",
+      "genus": "Mycobacterium",
+      "species": "bovis",
+      "notes": "Tuberculosis (zoonotic)"
+    },
+    {
+      "kingdom": "Bacteria",
+      "phylum": "Actinomycetota",
+      "class": "Actinomycetia",
+      "order": "Mycobacteriales",
+      "family": "Mycobacteriaceae",
+      "genus": "Mycobacterium",
+      "species": "kansasii",
+      "notes": "Pulmonary infection"
+    },
+    {
+      "kingdom": "Bacteria",
+      "phylum": "Actinomycetota",
+      "class": "Actinomycetia",
+      "order": "Mycobacteriales",
+      "family": "Mycobacteriaceae",
+      "genus": "Mycobacterium",
+      "species": "leprae",
+      "notes": "Leprosy"
+    },
+    {
+      "kingdom": "Bacteria",
+      "phylum": "Actinomycetota",
+      "class": "Actinomycetia",
+      "order": "Mycobacteriales",
+      "family": "Mycobacteriaceae",
+      "genus": "Mycobacterium",
+      "species": "marinum",
+      "notes": "Fish-tank granuloma"
+    },
+    {
+      "kingdom": "Bacteria",
+      "phylum": "Actinomycetota",
+      "class": "Actinomycetia",
+      "order": "Mycobacteriales",
+      "family": "Mycobacteriaceae",
+      "genus": "Mycobacterium",
+      "species": "tuberculosis",
+      "notes": "Tuberculosis"
+    },
+    {
+      "kingdom": "Bacteria",
+      "phylum": "Actinomycetota",
+      "class": "Actinomycetia",
+      "order": "Mycobacteriales",
+      "family": "Mycobacteriaceae",
+      "genus": "Mycobacterium",
+      "species": "ulcerans",
+      "notes": "Buruli ulcer"
+    },
+    {
+      "kingdom": "Bacteria",
+      "phylum": "Mycoplasmatota",
+      "class": "Mollicutes",
+      "order": "Mycoplasmatales",
+      "family": "Mycoplasmataceae",
+      "genus": "Mycoplasma",
+      "species": "genitalium",
+      "notes": "Urethritis"
+    },
+    {
+      "kingdom": "Bacteria",
+      "phylum": "Mycoplasmatota",
+      "class": "Mollicutes",
+      "order": "Mycoplasmatales",
+      "family": "Mycoplasmataceae",
+      "genus": "Mycoplasma",
+      "species": "hominis",
+      "notes": "Pelvic inflammatory disease"
+    },
+    {
+      "kingdom": "Bacteria",
+      "phylum": "Mycoplasmatota",
+      "class": "Mollicutes",
+      "order": "Mycoplasmatales",
+      "family": "Mycoplasmataceae",
+      "genus": "Mycoplasma",
+      "species": "pneumoniae",
+      "notes": "Atypical pneumonia"
+    },
+    {
+      "kingdom": "Bacteria",
+      "phylum": "Pseudomonadota",
+      "class": "Betaproteobacteria",
+      "order": "Neisseriales",
+      "family": "Neisseriaceae",
+      "genus": "Neisseria",
+      "species": "gonorrhoeae",
+      "notes": "Gonorrhoea"
+    },
+    {
+      "kingdom": "Bacteria",
+      "phylum": "Pseudomonadota",
+      "class": "Betaproteobacteria",
+      "order": "Neisseriales",
+      "family": "Neisseriaceae",
+      "genus": "Neisseria",
+      "species": "lactamica",
+      "notes": "Rarely pathogenic"
+    },
+    {
+      "kingdom": "Bacteria",
+      "phylum": "Pseudomonadota",
+      "class": "Betaproteobacteria",
+      "order": "Neisseriales",
+      "family": "Neisseriaceae",
+      "genus": "Neisseria",
+      "species": "meningitidis",
+      "notes": "Meningitis, septicaemia"
+    },
+    {
+      "kingdom": "Bacteria",
+      "phylum": "Actinomycetota",
+      "class": "Actinomycetia",
+      "order": "Mycobacteriales",
+      "family": "Nocardiaceae",
+      "genus": "Nocardia",
+      "species": "asteroides",
+      "notes": "Nocardiosis"
+    },
+    {
+      "kingdom": "Bacteria",
+      "phylum": "Actinomycetota",
+      "class": "Actinomycetia",
+      "order": "Mycobacteriales",
+      "family": "Nocardiaceae",
+      "genus": "Nocardia",
+      "species": "brasiliensis",
+      "notes": "Cutaneous nocardiosis"
+    },
+    {
+      "kingdom": "Bacteria",
+      "phylum": "Pseudomonadota",
+      "class": "Alphaproteobacteria",
+      "order": "Rickettsiales",
+      "family": "Rickettsiaceae",
+      "genus": "Orientia",
+      "species": "tsutsugamushi",
+      "notes": "Scrub typhus"
+    },
+    {
+      "kingdom": "Bacteria",
+      "phylum": "Pseudomonadota",
+      "class": "Gammaproteobacteria",
+      "order": "Pasteurellales",
+      "family": "Pasteurellaceae",
+      "genus": "Pasteurella",
+      "species": "multocida",
+      "notes": "Animal-bite infection"
+    },
+    {
+      "kingdom": "Bacteria",
+      "phylum": "Bacteroidota",
+      "class": "Bacteroidia",
+      "order": "Bacteroidales",
+      "family": "Porphyromonadaceae",
+      "genus": "Porphyromonas",
+      "species": "gingivalis",
+      "notes": "Periodontitis"
+    },
+    {
+      "kingdom": "Bacteria",
+      "phylum": "Bacteroidota",
+      "class": "Bacteroidia",
+      "order": "Bacteroidales",
+      "family": "Prevotellaceae",
+      "genus": "Prevotella",
+      "species": "intermedia",
+      "notes": "Periodontitis"
+    },
+    {
+      "kingdom": "Bacteria",
+      "phylum": "Bacteroidota",
+      "class": "Bacteroidia",
+      "order": "Bacteroidales",
+      "family": "Prevotellaceae",
+      "genus": "Prevotella",
+      "species": "melaninogenica",
+      "notes": "Anaerobic infection"
+    },
+    {
+      "kingdom": "Bacteria",
+      "phylum": "Pseudomonadota",
+      "class": "Gammaproteobacteria",
+      "order": "Enterobacterales",
+      "family": "Morganellaceae",
+      "genus": "Proteus",
+      "species": "mirabilis",
+      "notes": "UTI, kidney stones"
+    },
+    {
+      "kingdom": "Bacteria",
+      "phylum": "Pseudomonadota",
+      "class": "Gammaproteobacteria",
+      "order": "Enterobacterales",
+      "family": "Morganellaceae",
+      "genus": "Proteus",
+      "species": "vulgaris",
+      "notes": "UTI"
+    },
+    {
+      "kingdom": "Bacteria",
+      "phylum": "Pseudomonadota",
+      "class": "Gammaproteobacteria",
+      "order": "Enterobacterales",
+      "family": "Morganellaceae",
+      "genus": "Providencia",
+      "species": "rettgeri",
+      "notes": "UTI"
+    },
+    {
+      "kingdom": "Bacteria",
+      "phylum": "Pseudomonadota",
+      "class": "Gammaproteobacteria",
+      "order": "Enterobacterales",
+      "family": "Morganellaceae",
+      "genus": "Providencia",
+      "species": "stuartii",
+      "notes": "Catheter-associated UTI"
+    },
+    {
+      "kingdom": "Bacteria",
+      "phylum": "Pseudomonadota",
+      "class": "Gammaproteobacteria",
+      "order": "Pseudomonadales",
+      "family": "Pseudomonadaceae",
+      "genus": "Pseudomonas",
+      "species": "aeruginosa",
+      "notes": "Nosocomial & burn infections"
+    },
+    {
+      "kingdom": "Bacteria",
+      "phylum": "Pseudomonadota",
+      "class": "Gammaproteobacteria",
+      "order": "Pseudomonadales",
+      "family": "Pseudomonadaceae",
+      "genus": "Pseudomonas",
+      "species": "fluorescens",
+      "notes": "Transfusion sepsis (rare)"
+    },
+    {
+      "kingdom": "Bacteria",
+      "phylum": "Pseudomonadota",
+      "class": "Gammaproteobacteria",
+      "order": "Pseudomonadales",
+      "family": "Pseudomonadaceae",
+      "genus": "Pseudomonas",
+      "species": "putida",
+      "notes": "Opportunistic infection"
+    },
+    {
+      "kingdom": "Bacteria",
+      "phylum": "Actinomycetota",
+      "class": "Actinomycetia",
+      "order": "Mycobacteriales",
+      "family": "Nocardiaceae",
+      "genus": "Rhodococcus",
+      "species": "hoagii",
+      "notes": "Pneumonia (immunocompromised)"
+    },
+    {
+      "kingdom": "Bacteria",
+      "phylum": "Pseudomonadota",
+      "class": "Alphaproteobacteria",
+      "order": "Rickettsiales",
+      "family": "Rickettsiaceae",
+      "genus": "Rickettsia",
+      "species": "conorii",
+      "notes": "Mediterranean spotted fever"
+    },
+    {
+      "kingdom": "Bacteria",
+      "phylum": "Pseudomonadota",
+      "class": "Alphaproteobacteria",
+      "order": "Rickettsiales",
+      "family": "Rickettsiaceae",
+      "genus": "Rickettsia",
+      "species": "prowazekii",
+      "notes": "Epidemic typhus"
+    },
+    {
+      "kingdom": "Bacteria",
+      "phylum": "Pseudomonadota",
+      "class": "Alphaproteobacteria",
+      "order": "Rickettsiales",
+      "family": "Rickettsiaceae",
+      "genus": "Rickettsia",
+      "species": "rickettsii",
+      "notes": "Rocky Mountain spotted fever"
+    },
+    {
+      "kingdom": "Bacteria",
+      "phylum": "Pseudomonadota",
+      "class": "Alphaproteobacteria",
+      "order": "Rickettsiales",
+      "family": "Rickettsiaceae",
+      "genus": "Rickettsia",
+      "species": "typhi",
+      "notes": "Murine typhus"
+    },
+    {
+      "kingdom": "Bacteria",
+      "phylum": "Pseudomonadota",
+      "class": "Gammaproteobacteria",
+      "order": "Enterobacterales",
+      "family": "Enterobacteriaceae",
+      "genus": "Salmonella",
+      "species": "bongori",
+      "notes": "Gastroenteritis"
+    },
+    {
+      "kingdom": "Bacteria",
+      "phylum": "Pseudomonadota",
+      "class": "Gammaproteobacteria",
+      "order": "Enterobacterales",
+      "family": "Enterobacteriaceae",
+      "genus": "Salmonella",
+      "species": "enterica",
+      "notes": "Typhoid fever, gastroenteritis"
+    },
+    {
+      "kingdom": "Bacteria",
+      "phylum": "Pseudomonadota",
+      "class": "Gammaproteobacteria",
+      "order": "Enterobacterales",
+      "family": "Yersiniaceae",
+      "genus": "Serratia",
+      "species": "marcescens",
+      "notes": "Nosocomial infection"
+    },
+    {
+      "kingdom": "Bacteria",
+      "phylum": "Pseudomonadota",
+      "class": "Gammaproteobacteria",
+      "order": "Enterobacterales",
+      "family": "Enterobacteriaceae",
+      "genus": "Shigella",
+      "species": "boydii",
+      "notes": "Shigellosis"
+    },
+    {
+      "kingdom": "Bacteria",
+      "phylum": "Pseudomonadota",
+      "class": "Gammaproteobacteria",
+      "order": "Enterobacterales",
+      "family": "Enterobacteriaceae",
+      "genus": "Shigella",
+      "species": "dysenteriae",
+      "notes": "Bacillary dysentery"
+    },
+    {
+      "kingdom": "Bacteria",
+      "phylum": "Pseudomonadota",
+      "class": "Gammaproteobacteria",
+      "order": "Enterobacterales",
+      "family": "Enterobacteriaceae",
+      "genus": "Shigella",
+      "species": "flexneri",
+      "notes": "Shigellosis"
+    },
+    {
+      "kingdom": "Bacteria",
+      "phylum": "Pseudomonadota",
+      "class": "Gammaproteobacteria",
+      "order": "Enterobacterales",
+      "family": "Enterobacteriaceae",
+      "genus": "Shigella",
+      "species": "sonnei",
+      "notes": "Shigellosis"
+    },
+    {
+      "kingdom": "Bacteria",
+      "phylum": "Bacillota",
+      "class": "Bacilli",
+      "order": "Bacillales",
+      "family": "Staphylococcaceae",
+      "genus": "Staphylococcus",
+      "species": "aureus",
+      "notes": "Abscesses, sepsis, toxic shock"
+    },
+    {
+      "kingdom": "Bacteria",
+      "phylum": "Bacillota",
+      "class": "Bacilli",
+      "order": "Bacillales",
+      "family": "Staphylococcaceae",
+      "genus": "Staphylococcus",
+      "species": "epidermidis",
+      "notes": "Device-associated infection"
+    },
+    {
+      "kingdom": "Bacteria",
+      "phylum": "Bacillota",
+      "class": "Bacilli",
+      "order": "Bacillales",
+      "family": "Staphylococcaceae",
+      "genus": "Staphylococcus",
+      "species": "haemolyticus",
+      "notes": "Nosocomial infection"
+    },
+    {
+      "kingdom": "Bacteria",
+      "phylum": "Bacillota",
+      "class": "Bacilli",
+      "order": "Bacillales",
+      "family": "Staphylococcaceae",
+      "genus": "Staphylococcus",
+      "species": "lugdunensis",
+      "notes": "Endocarditis"
+    },
+    {
+      "kingdom": "Bacteria",
+      "phylum": "Bacillota",
+      "class": "Bacilli",
+      "order": "Bacillales",
+      "family": "Staphylococcaceae",
+      "genus": "Staphylococcus",
+      "species": "saprophyticus",
+      "notes": "UTI"
+    },
+    {
+      "kingdom": "Bacteria",
+      "phylum": "Pseudomonadota",
+      "class": "Gammaproteobacteria",
+      "order": "Xanthomonadales",
+      "family": "Xanthomonadaceae",
+      "genus": "Stenotrophomonas",
+      "species": "maltophilia",
+      "notes": "Nosocomial pneumonia"
+    },
+    {
+      "kingdom": "Bacteria",
+      "phylum": "Fusobacteriota",
+      "class": "Fusobacteriia",
+      "order": "Fusobacteriales",
+      "family": "Leptotrichiaceae",
+      "genus": "Streptobacillus",
+      "species": "moniliformis",
+      "notes": "Rat-bite fever"
+    },
+    {
+      "kingdom": "Bacteria",
+      "phylum": "Bacillota",
+      "class": "Bacilli",
+      "order": "Lactobacillales",
+      "family": "Streptococcaceae",
+      "genus": "Streptococcus",
+      "species": "agalactiae",
+      "notes": "Neonatal sepsis"
+    },
+    {
+      "kingdom": "Bacteria",
+      "phylum": "Bacillota",
+      "class": "Bacilli",
+      "order": "Lactobacillales",
+      "family": "Streptococcaceae",
+      "genus": "Streptococcus",
+      "species": "mitis",
+      "notes": "Endocarditis"
+    },
+    {
+      "kingdom": "Bacteria",
+      "phylum": "Bacillota",
+      "class": "Bacilli",
+      "order": "Lactobacillales",
+      "family": "Streptococcaceae",
+      "genus": "Streptococcus",
+      "species": "mutans",
+      "notes": "Dental caries"
+    },
+    {
+      "kingdom": "Bacteria",
+      "phylum": "Bacillota",
+      "class": "Bacilli",
+      "order": "Lactobacillales",
+      "family": "Streptococcaceae",
+      "genus": "Streptococcus",
+      "species": "pneumoniae",
+      "notes": "Pneumonia, meningitis"
+    },
+    {
+      "kingdom": "Bacteria",
+      "phylum": "Bacillota",
+      "class": "Bacilli",
+      "order": "Lactobacillales",
+      "family": "Streptococcaceae",
+      "genus": "Streptococcus",
+      "species": "pyogenes",
+      "notes": "Strep throat, necrotizing fasciitis"
+    },
+    {
+      "kingdom": "Bacteria",
+      "phylum": "Bacillota",
+      "class": "Bacilli",
+      "order": "Lactobacillales",
+      "family": "Streptococcaceae",
+      "genus": "Streptococcus",
+      "species": "sanguinis",
+      "notes": "Endocarditis"
+    },
+    {
+      "kingdom": "Bacteria",
+      "phylum": "Bacillota",
+      "class": "Bacilli",
+      "order": "Lactobacillales",
+      "family": "Streptococcaceae",
+      "genus": "Streptococcus",
+      "species": "suis",
+      "notes": "Meningitis (zoonotic)"
+    },
+    {
+      "kingdom": "Bacteria",
+      "phylum": "Bacteroidota",
+      "class": "Bacteroidia",
+      "order": "Bacteroidales",
+      "family": "Tannerellaceae",
+      "genus": "Tannerella",
+      "species": "forsythia",
+      "notes": "Periodontitis"
+    },
+    {
+      "kingdom": "Bacteria",
+      "phylum": "Spirochaetota",
+      "class": "Spirochaetia",
+      "order": "Spirochaetales",
+      "family": "Treponemataceae",
+      "genus": "Treponema",
+      "species": "denticola",
+      "notes": "Periodontitis"
+    },
+    {
+      "kingdom": "Bacteria",
+      "phylum": "Spirochaetota",
+      "class": "Spirochaetia",
+      "order": "Spirochaetales",
+      "family": "Treponemataceae",
+      "genus": "Treponema",
+      "species": "pallidum",
+      "notes": "Syphilis"
+    },
+    {
+      "kingdom": "Bacteria",
+      "phylum": "Mycoplasmatota",
+      "class": "Mollicutes",
+      "order": "Mycoplasmatales",
+      "family": "Mycoplasmataceae",
+      "genus": "Ureaplasma",
+      "species": "urealyticum",
+      "notes": "Urethritis"
+    },
+    {
+      "kingdom": "Bacteria",
+      "phylum": "Bacillota",
+      "class": "Negativicutes",
+      "order": "Veillonellales",
+      "family": "Veillonellaceae",
+      "genus": "Veillonella",
+      "species": "parvula",
+      "notes": "Endocarditis, abscesses"
+    },
+    {
+      "kingdom": "Bacteria",
+      "phylum": "Pseudomonadota",
+      "class": "Gammaproteobacteria",
+      "order": "Vibrionales",
+      "family": "Vibrionaceae",
+      "genus": "Vibrio",
+      "species": "alginolyticus",
+      "notes": "Otitis, wound infection"
+    },
+    {
+      "kingdom": "Bacteria",
+      "phylum": "Pseudomonadota",
+      "class": "Gammaproteobacteria",
+      "order": "Vibrionales",
+      "family": "Vibrionaceae",
+      "genus": "Vibrio",
+      "species": "cholerae",
+      "notes": "Cholera"
+    },
+    {
+      "kingdom": "Bacteria",
+      "phylum": "Pseudomonadota",
+      "class": "Gammaproteobacteria",
+      "order": "Vibrionales",
+      "family": "Vibrionaceae",
+      "genus": "Vibrio",
+      "species": "parahaemolyticus",
+      "notes": "Gastroenteritis"
+    },
+    {
+      "kingdom": "Bacteria",
+      "phylum": "Pseudomonadota",
+      "class": "Gammaproteobacteria",
+      "order": "Vibrionales",
+      "family": "Vibrionaceae",
+      "genus": "Vibrio",
+      "species": "vulnificus",
+      "notes": "Wound infection, septicaemia"
+    },
+    {
+      "kingdom": "Bacteria",
+      "phylum": "Pseudomonadota",
+      "class": "Gammaproteobacteria",
+      "order": "Enterobacterales",
+      "family": "Yersiniaceae",
+      "genus": "Yersinia",
+      "species": "enterocolitica",
+      "notes": "Enterocolitis"
+    },
+    {
+      "kingdom": "Bacteria",
+      "phylum": "Pseudomonadota",
+      "class": "Gammaproteobacteria",
+      "order": "Enterobacterales",
+      "family": "Yersiniaceae",
+      "genus": "Yersinia",
+      "species": "pestis",
+      "notes": "Plague"
+    },
+    {
+      "kingdom": "Bacteria",
+      "phylum": "Pseudomonadota",
+      "class": "Gammaproteobacteria",
+      "order": "Enterobacterales",
+      "family": "Yersiniaceae",
+      "genus": "Yersinia",
+      "species": "pseudotuberculosis",
+      "notes": "Mesenteric adenitis"
+    }
+  ]
+}

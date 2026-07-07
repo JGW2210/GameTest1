@@ -1,0 +1,13 @@
+{
+  "name": "phylotype",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Phylotype — a bacterial taxonomy guessing game with an animated dendrogram.",
+  "type": "module",
+  "scripts": {
+    "build-data": "node scripts/build-dataset.mjs",
+    "fetch-gbif": "node scripts/fetch-gbif.mjs",
+    "serve": "python3 -m http.server 8000"
+  },
+  "license": "MIT"
+}

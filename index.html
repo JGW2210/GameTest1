@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#0d1117" />
+  <meta name="description" content="Phylotype — guess a pathogenic bacterium from its taxonomy, one rank at a time." />
+  <title>Phylotype · Bacterial Taxonomy Game</title>
+  <link rel="stylesheet" href="assets/styles.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧬</text></svg>" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <span class="logo">🧬</span>
+      <div>
+        <h1>Phylotype</h1>
+        <p class="tagline">Identify the pathogen, one taxonomic rank at a time</p>
+      </div>
+    </div>
+    <div class="topbar-actions">
+      <span id="pool-info" class="pool-info"></span>
+      <button id="help-btn" class="btn ghost" type="button">How to play</button>
+      <button id="newgame-btn" class="btn" type="button">New game</button>
+    </div>
+  </header>
+
+  <main class="layout">
+    <section class="tree-panel">
+      <div class="tree-scroll">
+        <svg id="tree" class="tree" role="img" aria-label="Taxonomy dendrogram of your guesses"></svg>
+      </div>
+    </section>
+
+    <aside class="side">
+      <div class="card">
+        <div class="card-head">
+          <h2>Known lineage</h2>
+          <span class="counter">Guesses: <b id="guess-count">0</b></span>
+        </div>
+        <div id="revealed" class="revealed"></div>
+      </div>
+
+      <div class="card">
+        <h2>Make a guess</h2>
+        <form id="guess-form" autocomplete="off">
+          <div class="field">
+            <label for="genus-input">Genus</label>
+            <div class="combo">
+              <input id="genus-input" type="text" placeholder="e.g. Escherichia" spellcheck="false" />
+              <ul id="genus-list" class="combo-list" role="listbox" hidden></ul>
+            </div>
+          </div>
+          <div class="field">
+            <label for="species-input">Species</label>
+            <div class="combo">
+              <input id="species-input" type="text" placeholder="e.g. coli" spellcheck="false" />
+              <ul id="species-list" class="combo-list" role="listbox" hidden></ul>
+            </div>
+          </div>
+          <div class="form-actions">
+            <button id="submit-btn" class="btn primary" type="submit">Guess</button>
+            <button id="giveup-btn" class="btn ghost" type="button">Reveal answer</button>
+          </div>
+        </form>
+        <p id="message" class="message"></p>
+      </div>
+
+      <div class="card">
+        <h2>Guess history</h2>
+        <ol id="history" class="history"></ol>
+      </div>
+    </aside>
+  </main>
+
+  <!-- Win / reveal modal -->
+  <div id="win-modal" class="modal" hidden>
+    <div class="modal-box">
+      <h2 id="win-title">Solved!</h2>
+      <div id="win-body"></div>
+      <div class="modal-actions">
+        <button id="win-newgame" class="btn primary" type="button">Play again</button>
+        <button id="win-close" class="btn ghost" type="button">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- How to play modal -->
+  <div id="help-modal" class="modal" hidden>
+    <div class="modal-box">
+      <h2>How to play</h2>
+      <div class="help-body">
+        <p>A random pathogenic bacterium has been chosen. You're told its <b>Kingdom</b> (always
+          <i>Bacteria</i>) — everything below is hidden.</p>
+        <ol>
+          <li>Guess a <b>genus</b> and <b>species</b>. Pick a genus from the suggestions.</li>
+          <li>Every rank of your guess that matches the hidden answer — Phylum, Class, Order,
+            Family, Genus, Species — is <b>confirmed</b> and revealed to you.</li>
+          <li>The <b>dendrogram grows</b> down through the confirmed ranks. Where your guess
+            diverges from the truth, it branches off, and a <span class="mystery-dot">?</span>
+            marks the direction the real answer took.</li>
+          <li>Use the confirmed ranks to narrow in. Solve it in as <b>few guesses</b> as possible.</li>
+        </ol>
+        <p class="help-foot">Taxonomy is normalized to current (post-2021 ICNP) nomenclature —
+          e.g. <i>Firmicutes</i> → <b>Bacillota</b>, <i>Proteobacteria</i> → <b>Pseudomonadota</b>.</p>
+      </div>
+      <div class="modal-actions">
+        <button id="help-close" class="btn primary" type="button">Got it</button>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="src/main.js"></script>
+</body>
+</html>
