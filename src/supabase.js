@@ -35,30 +35,62 @@ export async function fetchSupabaseRecords(listValue, bundled) {
   return mapRows(rows, bundled);
 }
 
-function mapRows(rows, bundled) {
+const LINEAGE_RANKS = ['kingdom', 'phylum', 'class', 'order', 'family', 'genus', 'species'];
+
+// Interpret a jsonb lineage into { rank: name } pairs. Handles a rank-keyed
+// object ({phylum:'…', class:'…'}), a positional array (kingdom→species order),
+// and an array of {rank,name}-style objects.
+export function parseLineage(raw) {
+  if (!raw) return {};
+  let obj = raw;
+  if (typeof raw === 'string') { try { obj = JSON.parse(raw); } catch { return {}; } }
+  const out = {};
+  if (Array.isArray(obj)) {
+    if (obj.length && typeof obj[0] === 'object' && obj[0] !== null) {
+      for (const it of obj) {
+        const rank = String(it.rank ?? it.level ?? it.key ?? '').toLowerCase();
+        const name = it.name ?? it.value ?? it.taxon ?? it.scientificName;
+        if (LINEAGE_RANKS.includes(rank) && name) out[rank] = String(name).trim();
+      }
+    } else {
+      obj.forEach((name, i) => { if (LINEAGE_RANKS[i] && name) out[LINEAGE_RANKS[i]] = String(name).trim(); });
+    }
+  } else if (typeof obj === 'object') {
+    for (const k of Object.keys(obj)) {
+      const lk = k.toLowerCase();
+      if (LINEAGE_RANKS.includes(lk) && obj[k]) out[lk] = String(obj[k]).trim();
+    }
+  }
+  return out;
+}
+
+export function mapRows(rows, bundled) {
   const idx = new Map(bundled.map((r) => [`${r.genus} ${r.species}`.toLowerCase(), r]));
   const c = SUPABASE.columns;
   const ic = SUPABASE.identifierColumns || {};
+  const get = (row, col) => (col ? row[col] : undefined);
   const out = [];
   const seen = new Set();
 
   for (const row of rows) {
-    const genus = String(row[c.genus] || '').trim();
-    const species = String(row[c.species] || '').trim();
+    const genus = String(get(row, c.genus) || '').trim();
+    const species = String(get(row, c.species) || '').trim();
     if (!genus) continue;
     const key = `${genus} ${species}`.toLowerCase();
     if (seen.has(key)) continue;
     seen.add(key);
     const b = idx.get(key);
+    const lin = c.lineageColumn ? parseLineage(get(row, c.lineageColumn)) : {};
 
+    const rank = (colKey) => get(row, c[colKey]) || lin[colKey] || b?.[colKey] || '';
     const rec = {
       kingdom: 'Bacteria',
-      phylum: row[c.phylum] || b?.phylum || '',
-      class: row[c.class] || b?.class || '',
-      order: row[c.order] || b?.order || '',
-      family: row[c.family] || b?.family || '',
+      phylum: rank('phylum'),
+      class: rank('class'),
+      order: rank('order'),
+      family: rank('family'),
       genus, species,
-      notes: row[c.notes] || b?.notes || '',
+      notes: get(row, c.notes) || b?.notes || '',
     };
 
     // Identifier profile: from row columns if mapped, else bundled profile.
@@ -82,8 +114,10 @@ function mapRows(rows, bundled) {
     if (!id && b?.id) id = b.id;
     if (id) rec.id = id;
 
-    // Taxonomy modes need a full lineage; skip rows we can't complete.
-    if (rec.phylum && rec.class && rec.order && rec.family) out.push(rec);
+    // Keep a row if it can play SOMETHING: a full lineage (taxonomic/combined)
+    // or a lab profile (identifier). The game's per-mode pool filters further.
+    const hasLineage = rec.phylum && rec.class && rec.order && rec.family;
+    if (hasLineage || rec.id) out.push(rec);
   }
   return out;
 }
