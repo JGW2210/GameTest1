@@ -2,7 +2,7 @@ import { Game, MODES, RANK_LABELS, RANKS } from './game.js';
 import { TreeView } from './tree.js';
 import { IdGrid } from './idgrid.js';
 import { BACTERIA, META } from './data.js';
-import { supabaseConfigured, fetchListNames, fetchSupabaseRecords } from './supabase.js';
+import { supabaseConfigured, fetchLists, fetchSupabaseRecords } from './supabase.js';
 
 const $ = (sel) => document.querySelector(sel);
 
@@ -240,10 +240,12 @@ async function initSource() {
     return;
   }
   try {
-    const names = await fetchListNames();
-    if (names.length) names.forEach((n) => els.source.append(opt(`sb:${n}`, `SpeciesDoc: ${n}`)));
-    else els.source.append(opt('sb:*', 'SpeciesDoc: all entries'));
-    els.sourceStatus.textContent = 'Supabase connected.';
+    els.source.append(opt('sb:*', 'SpeciesDoc: all entries'));
+    const lists = await fetchLists();
+    lists.forEach((l) => els.source.append(opt(`sb:${l.value}`, `SpeciesDoc — ${l.label} (${l.count})`)));
+    els.sourceStatus.textContent = lists.length
+      ? `Supabase connected · ${lists.length} list${lists.length === 1 ? '' : 's'}.`
+      : 'Supabase connected.';
   } catch (err) {
     els.sourceStatus.textContent = `Supabase error: ${err.message}`;
   }
