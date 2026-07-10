@@ -18,12 +18,39 @@ async function rest(query) {
   return res.json();
 }
 
-// Distinct named lists, if a grouping column is configured.
-export async function fetchListNames() {
+// Distinct selectable lists (one per value of the grouping column), each as
+// { value, label, count }. Labels are resolved via SUPABASE.listLabel when set.
+export async function fetchLists() {
   const col = SUPABASE.columns.list;
   if (!col) return [];
   const rows = await rest(`${SUPABASE.table}?select=${col}`);
-  return [...new Set(rows.map((r) => r[col]).filter(Boolean))].sort();
+
+  const counts = new Map();
+  for (const r of rows) {
+    const v = r[col];
+    if (v == null || v === '') continue;
+    counts.set(String(v), (counts.get(String(v)) || 0) + 1);
+  }
+  const values = [...counts.keys()];
+
+  // Resolve friendly labels (best-effort; falls back to the raw value).
+  const labels = new Map();
+  const ll = SUPABASE.listLabel;
+  if (ll && values.length) {
+    try {
+      const sel = [ll.idColumn, ...ll.nameColumns].join(',');
+      const inList = values.map((v) => encodeURIComponent(v)).join(',');
+      const prows = await rest(`${ll.table}?select=${sel}&${ll.idColumn}=in.(${inList})`);
+      for (const pr of prows) {
+        const name = ll.nameColumns.map((c) => pr[c]).find((x) => x);
+        if (name) labels.set(String(pr[ll.idColumn]), String(name));
+      }
+    } catch { /* keep raw values */ }
+  }
+
+  return values
+    .map((v) => ({ value: v, label: labels.get(v) || v, count: counts.get(v) }))
+    .sort((a, b) => a.label.localeCompare(b.label));
 }
 
 // Fetch and map records for a given list value (or all rows if no list column).

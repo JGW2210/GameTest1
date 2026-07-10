@@ -27,9 +27,18 @@ export const SUPABASE = {
     kingdom: null, phylum: null, class: null, order: null, family: null,
     lineageColumn: 'lineage',
     notes: 'other_notes',
-    // Set to 'owner' to expose one selectable list per user (labelled by the
-    // owner uuid); left null to load all accessible rows as a single list.
-    list: null,
+    // Grouping column: one selectable list per distinct value. 'owner' gives a
+    // list per user; null loads all accessible rows as a single list.
+    list: 'owner',
+  },
+
+  // Optional: turn the `list` values (e.g. owner uuids) into friendly labels by
+  // looking them up in another table. Requires that table to be anon-readable;
+  // if the lookup fails, lists fall back to their raw value. Set to null to skip.
+  listLabel: {
+    table: 'profiles',
+    idColumn: 'id',
+    nameColumns: ['display_name', 'email'], // first non-empty wins
   },
 
   // The `species` table already stores every lab identifier, so map them all.
