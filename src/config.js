@@ -8,11 +8,11 @@
 // Security enabled on your tables so it only exposes what you intend.
 
 export const SUPABASE = {
-  enabled: false,
+  enabled: true,
 
-  url: '',        // e.g. 'https://abcdefgh.supabase.co'
-  anonKey: '',    // your project's anon/public API key
-  table: 'bacteria', // the table holding species entries
+  url: 'https://kgggfjxssnpovejwdrgu.supabase.co',
+  anonKey: 'sb_publishable_0sTcB32Xn8PsEU7M1OJhhg_zYS_iwVE', // publishable/anon key — safe in frontend with RLS
+  table: 'bacteria', // TODO: set to your actual table name (see note below)
 
   // Map YOUR table's columns to the game's fields. Only genus + species are
   // required; taxonomy columns are optional — when missing, the game fills the
