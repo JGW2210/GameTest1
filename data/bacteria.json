@@ -1,10 +1,11 @@
 {
   "meta": {
-    "count": 159,
+    "count": 151,
     "phyla": 9,
     "genera": 78,
+    "profiled": 58,
     "source": "curated-seed",
-    "generatedAt": "2026-07-07T22:56:45.220Z"
+    "generatedAt": "2026-07-10T08:38:52.700Z"
   },
   "records": [
     {
@@ -35,7 +36,20 @@
       "family": "Moraxellaceae",
       "genus": "Acinetobacter",
       "species": "baumannii",
-      "notes": "Nosocomial pneumonia, sepsis"
+      "notes": "Nosocomial pneumonia, sepsis",
+      "id": {
+        "gram": "Negative",
+        "shape": [
+          "Cocci",
+          "Bacilli"
+        ],
+        "motility": "Non-motile",
+        "spores": "Negative",
+        "oxidase": "Negative",
+        "catalase": "Positive",
+        "of": "Oxidative",
+        "atmosphere": "Aerobe"
+      }
     },
     {
       "kingdom": "Bacteria",
@@ -55,7 +69,17 @@
       "family": "Actinomycetaceae",
       "genus": "Actinomyces",
       "species": "israelii",
-      "notes": "Actinomycosis"
+      "notes": "Actinomycosis",
+      "id": {
+        "gram": "Positive",
+        "shape": [
+          "Bacilli"
+        ],
+        "motility": "Non-motile",
+        "spores": "Negative",
+        "catalase": "Negative",
+        "atmosphere": "Anaerobe"
+      }
     },
     {
       "kingdom": "Bacteria",
@@ -95,7 +119,25 @@
       "family": "Aeromonadaceae",
       "genus": "Aeromonas",
       "species": "hydrophila",
-      "notes": "Gastroenteritis, wound infection"
+      "notes": "Gastroenteritis, wound infection",
+      "id": {
+        "gram": "Negative",
+        "shape": [
+          "Bacilli"
+        ],
+        "motility": "Motile",
+        "spores": "Negative",
+        "oxidase": "Positive",
+        "catalase": "Positive",
+        "indole": "Positive",
+        "fermentation": [
+          "Glucose",
+          "Sucrose"
+        ],
+        "of": "Fermentative",
+        "haemolysis": "Beta",
+        "atmosphere": "Facultative"
+      }
     },
     {
       "kingdom": "Bacteria",
@@ -145,7 +187,24 @@
       "family": "Bacillaceae",
       "genus": "Bacillus",
       "species": "anthracis",
-      "notes": "Anthrax"
+      "notes": "Anthrax",
+      "id": {
+        "gram": "Positive",
+        "shape": [
+          "Bacilli",
+          "Chains"
+        ],
+        "motility": "Non-motile",
+        "spores": "Positive",
+        "oxidase": "Negative",
+        "catalase": "Positive",
+        "fermentation": [
+          "Glucose"
+        ],
+        "of": "Fermentative",
+        "haemolysis": "Gamma",
+        "atmosphere": "Facultative"
+      }
     },
     {
       "kingdom": "Bacteria",
@@ -155,7 +214,24 @@
       "family": "Bacillaceae",
       "genus": "Bacillus",
       "species": "cereus",
-      "notes": "Food poisoning"
+      "notes": "Food poisoning",
+      "id": {
+        "gram": "Positive",
+        "shape": [
+          "Bacilli",
+          "Chains"
+        ],
+        "motility": "Motile",
+        "spores": "Positive",
+        "oxidase": "Negative",
+        "catalase": "Positive",
+        "fermentation": [
+          "Glucose"
+        ],
+        "of": "Fermentative",
+        "haemolysis": "Beta",
+        "atmosphere": "Facultative"
+      }
     },
     {
       "kingdom": "Bacteria",
@@ -185,7 +261,19 @@
       "family": "Bacteroidaceae",
       "genus": "Bacteroides",
       "species": "fragilis",
-      "notes": "Intra-abdominal abscess"
+      "notes": "Intra-abdominal abscess",
+      "id": {
+        "gram": "Negative",
+        "shape": [
+          "Bacilli"
+        ],
+        "motility": "Non-motile",
+        "spores": "Negative",
+        "catalase": "Variable",
+        "aesculin": "Positive",
+        "of": "Fermentative",
+        "atmosphere": "Anaerobe"
+      }
     },
     {
       "kingdom": "Bacteria",
@@ -255,7 +343,20 @@
       "family": "Alcaligenaceae",
       "genus": "Bordetella",
       "species": "pertussis",
-      "notes": "Whooping cough"
+      "notes": "Whooping cough",
+      "id": {
+        "gram": "Negative",
+        "shape": [
+          "Cocci",
+          "Bacilli"
+        ],
+        "motility": "Non-motile",
+        "spores": "Negative",
+        "oxidase": "Positive",
+        "catalase": "Positive",
+        "of": "Non-reactive",
+        "atmosphere": "Aerobe"
+      }
     },
     {
       "kingdom": "Bacteria",
@@ -265,7 +366,16 @@
       "family": "Borreliaceae",
       "genus": "Borrelia",
       "species": "burgdorferi",
-      "notes": "Lyme disease"
+      "notes": "Lyme disease",
+      "id": {
+        "gram": "Negative",
+        "shape": [
+          "Spiral"
+        ],
+        "motility": "Motile",
+        "spores": "Negative",
+        "atmosphere": "Microaerophilic"
+      }
     },
     {
       "kingdom": "Bacteria",
@@ -315,7 +425,20 @@
       "family": "Brucellaceae",
       "genus": "Brucella",
       "species": "melitensis",
-      "notes": "Brucellosis"
+      "notes": "Brucellosis",
+      "id": {
+        "gram": "Negative",
+        "shape": [
+          "Cocci",
+          "Bacilli"
+        ],
+        "motility": "Non-motile",
+        "spores": "Negative",
+        "oxidase": "Positive",
+        "catalase": "Positive",
+        "of": "Non-reactive",
+        "atmosphere": "Capnophilic"
+      }
     },
     {
       "kingdom": "Bacteria",
@@ -385,7 +508,19 @@
       "family": "Campylobacteraceae",
       "genus": "Campylobacter",
       "species": "jejuni",
-      "notes": "Enteritis, Guillain-Barré trigger"
+      "notes": "Enteritis, Guillain-Barré trigger",
+      "id": {
+        "gram": "Negative",
+        "shape": [
+          "Spiral"
+        ],
+        "motility": "Motile",
+        "spores": "Negative",
+        "oxidase": "Positive",
+        "catalase": "Positive",
+        "of": "Non-reactive",
+        "atmosphere": "Microaerophilic"
+      }
     },
     {
       "kingdom": "Bacteria",
@@ -435,7 +570,16 @@
       "family": "Chlamydiaceae",
       "genus": "Chlamydia",
       "species": "trachomatis",
-      "notes": "Trachoma, chlamydia (STI)"
+      "notes": "Trachoma, chlamydia (STI)",
+      "id": {
+        "gram": "Other",
+        "shape": [
+          "Cocci"
+        ],
+        "motility": "Non-motile",
+        "spores": "Negative",
+        "atmosphere": "Other"
+      }
     },
     {
       "kingdom": "Bacteria",
@@ -465,7 +609,21 @@
       "family": "Peptostreptococcaceae",
       "genus": "Clostridioides",
       "species": "difficile",
-      "notes": "Pseudomembranous colitis"
+      "notes": "Pseudomembranous colitis",
+      "id": {
+        "gram": "Positive",
+        "shape": [
+          "Bacilli"
+        ],
+        "motility": "Motile",
+        "spores": "Positive",
+        "oxidase": "Negative",
+        "catalase": "Negative",
+        "fermentation": [
+          "Glucose"
+        ],
+        "atmosphere": "Anaerobe"
+      }
     },
     {
       "kingdom": "Bacteria",
@@ -475,7 +633,21 @@
       "family": "Clostridiaceae",
       "genus": "Clostridium",
       "species": "botulinum",
-      "notes": "Botulism"
+      "notes": "Botulism",
+      "id": {
+        "gram": "Positive",
+        "shape": [
+          "Bacilli"
+        ],
+        "motility": "Motile",
+        "spores": "Positive",
+        "oxidase": "Negative",
+        "catalase": "Negative",
+        "fermentation": [
+          "Glucose"
+        ],
+        "atmosphere": "Anaerobe"
+      }
     },
     {
       "kingdom": "Bacteria",
@@ -485,7 +657,26 @@
       "family": "Clostridiaceae",
       "genus": "Clostridium",
       "species": "perfringens",
-      "notes": "Gas gangrene, food poisoning"
+      "notes": "Gas gangrene, food poisoning",
+      "id": {
+        "gram": "Positive",
+        "shape": [
+          "Bacilli"
+        ],
+        "motility": "Non-motile",
+        "spores": "Positive",
+        "oxidase": "Negative",
+        "catalase": "Negative",
+        "fermentation": [
+          "Glucose",
+          "Lactose",
+          "Sucrose",
+          "Maltose"
+        ],
+        "of": "Fermentative",
+        "haemolysis": "Beta",
+        "atmosphere": "Anaerobe"
+      }
     },
     {
       "kingdom": "Bacteria",
@@ -505,7 +696,20 @@
       "family": "Clostridiaceae",
       "genus": "Clostridium",
       "species": "tetani",
-      "notes": "Tetanus"
+      "notes": "Tetanus",
+      "id": {
+        "gram": "Positive",
+        "shape": [
+          "Bacilli"
+        ],
+        "motility": "Motile",
+        "spores": "Positive",
+        "oxidase": "Negative",
+        "catalase": "Negative",
+        "of": "Non-reactive",
+        "haemolysis": "Beta",
+        "atmosphere": "Anaerobe"
+      }
     },
     {
       "kingdom": "Bacteria",
@@ -515,7 +719,24 @@
       "family": "Corynebacteriaceae",
       "genus": "Corynebacterium",
       "species": "diphtheriae",
-      "notes": "Diphtheria"
+      "notes": "Diphtheria",
+      "id": {
+        "gram": "Positive",
+        "shape": [
+          "Bacilli"
+        ],
+        "motility": "Non-motile",
+        "spores": "Negative",
+        "oxidase": "Negative",
+        "catalase": "Positive",
+        "fermentation": [
+          "Glucose",
+          "Maltose"
+        ],
+        "of": "Fermentative",
+        "haemolysis": "Gamma",
+        "atmosphere": "Facultative"
+      }
     },
     {
       "kingdom": "Bacteria",
@@ -565,7 +786,18 @@
       "family": "Propionibacteriaceae",
       "genus": "Cutibacterium",
       "species": "acnes",
-      "notes": "Acne, device infection"
+      "notes": "Acne, device infection",
+      "id": {
+        "gram": "Positive",
+        "shape": [
+          "Bacilli"
+        ],
+        "motility": "Non-motile",
+        "spores": "Negative",
+        "catalase": "Positive",
+        "indole": "Positive",
+        "atmosphere": "Anaerobe"
+      }
     },
     {
       "kingdom": "Bacteria",
@@ -615,7 +847,28 @@
       "family": "Enterobacteriaceae",
       "genus": "Enterobacter",
       "species": "cloacae",
-      "notes": "Nosocomial infection"
+      "notes": "Nosocomial infection",
+      "id": {
+        "gram": "Negative",
+        "shape": [
+          "Bacilli"
+        ],
+        "motility": "Motile",
+        "spores": "Negative",
+        "oxidase": "Negative",
+        "catalase": "Positive",
+        "indole": "Negative",
+        "methylRed": "Negative",
+        "vp": "Positive",
+        "citrate": "Positive",
+        "fermentation": [
+          "Glucose",
+          "Lactose",
+          "Sucrose"
+        ],
+        "of": "Fermentative",
+        "atmosphere": "Facultative"
+      }
     },
     {
       "kingdom": "Bacteria",
@@ -635,7 +888,26 @@
       "family": "Enterococcaceae",
       "genus": "Enterococcus",
       "species": "faecalis",
-      "notes": "UTI, endocarditis"
+      "notes": "UTI, endocarditis",
+      "id": {
+        "gram": "Positive",
+        "shape": [
+          "Cocci",
+          "Chains"
+        ],
+        "motility": "Non-motile",
+        "spores": "Negative",
+        "oxidase": "Negative",
+        "catalase": "Negative",
+        "aesculin": "Positive",
+        "pyr": "Positive",
+        "fermentation": [
+          "Glucose"
+        ],
+        "of": "Fermentative",
+        "haemolysis": "Gamma",
+        "atmosphere": "Facultative"
+      }
     },
     {
       "kingdom": "Bacteria",
@@ -645,7 +917,26 @@
       "family": "Enterococcaceae",
       "genus": "Enterococcus",
       "species": "faecium",
-      "notes": "Nosocomial infection (VRE)"
+      "notes": "Nosocomial infection (VRE)",
+      "id": {
+        "gram": "Positive",
+        "shape": [
+          "Cocci",
+          "Chains"
+        ],
+        "motility": "Non-motile",
+        "spores": "Negative",
+        "oxidase": "Negative",
+        "catalase": "Negative",
+        "aesculin": "Positive",
+        "pyr": "Positive",
+        "fermentation": [
+          "Glucose"
+        ],
+        "of": "Fermentative",
+        "haemolysis": "Gamma",
+        "atmosphere": "Facultative"
+      }
     },
     {
       "kingdom": "Bacteria",
@@ -675,7 +966,30 @@
       "family": "Enterobacteriaceae",
       "genus": "Escherichia",
       "species": "coli",
-      "notes": "Gastroenteritis, UTI, sepsis"
+      "notes": "Gastroenteritis, UTI, sepsis",
+      "id": {
+        "gram": "Negative",
+        "shape": [
+          "Bacilli"
+        ],
+        "motility": "Motile",
+        "spores": "Negative",
+        "oxidase": "Negative",
+        "catalase": "Positive",
+        "indole": "Positive",
+        "methylRed": "Positive",
+        "vp": "Negative",
+        "citrate": "Negative",
+        "fermentation": [
+          "Glucose",
+          "Lactose",
+          "Maltose",
+          "Mannitol"
+        ],
+        "of": "Fermentative",
+        "haemolysis": "Variable",
+        "atmosphere": "Facultative"
+      }
     },
     {
       "kingdom": "Bacteria",
@@ -705,7 +1019,19 @@
       "family": "Francisellaceae",
       "genus": "Francisella",
       "species": "tularensis",
-      "notes": "Tularemia"
+      "notes": "Tularemia",
+      "id": {
+        "gram": "Negative",
+        "shape": [
+          "Cocci",
+          "Bacilli"
+        ],
+        "motility": "Non-motile",
+        "spores": "Negative",
+        "oxidase": "Negative",
+        "catalase": "Variable",
+        "atmosphere": "Aerobe"
+      }
     },
     {
       "kingdom": "Bacteria",
@@ -725,7 +1051,18 @@
       "family": "Fusobacteriaceae",
       "genus": "Fusobacterium",
       "species": "nucleatum",
-      "notes": "Periodontitis, colorectal links"
+      "notes": "Periodontitis, colorectal links",
+      "id": {
+        "gram": "Negative",
+        "shape": [
+          "Bacilli"
+        ],
+        "motility": "Non-motile",
+        "spores": "Negative",
+        "catalase": "Negative",
+        "indole": "Positive",
+        "atmosphere": "Anaerobe"
+      }
     },
     {
       "kingdom": "Bacteria",
@@ -765,7 +1102,24 @@
       "family": "Pasteurellaceae",
       "genus": "Haemophilus",
       "species": "influenzae",
-      "notes": "Meningitis, epiglottitis"
+      "notes": "Meningitis, epiglottitis",
+      "id": {
+        "gram": "Negative",
+        "shape": [
+          "Cocci",
+          "Bacilli"
+        ],
+        "motility": "Non-motile",
+        "spores": "Negative",
+        "oxidase": "Positive",
+        "catalase": "Positive",
+        "fermentation": [
+          "Glucose"
+        ],
+        "of": "Fermentative",
+        "haemolysis": "Gamma",
+        "atmosphere": "Capnophilic"
+      }
     },
     {
       "kingdom": "Bacteria",
@@ -805,7 +1159,19 @@
       "family": "Helicobacteraceae",
       "genus": "Helicobacter",
       "species": "pylori",
-      "notes": "Peptic ulcers, gastric cancer"
+      "notes": "Peptic ulcers, gastric cancer",
+      "id": {
+        "gram": "Negative",
+        "shape": [
+          "Spiral"
+        ],
+        "motility": "Motile",
+        "spores": "Negative",
+        "oxidase": "Positive",
+        "catalase": "Positive",
+        "of": "Non-reactive",
+        "atmosphere": "Microaerophilic"
+      }
     },
     {
       "kingdom": "Bacteria",
@@ -845,7 +1211,30 @@
       "family": "Enterobacteriaceae",
       "genus": "Klebsiella",
       "species": "pneumoniae",
-      "notes": "Pneumonia, UTI"
+      "notes": "Pneumonia, UTI",
+      "id": {
+        "gram": "Negative",
+        "shape": [
+          "Bacilli"
+        ],
+        "motility": "Non-motile",
+        "spores": "Negative",
+        "oxidase": "Negative",
+        "catalase": "Positive",
+        "indole": "Negative",
+        "methylRed": "Negative",
+        "vp": "Positive",
+        "citrate": "Positive",
+        "fermentation": [
+          "Glucose",
+          "Lactose",
+          "Sucrose",
+          "Maltose"
+        ],
+        "of": "Fermentative",
+        "haemolysis": "Gamma",
+        "atmosphere": "Facultative"
+      }
     },
     {
       "kingdom": "Bacteria",
@@ -865,7 +1254,19 @@
       "family": "Legionellaceae",
       "genus": "Legionella",
       "species": "pneumophila",
-      "notes": "Legionnaires' disease"
+      "notes": "Legionnaires' disease",
+      "id": {
+        "gram": "Negative",
+        "shape": [
+          "Bacilli"
+        ],
+        "motility": "Motile",
+        "spores": "Negative",
+        "oxidase": "Variable",
+        "catalase": "Positive",
+        "of": "Non-reactive",
+        "atmosphere": "Aerobe"
+      }
     },
     {
       "kingdom": "Bacteria",
@@ -875,7 +1276,18 @@
       "family": "Leptospiraceae",
       "genus": "Leptospira",
       "species": "interrogans",
-      "notes": "Leptospirosis"
+      "notes": "Leptospirosis",
+      "id": {
+        "gram": "Other",
+        "shape": [
+          "Spiral"
+        ],
+        "motility": "Motile",
+        "spores": "Negative",
+        "oxidase": "Positive",
+        "catalase": "Positive",
+        "atmosphere": "Aerobe"
+      }
     },
     {
       "kingdom": "Bacteria",
@@ -905,7 +1317,24 @@
       "family": "Listeriaceae",
       "genus": "Listeria",
       "species": "monocytogenes",
-      "notes": "Listeriosis"
+      "notes": "Listeriosis",
+      "id": {
+        "gram": "Positive",
+        "shape": [
+          "Bacilli"
+        ],
+        "motility": "Temp-variable",
+        "spores": "Negative",
+        "oxidase": "Negative",
+        "catalase": "Positive",
+        "aesculin": "Positive",
+        "fermentation": [
+          "Glucose"
+        ],
+        "of": "Fermentative",
+        "haemolysis": "Beta",
+        "atmosphere": "Facultative"
+      }
     },
     {
       "kingdom": "Bacteria",
@@ -925,7 +1354,20 @@
       "family": "Moraxellaceae",
       "genus": "Moraxella",
       "species": "catarrhalis",
-      "notes": "Otitis media, bronchitis"
+      "notes": "Otitis media, bronchitis",
+      "id": {
+        "gram": "Negative",
+        "shape": [
+          "Diplococci"
+        ],
+        "motility": "Non-motile",
+        "spores": "Negative",
+        "oxidase": "Positive",
+        "catalase": "Positive",
+        "dnase": "Positive",
+        "of": "Non-reactive",
+        "atmosphere": "Aerobe"
+      }
     },
     {
       "kingdom": "Bacteria",
@@ -964,38 +1406,17 @@
       "order": "Mycobacteriales",
       "family": "Mycobacteriaceae",
       "genus": "Mycobacterium",
-      "species": "bovis",
-      "notes": "Tuberculosis (zoonotic)"
-    },
-    {
-      "kingdom": "Bacteria",
-      "phylum": "Actinomycetota",
-      "class": "Actinomycetia",
-      "order": "Mycobacteriales",
-      "family": "Mycobacteriaceae",
-      "genus": "Mycobacterium",
-      "species": "kansasii",
-      "notes": "Pulmonary infection"
-    },
-    {
-      "kingdom": "Bacteria",
-      "phylum": "Actinomycetota",
-      "class": "Actinomycetia",
-      "order": "Mycobacteriales",
-      "family": "Mycobacteriaceae",
-      "genus": "Mycobacterium",
       "species": "leprae",
-      "notes": "Leprosy"
-    },
-    {
-      "kingdom": "Bacteria",
-      "phylum": "Actinomycetota",
-      "class": "Actinomycetia",
-      "order": "Mycobacteriales",
-      "family": "Mycobacteriaceae",
-      "genus": "Mycobacterium",
-      "species": "marinum",
-      "notes": "Fish-tank granuloma"
+      "notes": "Leprosy",
+      "id": {
+        "gram": "Acid-fast",
+        "shape": [
+          "Bacilli"
+        ],
+        "motility": "Non-motile",
+        "spores": "Negative",
+        "atmosphere": "Aerobe"
+      }
     },
     {
       "kingdom": "Bacteria",
@@ -1005,17 +1426,17 @@
       "family": "Mycobacteriaceae",
       "genus": "Mycobacterium",
       "species": "tuberculosis",
-      "notes": "Tuberculosis"
-    },
-    {
-      "kingdom": "Bacteria",
-      "phylum": "Actinomycetota",
-      "class": "Actinomycetia",
-      "order": "Mycobacteriales",
-      "family": "Mycobacteriaceae",
-      "genus": "Mycobacterium",
-      "species": "ulcerans",
-      "notes": "Buruli ulcer"
+      "notes": "Tuberculosis",
+      "id": {
+        "gram": "Acid-fast",
+        "shape": [
+          "Bacilli"
+        ],
+        "motility": "Non-motile",
+        "spores": "Negative",
+        "catalase": "Variable",
+        "atmosphere": "Aerobe"
+      }
     },
     {
       "kingdom": "Bacteria",
@@ -1045,7 +1466,20 @@
       "family": "Mycoplasmataceae",
       "genus": "Mycoplasma",
       "species": "pneumoniae",
-      "notes": "Atypical pneumonia"
+      "notes": "Atypical pneumonia",
+      "id": {
+        "gram": "Other",
+        "shape": [
+          "Other"
+        ],
+        "motility": "Non-motile",
+        "spores": "Negative",
+        "catalase": "Negative",
+        "fermentation": [
+          "Glucose"
+        ],
+        "atmosphere": "Facultative"
+      }
     },
     {
       "kingdom": "Bacteria",
@@ -1055,7 +1489,23 @@
       "family": "Neisseriaceae",
       "genus": "Neisseria",
       "species": "gonorrhoeae",
-      "notes": "Gonorrhoea"
+      "notes": "Gonorrhoea",
+      "id": {
+        "gram": "Negative",
+        "shape": [
+          "Diplococci"
+        ],
+        "motility": "Non-motile",
+        "spores": "Negative",
+        "oxidase": "Positive",
+        "catalase": "Positive",
+        "fermentation": [
+          "Glucose"
+        ],
+        "of": "Fermentative",
+        "haemolysis": "Gamma",
+        "atmosphere": "Capnophilic"
+      }
     },
     {
       "kingdom": "Bacteria",
@@ -1075,7 +1525,24 @@
       "family": "Neisseriaceae",
       "genus": "Neisseria",
       "species": "meningitidis",
-      "notes": "Meningitis, septicaemia"
+      "notes": "Meningitis, septicaemia",
+      "id": {
+        "gram": "Negative",
+        "shape": [
+          "Diplococci"
+        ],
+        "motility": "Non-motile",
+        "spores": "Negative",
+        "oxidase": "Positive",
+        "catalase": "Positive",
+        "fermentation": [
+          "Glucose",
+          "Maltose"
+        ],
+        "of": "Fermentative",
+        "haemolysis": "Gamma",
+        "atmosphere": "Capnophilic"
+      }
     },
     {
       "kingdom": "Bacteria",
@@ -1085,7 +1552,17 @@
       "family": "Nocardiaceae",
       "genus": "Nocardia",
       "species": "asteroides",
-      "notes": "Nocardiosis"
+      "notes": "Nocardiosis",
+      "id": {
+        "gram": "Positive",
+        "shape": [
+          "Bacilli"
+        ],
+        "motility": "Non-motile",
+        "spores": "Negative",
+        "catalase": "Positive",
+        "atmosphere": "Aerobe"
+      }
     },
     {
       "kingdom": "Bacteria",
@@ -1145,7 +1622,18 @@
       "family": "Prevotellaceae",
       "genus": "Prevotella",
       "species": "melaninogenica",
-      "notes": "Anaerobic infection"
+      "notes": "Anaerobic infection",
+      "id": {
+        "gram": "Negative",
+        "shape": [
+          "Bacilli"
+        ],
+        "motility": "Non-motile",
+        "spores": "Negative",
+        "catalase": "Negative",
+        "indole": "Negative",
+        "atmosphere": "Anaerobe"
+      }
     },
     {
       "kingdom": "Bacteria",
@@ -1155,7 +1643,26 @@
       "family": "Morganellaceae",
       "genus": "Proteus",
       "species": "mirabilis",
-      "notes": "UTI, kidney stones"
+      "notes": "UTI, kidney stones",
+      "id": {
+        "gram": "Negative",
+        "shape": [
+          "Bacilli"
+        ],
+        "motility": "Motile",
+        "spores": "Negative",
+        "oxidase": "Negative",
+        "catalase": "Positive",
+        "indole": "Negative",
+        "methylRed": "Positive",
+        "vp": "Negative",
+        "citrate": "Variable",
+        "fermentation": [
+          "Glucose"
+        ],
+        "of": "Fermentative",
+        "atmosphere": "Facultative"
+      }
     },
     {
       "kingdom": "Bacteria",
@@ -1165,7 +1672,26 @@
       "family": "Morganellaceae",
       "genus": "Proteus",
       "species": "vulgaris",
-      "notes": "UTI"
+      "notes": "UTI",
+      "id": {
+        "gram": "Negative",
+        "shape": [
+          "Bacilli"
+        ],
+        "motility": "Motile",
+        "spores": "Negative",
+        "oxidase": "Negative",
+        "catalase": "Positive",
+        "indole": "Positive",
+        "methylRed": "Positive",
+        "vp": "Negative",
+        "fermentation": [
+          "Glucose",
+          "Sucrose"
+        ],
+        "of": "Fermentative",
+        "atmosphere": "Facultative"
+      }
     },
     {
       "kingdom": "Bacteria",
@@ -1195,7 +1721,22 @@
       "family": "Pseudomonadaceae",
       "genus": "Pseudomonas",
       "species": "aeruginosa",
-      "notes": "Nosocomial & burn infections"
+      "notes": "Nosocomial & burn infections",
+      "id": {
+        "gram": "Negative",
+        "shape": [
+          "Bacilli"
+        ],
+        "motility": "Motile",
+        "spores": "Negative",
+        "oxidase": "Positive",
+        "catalase": "Positive",
+        "citrate": "Positive",
+        "fermentation": [],
+        "of": "Oxidative",
+        "haemolysis": "Beta",
+        "atmosphere": "Aerobe"
+      }
     },
     {
       "kingdom": "Bacteria",
@@ -1255,7 +1796,17 @@
       "family": "Rickettsiaceae",
       "genus": "Rickettsia",
       "species": "rickettsii",
-      "notes": "Rocky Mountain spotted fever"
+      "notes": "Rocky Mountain spotted fever",
+      "id": {
+        "gram": "Negative",
+        "shape": [
+          "Cocci",
+          "Bacilli"
+        ],
+        "motility": "Non-motile",
+        "spores": "Negative",
+        "atmosphere": "Aerobe"
+      }
     },
     {
       "kingdom": "Bacteria",
@@ -1285,7 +1836,28 @@
       "family": "Enterobacteriaceae",
       "genus": "Salmonella",
       "species": "enterica",
-      "notes": "Typhoid fever, gastroenteritis"
+      "notes": "Typhoid fever, gastroenteritis",
+      "id": {
+        "gram": "Negative",
+        "shape": [
+          "Bacilli"
+        ],
+        "motility": "Motile",
+        "spores": "Negative",
+        "oxidase": "Negative",
+        "catalase": "Positive",
+        "indole": "Negative",
+        "methylRed": "Positive",
+        "vp": "Negative",
+        "citrate": "Variable",
+        "fermentation": [
+          "Glucose",
+          "Maltose",
+          "Mannitol"
+        ],
+        "of": "Fermentative",
+        "atmosphere": "Facultative"
+      }
     },
     {
       "kingdom": "Bacteria",
@@ -1295,7 +1867,26 @@
       "family": "Yersiniaceae",
       "genus": "Serratia",
       "species": "marcescens",
-      "notes": "Nosocomial infection"
+      "notes": "Nosocomial infection",
+      "id": {
+        "gram": "Negative",
+        "shape": [
+          "Bacilli"
+        ],
+        "motility": "Motile",
+        "spores": "Negative",
+        "oxidase": "Negative",
+        "catalase": "Positive",
+        "dnase": "Positive",
+        "indole": "Negative",
+        "vp": "Positive",
+        "citrate": "Positive",
+        "fermentation": [
+          "Glucose"
+        ],
+        "of": "Fermentative",
+        "atmosphere": "Facultative"
+      }
     },
     {
       "kingdom": "Bacteria",
@@ -1315,7 +1906,26 @@
       "family": "Enterobacteriaceae",
       "genus": "Shigella",
       "species": "dysenteriae",
-      "notes": "Bacillary dysentery"
+      "notes": "Bacillary dysentery",
+      "id": {
+        "gram": "Negative",
+        "shape": [
+          "Bacilli"
+        ],
+        "motility": "Non-motile",
+        "spores": "Negative",
+        "oxidase": "Negative",
+        "catalase": "Negative",
+        "indole": "Variable",
+        "methylRed": "Positive",
+        "vp": "Negative",
+        "citrate": "Negative",
+        "fermentation": [
+          "Glucose"
+        ],
+        "of": "Fermentative",
+        "atmosphere": "Facultative"
+      }
     },
     {
       "kingdom": "Bacteria",
@@ -1325,7 +1935,27 @@
       "family": "Enterobacteriaceae",
       "genus": "Shigella",
       "species": "flexneri",
-      "notes": "Shigellosis"
+      "notes": "Shigellosis",
+      "id": {
+        "gram": "Negative",
+        "shape": [
+          "Bacilli"
+        ],
+        "motility": "Non-motile",
+        "spores": "Negative",
+        "oxidase": "Negative",
+        "catalase": "Positive",
+        "indole": "Variable",
+        "methylRed": "Positive",
+        "vp": "Negative",
+        "citrate": "Negative",
+        "fermentation": [
+          "Glucose",
+          "Maltose"
+        ],
+        "of": "Fermentative",
+        "atmosphere": "Facultative"
+      }
     },
     {
       "kingdom": "Bacteria",
@@ -1345,7 +1975,35 @@
       "family": "Staphylococcaceae",
       "genus": "Staphylococcus",
       "species": "aureus",
-      "notes": "Abscesses, sepsis, toxic shock"
+      "notes": "Abscesses, sepsis, toxic shock",
+      "id": {
+        "gram": "Positive",
+        "shape": [
+          "Cocci",
+          "Clusters"
+        ],
+        "motility": "Non-motile",
+        "spores": "Negative",
+        "oxidase": "Negative",
+        "catalase": "Positive",
+        "coagulase": "Positive",
+        "dnase": "Positive",
+        "pyr": "Negative",
+        "indole": "Negative",
+        "methylRed": "Positive",
+        "vp": "Positive",
+        "citrate": "Negative",
+        "fermentation": [
+          "Glucose",
+          "Mannitol",
+          "Maltose",
+          "Sucrose",
+          "Lactose"
+        ],
+        "of": "Fermentative",
+        "haemolysis": "Beta",
+        "atmosphere": "Facultative"
+      }
     },
     {
       "kingdom": "Bacteria",
@@ -1355,7 +2013,26 @@
       "family": "Staphylococcaceae",
       "genus": "Staphylococcus",
       "species": "epidermidis",
-      "notes": "Device-associated infection"
+      "notes": "Device-associated infection",
+      "id": {
+        "gram": "Positive",
+        "shape": [
+          "Cocci",
+          "Clusters"
+        ],
+        "motility": "Non-motile",
+        "spores": "Negative",
+        "oxidase": "Negative",
+        "catalase": "Positive",
+        "coagulase": "Negative",
+        "dnase": "Negative",
+        "fermentation": [
+          "Glucose"
+        ],
+        "of": "Fermentative",
+        "haemolysis": "Gamma",
+        "atmosphere": "Facultative"
+      }
     },
     {
       "kingdom": "Bacteria",
@@ -1374,18 +2051,24 @@
       "order": "Bacillales",
       "family": "Staphylococcaceae",
       "genus": "Staphylococcus",
-      "species": "lugdunensis",
-      "notes": "Endocarditis"
-    },
-    {
-      "kingdom": "Bacteria",
-      "phylum": "Bacillota",
-      "class": "Bacilli",
-      "order": "Bacillales",
-      "family": "Staphylococcaceae",
-      "genus": "Staphylococcus",
       "species": "saprophyticus",
-      "notes": "UTI"
+      "notes": "UTI",
+      "id": {
+        "gram": "Positive",
+        "shape": [
+          "Cocci",
+          "Clusters"
+        ],
+        "motility": "Non-motile",
+        "spores": "Negative",
+        "oxidase": "Negative",
+        "catalase": "Positive",
+        "coagulase": "Negative",
+        "dnase": "Negative",
+        "of": "Fermentative",
+        "haemolysis": "Gamma",
+        "atmosphere": "Facultative"
+      }
     },
     {
       "kingdom": "Bacteria",
@@ -1395,7 +2078,20 @@
       "family": "Xanthomonadaceae",
       "genus": "Stenotrophomonas",
       "species": "maltophilia",
-      "notes": "Nosocomial pneumonia"
+      "notes": "Nosocomial pneumonia",
+      "id": {
+        "gram": "Negative",
+        "shape": [
+          "Bacilli"
+        ],
+        "motility": "Motile",
+        "spores": "Negative",
+        "oxidase": "Negative",
+        "catalase": "Positive",
+        "dnase": "Positive",
+        "of": "Oxidative",
+        "atmosphere": "Aerobe"
+      }
     },
     {
       "kingdom": "Bacteria",
@@ -1415,17 +2111,25 @@
       "family": "Streptococcaceae",
       "genus": "Streptococcus",
       "species": "agalactiae",
-      "notes": "Neonatal sepsis"
-    },
-    {
-      "kingdom": "Bacteria",
-      "phylum": "Bacillota",
-      "class": "Bacilli",
-      "order": "Lactobacillales",
-      "family": "Streptococcaceae",
-      "genus": "Streptococcus",
-      "species": "mitis",
-      "notes": "Endocarditis"
+      "notes": "Neonatal sepsis",
+      "id": {
+        "gram": "Positive",
+        "shape": [
+          "Cocci",
+          "Chains"
+        ],
+        "motility": "Non-motile",
+        "spores": "Negative",
+        "oxidase": "Negative",
+        "catalase": "Negative",
+        "pyr": "Negative",
+        "fermentation": [
+          "Glucose"
+        ],
+        "of": "Fermentative",
+        "haemolysis": "Beta",
+        "atmosphere": "Facultative"
+      }
     },
     {
       "kingdom": "Bacteria",
@@ -1435,7 +2139,27 @@
       "family": "Streptococcaceae",
       "genus": "Streptococcus",
       "species": "mutans",
-      "notes": "Dental caries"
+      "notes": "Dental caries",
+      "id": {
+        "gram": "Positive",
+        "shape": [
+          "Cocci",
+          "Chains"
+        ],
+        "motility": "Non-motile",
+        "spores": "Negative",
+        "oxidase": "Negative",
+        "catalase": "Negative",
+        "fermentation": [
+          "Glucose",
+          "Sucrose",
+          "Mannitol",
+          "Lactose"
+        ],
+        "of": "Fermentative",
+        "haemolysis": "Gamma",
+        "atmosphere": "Facultative"
+      }
     },
     {
       "kingdom": "Bacteria",
@@ -1445,7 +2169,23 @@
       "family": "Streptococcaceae",
       "genus": "Streptococcus",
       "species": "pneumoniae",
-      "notes": "Pneumonia, meningitis"
+      "notes": "Pneumonia, meningitis",
+      "id": {
+        "gram": "Positive",
+        "shape": [
+          "Diplococci"
+        ],
+        "motility": "Non-motile",
+        "spores": "Negative",
+        "oxidase": "Negative",
+        "catalase": "Negative",
+        "fermentation": [
+          "Glucose"
+        ],
+        "of": "Fermentative",
+        "haemolysis": "Alpha",
+        "atmosphere": "Capnophilic"
+      }
     },
     {
       "kingdom": "Bacteria",
@@ -1455,27 +2195,25 @@
       "family": "Streptococcaceae",
       "genus": "Streptococcus",
       "species": "pyogenes",
-      "notes": "Strep throat, necrotizing fasciitis"
-    },
-    {
-      "kingdom": "Bacteria",
-      "phylum": "Bacillota",
-      "class": "Bacilli",
-      "order": "Lactobacillales",
-      "family": "Streptococcaceae",
-      "genus": "Streptococcus",
-      "species": "sanguinis",
-      "notes": "Endocarditis"
-    },
-    {
-      "kingdom": "Bacteria",
-      "phylum": "Bacillota",
-      "class": "Bacilli",
-      "order": "Lactobacillales",
-      "family": "Streptococcaceae",
-      "genus": "Streptococcus",
-      "species": "suis",
-      "notes": "Meningitis (zoonotic)"
+      "notes": "Strep throat, necrotizing fasciitis",
+      "id": {
+        "gram": "Positive",
+        "shape": [
+          "Cocci",
+          "Chains"
+        ],
+        "motility": "Non-motile",
+        "spores": "Negative",
+        "oxidase": "Negative",
+        "catalase": "Negative",
+        "pyr": "Positive",
+        "fermentation": [
+          "Glucose"
+        ],
+        "of": "Fermentative",
+        "haemolysis": "Beta",
+        "atmosphere": "Capnophilic"
+      }
     },
     {
       "kingdom": "Bacteria",
@@ -1505,7 +2243,16 @@
       "family": "Treponemataceae",
       "genus": "Treponema",
       "species": "pallidum",
-      "notes": "Syphilis"
+      "notes": "Syphilis",
+      "id": {
+        "gram": "Other",
+        "shape": [
+          "Spiral"
+        ],
+        "motility": "Motile",
+        "spores": "Negative",
+        "atmosphere": "Microaerophilic"
+      }
     },
     {
       "kingdom": "Bacteria",
@@ -1545,7 +2292,26 @@
       "family": "Vibrionaceae",
       "genus": "Vibrio",
       "species": "cholerae",
-      "notes": "Cholera"
+      "notes": "Cholera",
+      "id": {
+        "gram": "Negative",
+        "shape": [
+          "Bacilli",
+          "Spiral"
+        ],
+        "motility": "Motile",
+        "spores": "Negative",
+        "oxidase": "Positive",
+        "catalase": "Positive",
+        "indole": "Positive",
+        "fermentation": [
+          "Glucose",
+          "Sucrose",
+          "Mannitol"
+        ],
+        "of": "Fermentative",
+        "atmosphere": "Facultative"
+      }
     },
     {
       "kingdom": "Bacteria",
@@ -1555,7 +2321,25 @@
       "family": "Vibrionaceae",
       "genus": "Vibrio",
       "species": "parahaemolyticus",
-      "notes": "Gastroenteritis"
+      "notes": "Gastroenteritis",
+      "id": {
+        "gram": "Negative",
+        "shape": [
+          "Bacilli",
+          "Spiral"
+        ],
+        "motility": "Motile",
+        "spores": "Negative",
+        "oxidase": "Positive",
+        "catalase": "Positive",
+        "indole": "Positive",
+        "fermentation": [
+          "Glucose",
+          "Mannitol"
+        ],
+        "of": "Fermentative",
+        "atmosphere": "Facultative"
+      }
     },
     {
       "kingdom": "Bacteria",
@@ -1575,7 +2359,20 @@
       "family": "Yersiniaceae",
       "genus": "Yersinia",
       "species": "enterocolitica",
-      "notes": "Enterocolitis"
+      "notes": "Enterocolitis",
+      "id": {
+        "gram": "Negative",
+        "shape": [
+          "Bacilli"
+        ],
+        "motility": "Temp-variable",
+        "spores": "Negative",
+        "oxidase": "Negative",
+        "catalase": "Positive",
+        "indole": "Variable",
+        "of": "Fermentative",
+        "atmosphere": "Facultative"
+      }
     },
     {
       "kingdom": "Bacteria",
@@ -1585,7 +2382,20 @@
       "family": "Yersiniaceae",
       "genus": "Yersinia",
       "species": "pestis",
-      "notes": "Plague"
+      "notes": "Plague",
+      "id": {
+        "gram": "Negative",
+        "shape": [
+          "Bacilli"
+        ],
+        "motility": "Non-motile",
+        "spores": "Negative",
+        "oxidase": "Negative",
+        "catalase": "Positive",
+        "indole": "Negative",
+        "of": "Fermentative",
+        "atmosphere": "Facultative"
+      }
     },
     {
       "kingdom": "Bacteria",

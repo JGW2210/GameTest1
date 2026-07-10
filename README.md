@@ -1,30 +1,36 @@
-# 🧬 Phylotype — Bacterial Taxonomy Game
+# 🧬 Phylotype — Bacterial Taxonomy & Identification Game
 
-A browser game where you identify a random **pathogenic bacterium** from its
-taxonomy, one rank at a time. You're given only the Kingdom (*Bacteria*); every
-guess that shares part of the true lineage reveals those ranks and grows an
-animated **dendrogram** toward the answer. Solve it in as few guesses as
-possible.
+A browser game where you identify a random **pathogenic bacterium** in as few
+guesses as possible. You start knowing only its Kingdom (*Bacteria*) and work
+toward the answer through **three modes**:
+
+- **Taxonomic** — guess a genus + species; every matching rank (Phylum → Species)
+  is confirmed and an animated **dendrogram** grows down the trunk. Wrong guesses
+  branch off, and a pulsing **`?`** marks where the true lineage diverges.
+- **Identifier** — a grid of ~20 lab results (Gram stain, catalase, haemolysis,
+  fermentation…). Each guess colours cells **green** (exact), **orange** (partial
+  / variable), or **red** (no match). Green cells **lock**; each guess only
+  updates the rest — a phenotypic Mastermind.
+- **Combined** — both surfaces update together.
 
 Runs on desktop and mobile — no build step, no dependencies, no framework.
 
-## How it works
+## The identifier grid
 
-1. A random bacterium is chosen. You know its Kingdom (*Bacteria*); Phylum →
-   Species are hidden.
-2. Guess a **genus** and **species**. The genus fixes the whole lineage above it
-   (Phylum, Class, Order, Family), so each guess is compared rank-by-rank against
-   the hidden answer.
-3. Every rank that matches is **confirmed** and revealed. The dendrogram extends
-   down through the confirmed trunk (green). Where your guess diverges from the
-   truth it **branches off** (red), and a pulsing **`?`** node marks the rank
-   where the real answer went a different way.
-4. All previous guesses are retained in their correct place on the tree, so the
-   picture of what you know accumulates with every turn.
+Each identifier compares your guessed organism's value against the hidden
+answer's:
 
-The tree is a custom SVG renderer with a `requestAnimationFrame` tween: existing
-nodes glide to their new positions while new branches sprout out of their parent,
-and confirmed ranks transition to green. It honours `prefers-reduced-motion`.
+| Colour | Meaning |
+| --- | --- |
+| 🟩 Green | Exact match — **locked**, shows the true value |
+| 🟧 Orange | Partial — a "Variable" / "Temp-variable" overlap, or a shared item in a multi-value field (shape, fermentation) |
+| 🟥 Red | No match — shows what your guess had |
+| ⬜ Grey | Not scorable (unknown for that organism) |
+
+Identifiers: Gram stain, shape, motility, spores; the enzymes oxidase, catalase,
+coagulase, DNase, aesculin, PYR/PYZ, tributyrin; the biochemicals indole, methyl
+red, Voges-Proskauer, citrate; fermentation (glucose/lactose/maltose/sucrose/
+mannitol) and Hugh–Leifson O/F; haemolysis and atmosphere.
 
 ## Running it
 
@@ -32,90 +38,100 @@ It's a static site. Serve the folder over HTTP (ES modules don't load from
 `file://`):
 
 ```bash
-python3 -m http.server 8000
-# then open http://localhost:8000
+python3 -m http.server 8000       # then open http://localhost:8000
 ```
 
-Or deploy the folder as-is to GitHub Pages / any static host.
+Or deploy the folder as-is to GitHub Pages / any static host. A `.nojekyll` file
+is included so the `src/` and `assets/` folders serve verbatim.
 
-## Taxonomic data
+## Data
+
+### The pool
+
+The bundled dataset is **151 pathogenic bacteria across 78 genera and 9 phyla**,
+each genus **capped at 4 species** so guessing stays tractable. **58 of them**
+carry hand-authored lab profiles — these form the pool for the Identifier and
+Combined modes; the Taxonomic mode uses the full list.
 
 ### Updated nomenclature
 
-Bacterial higher taxa were extensively renamed under the 2021 ICNP reform
-(phyla now take the standardised `-ota` suffix) and several groups were
-reclassified. All data is passed through [`src/normalize.mjs`](src/normalize.mjs)
-so the game always speaks current nomenclature. Examples:
+All taxonomy is normalized to current (post-2021 ICNP) names via
+[`src/normalize.mjs`](src/normalize.mjs): e.g. *Firmicutes* → **Bacillota**,
+*Proteobacteria* → **Pseudomonadota**, *Actinobacteria* → **Actinomycetota**, the
+*Epsilonproteobacteria* → **Campylobacterota** reclassification, order
+*Corynebacteriales* → **Mycobacteriales**, and binomials like *Clostridium
+difficile* → **Clostridioides difficile**, *Propionibacterium acnes* →
+**Cutibacterium acnes**.
 
-| Legacy name | Current name |
-| --- | --- |
-| *Firmicutes* (phylum) | **Bacillota** |
-| *Proteobacteria* (phylum) | **Pseudomonadota** |
-| *Actinobacteria* (phylum) | **Actinomycetota** |
-| *Tenericutes* (phylum) | **Mycoplasmatota** |
-| *Epsilonproteobacteria* (class) | **Campylobacterota** (phylum) / **Campylobacteria** (class) |
-| order *Corynebacteriales* | **Mycobacteriales** |
-| *Clostridium difficile* | **Clostridioides difficile** |
-| *Propionibacterium acnes* | **Cutibacterium acnes** |
-| *Enterobacter aerogenes* | **Klebsiella aerogenes** |
-
-### Where the data comes from
+### Where it comes from (GBIF)
 
 The intended production source is the **GBIF** taxonomic backbone. Two pipelines
 produce the identical dataset schema (`data/bacteria.json` + the browser module
 `src/data.js`):
 
-- **[`scripts/fetch-gbif.mjs`](scripts/fetch-gbif.mjs)** — the live path. For each
-  pathogen it calls GBIF's species-match + usage endpoints, extracts the full
-  classification, and normalizes it. Extend the `PATHOGENS` list to scale the
-  pool up toward ~500 species.
+- **[`scripts/fetch-gbif.mjs`](scripts/fetch-gbif.mjs)** — the live path: matches
+  each pathogen against GBIF's species endpoints, normalizes the classification,
+  caps genera, and merges lab profiles. Extend the `PATHOGENS` list to scale
+  toward ~500.
+- **[`scripts/build-dataset.mjs`](scripts/build-dataset.mjs)** — the bundled path:
+  flattens the curated seed ([`scripts/seed-taxa.mjs`](scripts/seed-taxa.mjs))
+  through the same normalizer and finalizer.
 
-  ```bash
-  node scripts/fetch-gbif.mjs
-  ```
+```bash
+node scripts/build-dataset.mjs    # rebuild from the curated seed
+node scripts/fetch-gbif.mjs       # rebuild from live GBIF (needs network)
+```
 
-- **[`scripts/build-dataset.mjs`](scripts/build-dataset.mjs)** — the bundled path.
-  Flattens a curated, grouped seed of pathogenic bacteria
-  ([`scripts/seed-taxa.mjs`](scripts/seed-taxa.mjs)) through the same normalizer.
+> The committed dataset was built from the curated seed because the development
+> sandbox blocks egress to `api.gbif.org`. Both scripts share
+> [`scripts/finalize.mjs`](scripts/finalize.mjs) (cap + profile-merge + output)
+> so the two paths stay identical.
 
-  ```bash
-  node scripts/build-dataset.mjs
-  ```
+### Lab profiles
 
-> **Why a bundled dataset ships in the repo:** the sandbox this was developed in
-> blocks outbound egress to `api.gbif.org`, so the committed dataset was generated
-> by `build-dataset.mjs` from the curated seed — written in GBIF's *legacy*
-> nomenclature precisely so the normalizer does real work. The seed's names,
-> lineages, and diseases are hand-verified. Run `fetch-gbif.mjs` in any
-> environment with GBIF access to regenerate from the live API and grow the pool.
+Hand-authored phenotypic profiles live in
+[`scripts/profiles.mjs`](scripts/profiles.mjs), keyed by current binomial and
+merged into records at build time. Only confidently-known results are filled in;
+anything omitted renders as a neutral cell and doesn't score.
+
+## Loading your own lists from Supabase (optional)
+
+You can swap the bundled pool for bacteria lists stored in your **SpeciesDoc**
+Supabase project. The game plays fine with no configuration; to enable it, edit
+[`src/config.js`](src/config.js):
+
+1. Set `enabled: true` and fill in your project `url` + `anonKey` (the anon key is
+   safe in frontend code with Row Level Security enabled).
+2. Point `table` and the `columns` map at your schema. Only `genus` + `species`
+   are required — missing taxonomy is filled from the bundled facts by name.
+3. Optionally set `columns.list` to a grouping column to expose named,
+   selectable lists, and `identifierColumns` if your rows already store lab
+   results (otherwise bundled profiles are used).
+
+An in-game **Data source** dropdown then lets players pick a list;
+[`src/supabase.js`](src/supabase.js) fetches and maps the rows, falling back to
+bundled facts for anything a row doesn't supply.
 
 ## Project layout
 
 ```
-index.html                 markup + modals
-assets/styles.css          responsive dark "lab" theme + tree/animation styles
+index.html                 markup, mode tabs, panels, modals
+assets/styles.css          responsive dark theme + tree/grid/animation styles
 src/
-  data.js                  generated dataset (BACTERIA + META) — imported by the game
-  normalize.mjs            updated-nomenclature normalizer (used by both scripts)
-  game.js                  game state, rank comparison, dendrogram construction
+  data.js                  generated dataset (BACTERIA + META)
+  normalize.mjs            updated-nomenclature normalizer
+  identifiers.js           identifier schema + comparison logic
+  game.js                  game state: taxonomy comparison + identifier grid
   tree.js                  animated SVG dendrogram renderer
-  main.js                  UI wiring, comboboxes, modals
+  idgrid.js                identifier grid renderer
+  config.js                Supabase configuration (yours to fill in)
+  supabase.js              Supabase data adapter
+  main.js                  UI wiring: modes, data source, comboboxes, modals
 scripts/
-  seed-taxa.mjs            curated pathogen seed (legacy names, grouped by lineage)
-  build-dataset.mjs        seed → normalize → data.js + bacteria.json
-  fetch-gbif.mjs           live GBIF pull → data.js + bacteria.json
+  seed-taxa.mjs            curated pathogen seed (legacy names, grouped)
+  profiles.mjs             hand-authored lab profiles
+  normalize / finalize     shared pipeline helpers
+  build-dataset.mjs        seed → data
+  fetch-gbif.mjs           live GBIF → data
 data/bacteria.json         portable generated dataset
 ```
-
-## Regenerating the dataset
-
-After editing the seed or the normalizer:
-
-```bash
-node scripts/build-dataset.mjs   # rebuild from the curated seed
-# or
-node scripts/fetch-gbif.mjs      # rebuild from live GBIF (needs network)
-```
-
-Both rewrite `data/bacteria.json` and `src/data.js`; reload the page to play with
-the new pool.
