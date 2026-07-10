@@ -38,9 +38,16 @@ export class Game {
   cfg() { return MODES[this.mode]; }
   needsProfile() { return this.cfg().needsProfile; }
 
-  // Records available to guess/target in the current mode.
+  // Records available to guess/target in the current mode. Taxonomic surfaces
+  // require a full lineage; identifier surfaces require a lab profile.
   pool() {
-    return this.needsProfile() ? this.data.filter((r) => r.id) : this.data;
+    const cfg = this.cfg();
+    const hasLineage = (r) => r.phylum && r.class && r.order && r.family;
+    return this.data.filter((r) => {
+      if (cfg.needsProfile && !r.id) return false;
+      if (cfg.tree && !hasLineage(r)) return false;
+      return true;
+    });
   }
 
   setMode(mode) {
