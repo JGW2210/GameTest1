@@ -8,7 +8,7 @@
 import { RANKS, RANK_LABELS } from './game.js';
 
 const SVGNS = 'http://www.w3.org/2000/svg';
-const ML = 90, MR = 40, MT = 38, MB = 32; // margins
+const ML = 90, MR = 40, MT = 38, MB = 48; // margins (MB fits the leaf label)
 const COL = 100, ROW = 82;                 // grid spacing
 const DUR = 560;                           // animation ms
 
@@ -130,6 +130,41 @@ export class TreeView {
     return { width, height };
   }
 
+  // The frontier of the confirmed lineage: the deepest green (correct) node.
+  // The mystery/divergence node sits one rank below it, so framing this node
+  // keeps the whole green trunk tip in view.
+  _focusNode(nodes) {
+    let f = null;
+    for (const n of nodes) {
+      if (n.state === 'correct' && (!f || n.rankIndex > f.rankIndex)) f = n;
+    }
+    return f;
+  }
+
+  // Scroll the tree's own viewport (never the page) so the green frontier is
+  // framed: horizontally centred, and placed just above the vertical middle so
+  // the confirmed trunk above and the divergence below are both visible.
+  _scrollToFocus(focus) {
+    const sc = this.svg.parentElement;
+    if (!focus || !sc) return;
+    // The tree renders 1:1 (viewBox === width/height), so a node's x/y in user
+    // units maps straight to pixels. offset* isn't available on <svg>, so locate
+    // the SVG's top-left in scroll-content space via getBoundingClientRect.
+    const scRect = sc.getBoundingClientRect();
+    const svgRect = this.svg.getBoundingClientRect();
+    if (!svgRect.width || !svgRect.height) return;
+    const originLeft = sc.scrollLeft + (svgRect.left - scRect.left);
+    const originTop = sc.scrollTop + (svgRect.top - scRect.top);
+    const clamp = (v, max) => Math.max(0, Math.min(v, Math.max(0, max)));
+    const to = {
+      left: clamp(originLeft + focus.x - sc.clientWidth / 2, sc.scrollWidth - sc.clientWidth),
+      top: clamp(originTop + focus.y - sc.clientHeight * 0.42, sc.scrollHeight - sc.clientHeight),
+      behavior: reduceMotion() ? 'auto' : 'smooth',
+    };
+    try { sc.scrollTo(to); }
+    catch { sc.scrollLeft = to.left; sc.scrollTop = to.top; }
+  }
+
   update(root) {
     const { nodes, cols } = this._layout(root);
     this._drawStatic(cols);
@@ -148,6 +183,9 @@ export class TreeView {
     for (const id of [...this.edgeEls.keys()]) {
       if (!targets.has(id)) { this.edgeEls.get(id).remove(); this.edgeEls.delete(id); }
     }
+
+    // Bring the confirmed frontier into view (positions are final at this point).
+    this._scrollToFocus(this._focusNode(nodes));
 
     // Starting positions: existing nodes keep their spot; new nodes sprout from
     // their parent's target so branches visibly grow outward.
