@@ -19,6 +19,7 @@ const els = {
   submit: $('#submit-btn'), giveUp: $('#giveup-btn'), newGame: $('#newgame-btn'),
   poolInfo: $('#pool-info'), progress: $('#progress'),
   modeTabs: $('#mode-tabs'), source: $('#source-select'), sourceStatus: $('#source-status'),
+  lastGuess: $('#last-guess'),
   modal: $('#win-modal'), modalBody: $('#win-body'), modalTitle: $('#win-title'),
   modalClose: $('#win-close'), modalNew: $('#win-newgame'),
   help: $('#help-modal'), helpOpen: $('#help-btn'), helpClose: $('#help-close'),
@@ -103,6 +104,12 @@ function renderRevealed() {
 function renderProgress() {
   const { total, green } = game.gridScored();
   els.progress.textContent = total ? `${green} / ${total} identifiers confirmed` : '';
+  if (els.lastGuess) {
+    const last = game.guesses[game.guesses.length - 1];
+    els.lastGuess.innerHTML = last
+      ? `showing <i>${last.genus} ${last.species || ''}</i>`
+      : '';
+  }
 }
 function renderHistory() {
   els.history.replaceChildren();
@@ -116,10 +123,10 @@ function renderHistory() {
     els.history.append(row);
   });
 }
-function render() {
+function render(revealId = null) {
   document.body.dataset.mode = game.mode;
   const cfg = game.cfg();
-  if (cfg.tree) tree.update(game.buildTree());
+  if (cfg.tree) tree.update(game.buildTree(), revealId);
   if (cfg.grid) idgrid.update(game.gridRows(), lastGuessId);
   renderRevealed();
   renderProgress();
@@ -127,6 +134,14 @@ function render() {
   els.guessCount.textContent = game.guesses.length;
 }
 function setMessage(text, kind = '') { els.message.textContent = text; els.message.className = `message ${kind}`; }
+
+// The tree node id where a guess first left the correct path (matches the id
+// scheme in Game.buildTree). Null for a fully-correct/winning guess.
+function firstWrongId(guess) {
+  const c = guess.common;
+  if (c < 1 || c >= RANKS.length) return null;
+  return `${RANKS[c]}:${guess.lineage.slice(0, c + 1).join('>')}`;
+}
 
 // ── Actions ─────────────────────────────────────────────────────────────────
 function handleGuess(e) {
@@ -137,7 +152,7 @@ function handleGuess(e) {
   if (res.error) return setMessage(res.error, 'error');
 
   lastGuessId = res.guess.id;
-  render();
+  render(firstWrongId(res.guess));
   els.genus.value = ''; els.species.value = ''; els.genus.focus();
   if (res.win) return finishWin();
 

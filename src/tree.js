@@ -1,16 +1,24 @@
 // Animated SVG dendrogram renderer.
 //
-// The tree only ever grows, so on each update we reuse existing node/edge DOM,
-// animate everything from its previous position to the freshly laid-out one, and
-// let brand-new nodes sprout out of their parent — a single requestAnimationFrame
-// tween keeps nodes and their connecting branches perfectly in sync.
+// The confirmed lineage (green trunk) plus the mystery frontier are always
+// drawn. Wrong guesses are *collapsed*: each point where a guess leaves the
+// correct path shows a cluster of clickable pills (one per wrong branch) anchored
+// to the trunk, instead of a sprawling sub-tree. A freshly-made wrong guess is
+// revealed in full for a couple of seconds so you can see where it landed, then
+// it folds back into its pill. Clicking a pill expands/collapses that branch.
+//
+// Nodes and their connecting branches tween together via a single rAF loop; the
+// pill clusters (HTML inside <foreignObject>) are rebuilt each render.
 
 import { RANKS, RANK_LABELS } from './game.js';
 
 const SVGNS = 'http://www.w3.org/2000/svg';
-const ML = 90, MR = 40, MT = 38, MB = 48; // margins (MB fits the leaf label)
-const COL = 100, ROW = 82;                 // grid spacing
-const DUR = 560;                           // animation ms
+const XHTML = 'http://www.w3.org/1999/xhtml';
+const ML = 90, MR = 40, MT = 38, MB = 48;   // margins (MB fits the leaf label)
+const COL = 100, ROW = 82;                    // grid spacing
+const DUR = 560;                              // node animation ms
+const REVEAL_MS = 2000;                       // fresh wrong guess stays open this long
+const PILL_GAP = 34, PILL_W = 210;            // pill-zone geometry
 
 const easeInOut = (t) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);
 const lerp = (a, b, t) => a + (b - a) * t;
@@ -29,11 +37,46 @@ export class TreeView {
     this.gLabels = el('g', { class: 'rank-labels' });
     this.gEdges = el('g', { class: 'edges' });
     this.gNodes = el('g', { class: 'nodes' });
-    svg.append(this.gGuides, this.gLabels, this.gEdges, this.gNodes);
+    this.gPills = el('g', { class: 'pills' });
+    svg.append(this.gGuides, this.gLabels, this.gEdges, this.gNodes, this.gPills);
     this.nodeEls = new Map(); // id -> { g, circle, label }
     this.edgeEls = new Map(); // childId -> path
     this.prevPos = new Map(); // id -> {x, y}
     this.raf = null;
+    this.expanded = new Set(); // wrong-branch node ids the user pinned open
+    this.reveal = null;        // wrong-branch node id temporarily open (fresh guess)
+    this.revealTimer = null;
+    this._root = null;         // last full tree handed to update()
+  }
+
+  // Split the full tree into (a) a pruned tree of nodes we actually draw — the
+  // green trunk, the mystery node, and any open wrong branches — and (b) the
+  // pill clusters that stand in for the collapsed wrong branches.
+  _collapse(root) {
+    const isOpen = (id) => this.expanded.has(id) || id === this.reveal;
+    const pills = [];
+    const clone = (n) => {
+      const copy = { ...n, children: [] };
+      const wrong = [];
+      for (const c of n.children || []) {
+        if (c.state === 'correct' || c.state === 'mystery') copy.children.push(clone(c));
+        else wrong.push(c); // a branch leaving the correct path here
+      }
+      if (n.state === 'correct') {
+        const items = [];
+        for (const c of wrong) {
+          const open = isOpen(c.id);
+          items.push({ id: c.id, name: c.name, rank: c.rank, open });
+          if (open) copy.children.push(clone(c));
+        }
+        if (items.length) pills.push({ parentId: n.id, childRankIndex: n.rankIndex + 1, items });
+      } else {
+        // Already inside an open wrong branch: draw all of its descendants.
+        for (const c of wrong) copy.children.push(clone(c));
+      }
+      return copy;
+    };
+    return { root: clone(root), pills };
   }
 
   // Assign grid columns (x) to every node: leaves get sequential slots, parents
@@ -107,8 +150,8 @@ export class TreeView {
     return p;
   }
 
-  _drawStatic(cols) {
-    const width = ML + cols * COL + MR;
+  _drawStatic(cols, extraRight) {
+    const width = ML + cols * COL + extraRight + MR;
     const height = MT + (RANKS.length - 1) * ROW + MB;
     this.svg.setAttribute('viewBox', `0 0 ${width} ${height}`);
     // Render at intrinsic size so a small tree stays compact and centred instead
@@ -130,10 +173,13 @@ export class TreeView {
     return { width, height };
   }
 
-  // The frontier of the confirmed lineage: the deepest green (correct) node.
-  // The mystery/divergence node sits one rank below it, so framing this node
-  // keeps the whole green trunk tip in view.
-  _focusNode(nodes) {
+  // What to keep centred: a freshly revealed wrong branch if one is open,
+  // otherwise the deepest confirmed (green) node.
+  _focus(nodes) {
+    if (this.reveal) {
+      const r = nodes.find((n) => n.id === this.reveal);
+      if (r) return r;
+    }
     let f = null;
     for (const n of nodes) {
       if (n.state === 'correct' && (!f || n.rankIndex > f.rankIndex)) f = n;
@@ -141,15 +187,11 @@ export class TreeView {
     return f;
   }
 
-  // Scroll the tree's own viewport (never the page) so the green frontier is
-  // framed: horizontally centred, and placed just above the vertical middle so
-  // the confirmed trunk above and the divergence below are both visible.
+  // Scroll the tree's own viewport (never the page) so the focus node is framed:
+  // horizontally centred, and placed just above the vertical middle.
   _scrollToFocus(focus) {
     const sc = this.svg.parentElement;
     if (!focus || !sc) return;
-    // The tree renders 1:1 (viewBox === width/height), so a node's x/y in user
-    // units maps straight to pixels. offset* isn't available on <svg>, so locate
-    // the SVG's top-left in scroll-content space via getBoundingClientRect.
     const scRect = sc.getBoundingClientRect();
     const svgRect = this.svg.getBoundingClientRect();
     if (!svgRect.width || !svgRect.height) return;
@@ -165,9 +207,36 @@ export class TreeView {
     catch { sc.scrollLeft = to.left; sc.scrollTop = to.top; }
   }
 
-  update(root) {
+  // Public entry point. `revealId` (optional) is the node where the newest guess
+  // first left the correct path; it is shown expanded for REVEAL_MS then folds.
+  update(root, revealId) {
+    this._root = root;
+    if (revealId && !this.expanded.has(revealId)) {
+      this.reveal = revealId;
+      if (this.revealTimer) clearTimeout(this.revealTimer);
+      this.revealTimer = setTimeout(() => {
+        this.revealTimer = null;
+        this.reveal = null;
+        if (this._root) this._render();
+      }, REVEAL_MS);
+    }
+    this._render();
+  }
+
+  _togglePill(id) {
+    // A click always pins the branch's state, cancelling any pending auto-fold.
+    if (this.revealTimer && this.reveal === id) { clearTimeout(this.revealTimer); this.revealTimer = null; }
+    if (this.reveal === id) this.reveal = null;
+    if (this.expanded.has(id)) this.expanded.delete(id);
+    else this.expanded.add(id);
+    this._render();
+  }
+
+  _render() {
+    const { root, pills } = this._collapse(this._root);
     const { nodes, cols } = this._layout(root);
-    this._drawStatic(cols);
+    const extraRight = pills.length ? PILL_GAP + PILL_W : 0;
+    this._drawStatic(cols, extraRight);
 
     const targets = new Map();
     const parentOf = new Map();
@@ -176,16 +245,16 @@ export class TreeView {
       parentOf.set(n.id, n.parentId);
       this._ensureNode(n);
     }
-    // Prune anything no longer present (defensive; tree normally only grows).
+    // Prune anything no longer visible (collapsed branches, stale nodes).
     for (const id of [...this.nodeEls.keys()]) {
-      if (!targets.has(id)) { this.nodeEls.get(id).g.remove(); this.nodeEls.delete(id); }
+      if (!targets.has(id)) { this.nodeEls.get(id).g.remove(); this.nodeEls.delete(id); this.prevPos.delete(id); }
     }
     for (const id of [...this.edgeEls.keys()]) {
       if (!targets.has(id)) { this.edgeEls.get(id).remove(); this.edgeEls.delete(id); }
     }
 
-    // Bring the confirmed frontier into view (positions are final at this point).
-    this._scrollToFocus(this._focusNode(nodes));
+    this._drawPills(pills, nodes, cols);
+    this._scrollToFocus(this._focus(nodes));
 
     // Starting positions: existing nodes keep their spot; new nodes sprout from
     // their parent's target so branches visibly grow outward.
@@ -238,12 +307,56 @@ export class TreeView {
     this.raf = requestAnimationFrame(step);
   }
 
+  // Draw the collapsed wrong branches as clusters of clickable pills in a zone to
+  // the right of the tree, each connected back to its divergence point.
+  _drawPills(pills, nodes, cols) {
+    this.gPills.replaceChildren();
+    if (!pills.length) return;
+    const pos = new Map(nodes.map((n) => [n.id, { x: n.x, y: n.y }]));
+    const pillX = ML + cols * COL + PILL_GAP;
+    for (const cl of pills) {
+      const parent = pos.get(cl.parentId);
+      if (!parent) continue;
+      const cy = MT + cl.childRankIndex * ROW;
+      const rows = Math.max(1, Math.ceil(cl.items.length / 2));
+      const h = 26 + rows * 30;
+
+      const link = el('path', { class: 'pill-link', d: this._edgePath(parent.x, parent.y, pillX + 4, cy) });
+      this.gPills.append(link);
+
+      const fo = el('foreignObject', { x: pillX, y: cy - h / 2, width: PILL_W, height: h });
+      const wrap = document.createElementNS(XHTML, 'div');
+      wrap.setAttribute('class', 'pill-cluster');
+      const head = document.createElementNS(XHTML, 'span');
+      head.setAttribute('class', 'pill-rank');
+      head.textContent = `${RANK_LABELS[RANKS[cl.childRankIndex]] || ''} · not on path`;
+      wrap.append(head);
+      for (const it of cl.items) {
+        const b = document.createElementNS(XHTML, 'button');
+        b.setAttribute('type', 'button');
+        b.setAttribute('class', `pill${it.open ? ' open' : ''}`);
+        b.setAttribute('title', it.open ? `Collapse ${it.name}` : `Expand ${it.name}`);
+        const italic = it.rank === 'genus' || it.rank === 'species';
+        b.innerHTML = `<span class="pill-dot"></span><span class="pill-name${italic ? ' italic' : ''}"></span>`;
+        b.querySelector('.pill-name').textContent = it.name;
+        b.addEventListener('click', (ev) => { ev.preventDefault(); ev.stopPropagation(); this._togglePill(it.id); });
+        wrap.append(b);
+      }
+      fo.append(wrap);
+      this.gPills.append(fo);
+    }
+  }
+
   reset() {
     this.gNodes.replaceChildren();
     this.gEdges.replaceChildren();
+    this.gPills.replaceChildren();
     this.nodeEls.clear();
     this.edgeEls.clear();
     this.prevPos.clear();
+    this.expanded.clear();
+    this.reveal = null;
+    if (this.revealTimer) { clearTimeout(this.revealTimer); this.revealTimer = null; }
     if (this.raf) cancelAnimationFrame(this.raf);
   }
 }

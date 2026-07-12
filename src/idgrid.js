@@ -5,9 +5,14 @@
 //   orange = partial match (variable overlap, or some shared items)
 //   red    = no match (shows what the latest guess had)
 //   grey   = not yet tested / not scorable
-// Locked (green) cells never change again; each guess only updates the rest.
+// Locked (green) cells never change again; every other cell always mirrors the
+// most recent guess, so the grid reads as "confirmed answers + last guess".
+//
+// Cells flow in one dense, wrapping grid (positional wrapping) to pack tightly
+// regardless of how many identifiers each group has; a thin coloured edge keeps
+// the groups visually distinct without spending a whole row on a header.
 
-import { IDENTIFIERS, ID_GROUPS, displayValue } from './identifiers.js';
+import { IDENTIFIERS, displayValue } from './identifiers.js';
 
 export class IdGrid {
   constructor(root) {
@@ -19,30 +24,21 @@ export class IdGrid {
 
   _build() {
     this.root.replaceChildren();
-    for (const group of ID_GROUPS) {
-      const section = document.createElement('div');
-      section.className = 'id-group';
-      const h = document.createElement('div');
-      h.className = 'id-group-title';
-      h.textContent = group;
-      section.append(h);
-
-      const grid = document.createElement('div');
-      grid.className = 'id-grid';
-      for (const spec of IDENTIFIERS.filter((s) => s.group === group)) {
-        const cell = document.createElement('div');
-        cell.className = 'idcell state-empty';
-        cell.dataset.key = spec.key;
-        cell.innerHTML =
-          `<div class="idcell-label">${spec.label}</div>` +
-          `<div class="idcell-value">—</div>` +
-          `<div class="idcell-lock" aria-hidden="true">🔒</div>`;
-        grid.append(cell);
-        this.cells.set(spec.key, { cell, value: cell.querySelector('.idcell-value') });
-      }
-      section.append(grid);
-      this.root.append(section);
+    const grid = document.createElement('div');
+    grid.className = 'id-grid';
+    for (const spec of IDENTIFIERS) {
+      const cell = document.createElement('div');
+      cell.className = 'idcell state-empty';
+      cell.dataset.key = spec.key;
+      cell.dataset.group = spec.group;
+      cell.innerHTML =
+        `<div class="idcell-label">${spec.label}</div>` +
+        `<div class="idcell-value">—</div>` +
+        `<div class="idcell-lock" aria-hidden="true">🔒</div>`;
+      grid.append(cell);
+      this.cells.set(spec.key, { cell, value: cell.querySelector('.idcell-value') });
     }
+    this.root.append(grid);
   }
 
   reset() {
@@ -66,7 +62,7 @@ export class IdGrid {
         ? `${row.spec.label}: ${displayValue(row.value)} (confirmed)`
         : isEmpty
           ? `${row.spec.label}: not yet tested`
-          : `${row.spec.label}: your guess had ${displayValue(row.value)}`;
+          : `${row.spec.label}: your last guess had ${displayValue(row.value)}`;
 
       const changed = this.prev.get(row.spec.key) !== `${row.state}:${displayValue(row.value)}`;
       if (changed && row.guessId === currentGuessId && !isEmpty) {
