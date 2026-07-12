@@ -170,6 +170,37 @@ export class Game {
     }));
   }
 
+  // The identifiers confirmed (locked green) to match the target so far — the
+  // accumulated "known correct" set. Everything else reads as still unknown.
+  confirmedRows() {
+    return IDENTIFIERS.map((spec) => {
+      const st = this.idState[spec.key];
+      return {
+        spec,
+        locked: st.locked,
+        state: st.locked ? 'green' : 'empty',
+        value: st.locked ? st.value : null,
+        guessId: st.locked ? st.guessId : 0,
+      };
+    });
+  }
+
+  // The last guessed organism's full identifier profile, scored against the
+  // target — independent of what is locked, so it can be shown side-by-side.
+  lastGuessRows() {
+    const last = this.guesses[this.guesses.length - 1];
+    const rec = last && last.rec;
+    const tId = this.target && this.target.id;
+    return IDENTIFIERS.map((spec) => {
+      const gVal = rec && rec.id ? rec.id[spec.key] : undefined;
+      if (!rec || gVal === undefined) {
+        return { spec, state: 'empty', value: null, guessId: last ? last.id : 0 };
+      }
+      const tVal = tId ? this.target.id[spec.key] : undefined;
+      return { spec, state: compareIdentifier(gVal, tVal, spec), value: gVal, guessId: last.id };
+    });
+  }
+
   gridScored() {
     // How many identifiers are known for the target (scorable).
     if (!this.target.id) return { total: 0, green: 0 };
