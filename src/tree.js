@@ -8,8 +8,8 @@
 import { RANKS, RANK_LABELS } from './game.js';
 
 const SVGNS = 'http://www.w3.org/2000/svg';
-const ML = 96, MR = 44, MT = 46, MB = 44; // margins
-const COL = 104, ROW = 96;                 // grid spacing
+const ML = 90, MR = 40, MT = 38, MB = 32; // margins
+const COL = 100, ROW = 82;                 // grid spacing
 const DUR = 560;                           // animation ms
 
 const easeInOut = (t) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);
@@ -111,6 +111,10 @@ export class TreeView {
     const width = ML + cols * COL + MR;
     const height = MT + (RANKS.length - 1) * ROW + MB;
     this.svg.setAttribute('viewBox', `0 0 ${width} ${height}`);
+    // Render at intrinsic size so a small tree stays compact and centred instead
+    // of being stretched to fill the panel width (which balloons its height).
+    this.svg.setAttribute('width', width);
+    this.svg.setAttribute('height', height);
     this.svg.setAttribute('preserveAspectRatio', 'xMidYMin meet');
 
     // Rank rows + labels (rebuilt cheaply each update).
