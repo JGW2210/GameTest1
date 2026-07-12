@@ -105,9 +105,12 @@ body {
   display: flex;
   flex-direction: column;
 }
-.panel-head { display: flex; align-items: baseline; justify-content: space-between; padding: 12px 16px 0; }
+.panel-head { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; padding: 12px 16px 0; }
 .panel-head h2 { margin: 0; font-size: 13px; color: var(--muted); font-weight: 700; letter-spacing: 0.4px; text-transform: uppercase; }
-.progress { font-size: 12px; color: var(--correct); font-weight: 600; }
+.panel-head-meta { display: inline-flex; align-items: baseline; gap: 12px; min-width: 0; flex-wrap: wrap; justify-content: flex-end; }
+.progress { font-size: 12px; color: var(--correct); font-weight: 600; white-space: nowrap; }
+.last-guess { font-size: 12px; color: var(--muted-2); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.last-guess i { color: var(--muted); }
 .tree-panel { min-height: 0; flex: 1; }
 .tree-scroll { width: 100%; overflow: auto; flex: 1; display: flex; align-items: flex-start; justify-content: safe center; }
 .tree { display: block; flex: 0 0 auto; max-width: none; }
@@ -118,15 +121,19 @@ body[data-mode="taxonomy"] .idgrid-panel { display: none; }
 body[data-mode="identifier"] .tree-panel { display: none; }
 body[data-mode="identifier"] .lineage-card { display: none; }
 
-/* Identifier grid */
-.id-group + .id-group { margin-top: 14px; }
-.id-group-title { font-size: 10.5px; letter-spacing: 0.6px; text-transform: uppercase; color: var(--muted-2); margin-bottom: 6px; font-weight: 700; }
-.id-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 8px; }
+/* Identifier grid — one dense, wrapping grid; a coloured top edge marks the
+   group so no vertical space is spent on section headers. */
+.id-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(126px, 1fr)); gap: 8px; align-items: start; grid-auto-flow: row dense; }
 .idcell {
-  position: relative; border: 1px solid var(--line); border-radius: 10px;
-  background: var(--bg-2); padding: 8px 10px; min-height: 54px;
+  position: relative; border: 1px solid var(--line); border-top-width: 3px; border-radius: 10px;
+  background: var(--bg-2); padding: 7px 10px; min-height: 52px;
   transition: background 0.35s ease, border-color 0.35s ease;
 }
+.idcell[data-group="Morphology"] { border-top-color: #3f6fb0; }
+.idcell[data-group="Enzymes"]    { border-top-color: #7d5bb0; }
+.idcell[data-group="Biochemical"]{ border-top-color: #4a9d8f; }
+.idcell[data-group="Metabolism"] { border-top-color: #b08a3f; }
+.idcell[data-group="Culture"]    { border-top-color: #b0567f; }
 .idcell-label { font-size: 11px; color: var(--muted); font-weight: 600; }
 .idcell-value { font-size: 14px; font-weight: 700; margin-top: 2px; }
 .idcell-lock { position: absolute; top: 7px; right: 8px; font-size: 11px; opacity: 0; transition: opacity 0.3s ease; }
@@ -261,6 +268,29 @@ body[data-mode="identifier"] .lineage-card { display: none; }
   100% { transform: scale(1); }
 }
 
+/* Collapsed wrong branches: a faint connector to a cluster of clickable pills. */
+.pill-link { fill: none; stroke: var(--wrong); stroke-width: 1.5; stroke-dasharray: 3 5; opacity: 0.5; }
+.pill-cluster { display: flex; flex-direction: column; align-items: flex-start; gap: 4px; font-family: inherit; }
+.pill-rank { font-size: 8.5px; letter-spacing: 0.5px; text-transform: uppercase; color: var(--muted-2); font-weight: 700; }
+.pill-cluster .pill {
+  display: inline-flex; align-items: center; gap: 6px; max-width: 100%;
+  font: inherit; font-size: 12px; font-weight: 600; color: #e7b7bd;
+  background: var(--wrong-soft); border: 1px solid #6d3038; border-radius: 999px;
+  padding: 3px 10px 3px 8px; cursor: pointer; line-height: 1.3;
+  transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+}
+.pill-cluster .pill:hover { border-color: var(--wrong); color: #ffd7db; }
+.pill-cluster .pill .pill-name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.pill-cluster .pill .pill-name.italic { font-style: italic; }
+.pill-cluster .pill .pill-dot {
+  width: 7px; height: 7px; border-radius: 50%; background: var(--wrong); flex: 0 0 auto;
+  box-shadow: 0 0 0 3px rgba(236, 106, 106, 0.15);
+}
+.pill-cluster .pill.open {
+  color: #ffe7ea; background: #4a2027; border-color: var(--wrong);
+}
+.pill-cluster .pill.open .pill-dot { background: #ffd7db; box-shadow: 0 0 0 3px rgba(236, 106, 106, 0.28); }
+
 /* ── Modals ──────────────────────────────────────────────────────────────── */
 .modal {
   position: fixed; inset: 0; z-index: 50;
@@ -307,6 +337,9 @@ body[data-mode="identifier"] .lineage-card { display: none; }
      scrolls as a unit, so nothing gets squished or clipped. */
   body:not([data-mode="taxonomy"]) .tree-panel { flex: 0 0 auto; }
   .idgrid-panel { flex: 0 0 auto; }
+  /* Combined: identifiers first, dendrogram beneath. */
+  body[data-mode="combined"] .idgrid-panel { order: 1; }
+  body[data-mode="combined"] .tree-panel { order: 2; }
 }
 
 @media (max-width: 860px) {
@@ -319,6 +352,11 @@ body[data-mode="identifier"] .lineage-card { display: none; }
   .tree-panel, .idgrid-panel { order: 2; }
   .lineage-card { order: 3; }
   .history-card { order: 4; }
+  /* Combined: identifiers above the dendrogram. */
+  body[data-mode="combined"] .idgrid-panel { order: 2; }
+  body[data-mode="combined"] .tree-panel { order: 3; }
+  body[data-mode="combined"] .lineage-card { order: 4; }
+  body[data-mode="combined"] .history-card { order: 5; }
   /* Panels use overflow:hidden, so as flex items they'd shrink to 0 and clip
      their contents. Pin them to their natural height and let the page scroll. */
   .tree-panel, .idgrid-panel { flex: 0 0 auto; min-height: 0; }
