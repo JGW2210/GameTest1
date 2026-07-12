@@ -8,8 +8,8 @@
 import { RANKS, RANK_LABELS } from './game.js';
 
 const SVGNS = 'http://www.w3.org/2000/svg';
-const ML = 96, MR = 44, MT = 46, MB = 44; // margins
-const COL = 104, ROW = 96;                 // grid spacing
+const ML = 90, MR = 40, MT = 38, MB = 48; // margins (MB fits the leaf label)
+const COL = 100, ROW = 82;                 // grid spacing
 const DUR = 560;                           // animation ms
 
 const easeInOut = (t) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);
@@ -111,6 +111,10 @@ export class TreeView {
     const width = ML + cols * COL + MR;
     const height = MT + (RANKS.length - 1) * ROW + MB;
     this.svg.setAttribute('viewBox', `0 0 ${width} ${height}`);
+    // Render at intrinsic size so a small tree stays compact and centred instead
+    // of being stretched to fill the panel width (which balloons its height).
+    this.svg.setAttribute('width', width);
+    this.svg.setAttribute('height', height);
     this.svg.setAttribute('preserveAspectRatio', 'xMidYMin meet');
 
     // Rank rows + labels (rebuilt cheaply each update).
@@ -124,6 +128,41 @@ export class TreeView {
       this.gLabels.append(t);
     });
     return { width, height };
+  }
+
+  // The frontier of the confirmed lineage: the deepest green (correct) node.
+  // The mystery/divergence node sits one rank below it, so framing this node
+  // keeps the whole green trunk tip in view.
+  _focusNode(nodes) {
+    let f = null;
+    for (const n of nodes) {
+      if (n.state === 'correct' && (!f || n.rankIndex > f.rankIndex)) f = n;
+    }
+    return f;
+  }
+
+  // Scroll the tree's own viewport (never the page) so the green frontier is
+  // framed: horizontally centred, and placed just above the vertical middle so
+  // the confirmed trunk above and the divergence below are both visible.
+  _scrollToFocus(focus) {
+    const sc = this.svg.parentElement;
+    if (!focus || !sc) return;
+    // The tree renders 1:1 (viewBox === width/height), so a node's x/y in user
+    // units maps straight to pixels. offset* isn't available on <svg>, so locate
+    // the SVG's top-left in scroll-content space via getBoundingClientRect.
+    const scRect = sc.getBoundingClientRect();
+    const svgRect = this.svg.getBoundingClientRect();
+    if (!svgRect.width || !svgRect.height) return;
+    const originLeft = sc.scrollLeft + (svgRect.left - scRect.left);
+    const originTop = sc.scrollTop + (svgRect.top - scRect.top);
+    const clamp = (v, max) => Math.max(0, Math.min(v, Math.max(0, max)));
+    const to = {
+      left: clamp(originLeft + focus.x - sc.clientWidth / 2, sc.scrollWidth - sc.clientWidth),
+      top: clamp(originTop + focus.y - sc.clientHeight * 0.42, sc.scrollHeight - sc.clientHeight),
+      behavior: reduceMotion() ? 'auto' : 'smooth',
+    };
+    try { sc.scrollTo(to); }
+    catch { sc.scrollLeft = to.left; sc.scrollTop = to.top; }
   }
 
   update(root) {
@@ -144,6 +183,9 @@ export class TreeView {
     for (const id of [...this.edgeEls.keys()]) {
       if (!targets.has(id)) { this.edgeEls.get(id).remove(); this.edgeEls.delete(id); }
     }
+
+    // Bring the confirmed frontier into view (positions are final at this point).
+    this._scrollToFocus(this._focusNode(nodes));
 
     // Starting positions: existing nodes keep their spot; new nodes sprout from
     // their parent's target so branches visibly grow outward.
