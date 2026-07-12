@@ -43,7 +43,13 @@
         </div>
       </div>
       <div class="panel idgrid-panel">
-        <div class="panel-head"><h2>Identifier grid</h2><span id="progress" class="progress"></span></div>
+        <div class="panel-head">
+          <h2>Identifier grid</h2>
+          <span class="panel-head-meta">
+            <span id="last-guess" class="last-guess"></span>
+            <span id="progress" class="progress"></span>
+          </span>
+        </div>
         <div id="idgrid" class="idgrid-wrap"></div>
       </div>
     </section>
@@ -57,7 +63,7 @@
         <div id="revealed" class="revealed"></div>
       </div>
 
-      <div class="card">
+      <div class="card guess-card">
         <h2>Make a guess</h2>
         <form id="guess-form" autocomplete="off">
           <div class="field">
@@ -82,7 +88,7 @@
         <p id="message" class="message"></p>
       </div>
 
-      <div class="card">
+      <div class="card history-card">
         <h2>Guess history</h2>
         <ol id="history" class="history"></ol>
       </div>
@@ -108,12 +114,14 @@
           <i>Bacteria</i>). Identify it in as few guesses as possible. Three modes:</p>
         <ul>
           <li><b>Taxonomic</b> — guess a genus + species; every matching rank (Phylum → Species)
-            is confirmed and the <b>dendrogram grows</b> down the trunk. Wrong guesses branch off
-            and a <span class="mystery-dot">?</span> marks where the true lineage diverges.</li>
-          <li><b>Identifier</b> — a grid of ~20 lab results (Gram stain, catalase, haemolysis,
+            is confirmed and the <b>dendrogram grows</b> down the trunk. Wrong branches collapse into
+            clickable <b>pills</b> where they leave the correct path — a fresh guess is shown in full
+            for a moment, then folds away; <b>click a pill</b> to expand that branch again. A
+            <span class="mystery-dot">?</span> marks where the true lineage continues.</li>
+          <li><b>Identifier</b> — a grid of lab results (Gram stain, catalase, haemolysis,
             fermentation…). Each guess colours cells <span class="dot green"></span> green (exact),
             <span class="dot orange"></span> orange (partial/variable) or <span class="dot red"></span>
-            red (no match). <b>Green cells lock</b>; each guess only updates the rest.</li>
+            red (no match). <b>Green cells lock</b>; every other cell mirrors your last guess.</li>
           <li><b>Combined</b> — both surfaces update together.</li>
         </ul>
         <p class="help-foot">Taxonomy uses current (post-2021 ICNP) nomenclature — e.g.

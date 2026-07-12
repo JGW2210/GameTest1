@@ -23,10 +23,8 @@ export const IDENTIFIERS = [
   { key: 'oxidase', label: 'Oxidase', group: 'Enzymes', type: 'single', values: [P, N, V] },
   { key: 'catalase', label: 'Catalase', group: 'Enzymes', type: 'single', values: [P, N, V] },
   { key: 'coagulase', label: 'Coagulase', group: 'Enzymes', type: 'single', values: [P, N, V] },
-  { key: 'dnase', label: 'DNase', group: 'Enzymes', type: 'single', values: [P, N, V] },
   { key: 'aesculin', label: 'Aesculin', group: 'Enzymes', type: 'single', values: [P, N, V] },
   { key: 'pyr', label: 'PYR / PYZ', group: 'Enzymes', type: 'single', values: [P, N, V] },
-  { key: 'tributyrin', label: 'Tributyrin', group: 'Enzymes', type: 'single', values: [P, N, V] },
 
   { key: 'indole', label: 'Indole', group: 'Biochemical', type: 'single', values: [P, N, V] },
   { key: 'methylRed', label: 'Methyl red', group: 'Biochemical', type: 'single', values: [P, N, V] },
