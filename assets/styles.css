@@ -121,9 +121,17 @@ body[data-mode="taxonomy"] .idgrid-panel { display: none; }
 body[data-mode="identifier"] .tree-panel { display: none; }
 body[data-mode="identifier"] .lineage-card { display: none; }
 
-/* Identifier grid — one dense, wrapping grid; a coloured top edge marks the
-   group so no vertical space is spent on section headers. */
-.id-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(126px, 1fr)); gap: 8px; align-items: start; grid-auto-flow: row dense; }
+/* Identifier grids — two sets side-by-side (Confirmed vs Last guess). They wrap
+   to a stack when the panel is too narrow to hold both. */
+.idgrid-split { display: flex; flex-wrap: wrap; gap: 14px 20px; }
+.idgrid-col { flex: 1 1 300px; min-width: 0; }
+.idgrid-col-head { display: flex; align-items: baseline; gap: 8px; margin: 0 0 9px; flex-wrap: wrap; }
+.idgrid-col-title { font-size: 12px; font-weight: 700; letter-spacing: 0.4px; text-transform: uppercase; color: var(--text); }
+.idgrid-col-sub { font-size: 11px; color: var(--muted-2); }
+
+/* Each set is one dense, wrapping grid; a coloured top edge marks the group so
+   no vertical space is spent on section headers. */
+.id-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(122px, 1fr)); gap: 8px; align-items: start; grid-auto-flow: row dense; }
 .idcell {
   position: relative; border: 1px solid var(--line); border-top-width: 3px; border-radius: 10px;
   background: var(--bg-2); padding: 7px 10px; min-height: 52px;
@@ -340,6 +348,8 @@ body[data-mode="identifier"] .lineage-card { display: none; }
   /* Combined: identifiers first, dendrogram beneath. */
   body[data-mode="combined"] .idgrid-panel { order: 1; }
   body[data-mode="combined"] .tree-panel { order: 2; }
+  /* Side-by-side identifier sets get a divider between them. */
+  .idgrid-col + .idgrid-col { border-left: 1px solid var(--line-soft); padding-left: 20px; }
 }
 
 @media (max-width: 860px) {

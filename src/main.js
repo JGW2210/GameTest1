@@ -127,7 +127,7 @@ function render(revealId = null) {
   document.body.dataset.mode = game.mode;
   const cfg = game.cfg();
   if (cfg.tree) tree.update(game.buildTree(), revealId);
-  if (cfg.grid) idgrid.update(game.gridRows(), lastGuessId);
+  if (cfg.grid) idgrid.update(game.confirmedRows(), game.lastGuessRows());
   renderRevealed();
   renderProgress();
   renderHistory();
