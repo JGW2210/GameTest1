@@ -30,6 +30,9 @@ export const IDENTIFIERS = [
   { key: 'methylRed', label: 'Methyl red', group: 'Biochemical', type: 'single', values: [P, N, V] },
   { key: 'vp', label: 'Voges-Proskauer', group: 'Biochemical', type: 'single', values: [P, N, V] },
   { key: 'citrate', label: 'Citrate', group: 'Biochemical', type: 'single', values: [P, N, V] },
+  { key: 'nitrate', label: 'Nitrate reduction', group: 'Biochemical', type: 'single',
+    values: ['Reducing', 'Non-reducing', 'Variable', 'Other'] },
+  { key: 'urease', label: 'Urease', group: 'Biochemical', type: 'single', values: [P, N, V] },
 
   { key: 'fermentation', label: 'Fermentation', group: 'Metabolism', type: 'multi',
     values: ['Glucose', 'Lactose', 'Maltose', 'Sucrose', 'Mannitol', 'Other'] },
@@ -56,6 +59,8 @@ const COERCE = {
   'acid-fast': 'Acid-fast', acidfast: 'Acid-fast',
   o: 'Oxidative', oxidative: 'Oxidative', f: 'Fermentative', fermentative: 'Fermentative',
   'non-reactive': 'Non-reactive', nonreactive: 'Non-reactive', inert: 'Non-reactive',
+  reducing: 'Reducing', reduce: 'Reducing', reduced: 'Reducing', 'nitrate+': 'Reducing',
+  'non-reducing': 'Non-reducing', nonreducing: 'Non-reducing', 'nitrate-': 'Non-reducing',
   alpha: 'Alpha', a: 'Alpha', beta: 'Beta', b: 'Beta', gamma: 'Gamma', g: 'Gamma',
   aerobe: 'Aerobe', aerobic: 'Aerobe', anaerobe: 'Anaerobe', anaerobic: 'Anaerobe',
   facultative: 'Facultative', microaerophilic: 'Microaerophilic', capnophilic: 'Capnophilic',

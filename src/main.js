@@ -10,6 +10,7 @@ const game = new Game(BACTERIA);
 const tree = new TreeView($('#tree'));
 const idgrid = new IdGrid($('#idgrid'));
 let lastGuessId = 0;
+let bmsMode = false;
 
 const els = {
   genus: $('#genus-input'), species: $('#species-input'),
@@ -17,6 +18,7 @@ const els = {
   form: $('#guess-form'), message: $('#message'),
   revealed: $('#revealed'), guessCount: $('#guess-count'), history: $('#history'),
   submit: $('#submit-btn'), giveUp: $('#giveup-btn'), newGame: $('#newgame-btn'),
+  bms: $('#bms-btn'),
   poolInfo: $('#pool-info'), progress: $('#progress'),
   modeTabs: $('#mode-tabs'), source: $('#source-select'), sourceStatus: $('#source-status'),
   lastGuess: $('#last-guess'),
@@ -143,6 +145,34 @@ function firstWrongId(guess) {
   return `${RANKS[c]}:${guess.lineage.slice(0, c + 1).join('>')}`;
 }
 
+// ── BMS mode ─────────────────────────────────────────────────────────────────
+// A toggle that, once you've had your first guess, roasts you for every wrong
+// answer — teasing the player for their (evidently lacking) microbiology knowledge.
+const BMS_TAUNTS = [
+  'Wrong again. Did you sleep through every microbiology lecture?',
+  'Still not it. And you call yourself a biomedical scientist?',
+  'Nope. A first-year student would have narrowed that down by now.',
+  'Incorrect. Have you considered that the textbook is there to be read?',
+  'Missed it. The MALDI-TOF is starting to feel like your only friend.',
+  'Not even close. Were you revising, or just staring at the agar?',
+  'Wrong. That guess would not survive a viva.',
+  'Try again — clearly the Gram stain is not the only thing that is unclear here.',
+  'Still guessing? Bergey’s Manual is weeping.',
+  'Incorrect. Your consultant would like a quiet word.',
+  'No. Perhaps identification is not your calling.',
+  'Wrong. Even the negative control is embarrassed for you.',
+];
+function bmsTaunt() {
+  return BMS_TAUNTS[Math.floor(Math.random() * BMS_TAUNTS.length)];
+}
+function setBmsMode(on) {
+  bmsMode = on;
+  els.bms.classList.toggle('primary', on);
+  els.bms.classList.toggle('ghost', !on);
+  els.bms.setAttribute('aria-pressed', String(on));
+  els.bms.textContent = `BMS mode: ${on ? 'on' : 'off'}`;
+}
+
 // ── Actions ─────────────────────────────────────────────────────────────────
 function handleGuess(e) {
   e && e.preventDefault();
@@ -168,6 +198,10 @@ function handleGuess(e) {
     bits.push(res.idResult.newlyGreen
       ? `${res.idResult.newlyGreen} new identifier${res.idResult.newlyGreen === 1 ? '' : 's'} locked (${green} total).`
       : `No new identifiers locked this round.`);
+  }
+  // BMS mode: roast every wrong guess made after the first attempt.
+  if (bmsMode && res.guess.id >= 2) {
+    return setMessage(`${bmsTaunt()} ${bits.join(' ')}`.trim(), 'bms');
   }
   setMessage(bits.join(' '), res.matchedRank && res.matchedRank !== 'kingdom' ? 'good' : 'warn');
 }
@@ -291,6 +325,7 @@ function closeModal(m) { m.classList.remove('open'); setTimeout(() => (m.hidden 
 
 els.form.addEventListener('submit', handleGuess);
 els.giveUp.addEventListener('click', giveUp);
+els.bms.addEventListener('click', () => setBmsMode(!bmsMode));
 els.newGame.addEventListener('click', newGame);
 els.modalNew.addEventListener('click', newGame);
 els.modalClose.addEventListener('click', () => closeModal(els.modal));

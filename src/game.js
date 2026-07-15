@@ -150,7 +150,7 @@ export class Game {
     return { changed, newlyGreen };
   }
 
-  // Reveal everything (used by "Reveal answer").
+  // Reveal everything (used by the "MALDI-TOF" reveal button).
   reveal() {
     this.won = true;
     this.confirmedDepth = RANKS.length;
