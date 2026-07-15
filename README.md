@@ -28,9 +28,13 @@ answer's:
 | ⬜ Grey | Not scorable (unknown for that organism) |
 
 Identifiers: Gram stain, shape, motility, spores; the enzymes oxidase, catalase,
-coagulase, DNase, aesculin, PYR/PYZ, tributyrin; the biochemicals indole, methyl
-red, Voges-Proskauer, citrate; fermentation (glucose/lactose/maltose/sucrose/
-mannitol) and Hugh–Leifson O/F; haemolysis and atmosphere.
+coagulase, aesculin, PYR/PYZ; the biochemicals indole, methyl red,
+Voges-Proskauer, citrate, nitrate reduction, urease; fermentation (glucose/
+lactose/maltose/sucrose/mannitol) and Hugh–Leifson O/F; haemolysis and atmosphere.
+
+The **MALDI-TOF** button on each mode reveals the answer outright — as the mass
+spectrometer would in the lab. An optional **BMS mode** toggle roasts you for
+every wrong guess after your first, in the finest biomedical-scientist tradition.
 
 ## Running it
 

@@ -5,7 +5,7 @@ export const META = {
   "genera": 78,
   "profiled": 58,
   "source": "curated-seed",
-  "generatedAt": "2026-07-10T08:38:52.700Z"
+  "generatedAt": "2026-07-15T15:41:03.478Z"
 };
 
 export const BACTERIA = [
@@ -48,6 +48,8 @@ export const BACTERIA = [
       "spores": "Negative",
       "oxidase": "Negative",
       "catalase": "Positive",
+      "nitrate": "Non-reducing",
+      "urease": "Negative",
       "of": "Oxidative",
       "atmosphere": "Aerobe"
     }
@@ -79,6 +81,8 @@ export const BACTERIA = [
       "motility": "Non-motile",
       "spores": "Negative",
       "catalase": "Negative",
+      "nitrate": "Variable",
+      "urease": "Negative",
       "atmosphere": "Anaerobe"
     }
   },
@@ -131,6 +135,8 @@ export const BACTERIA = [
       "oxidase": "Positive",
       "catalase": "Positive",
       "indole": "Positive",
+      "nitrate": "Reducing",
+      "urease": "Negative",
       "fermentation": [
         "Glucose",
         "Sucrose"
@@ -199,6 +205,8 @@ export const BACTERIA = [
       "spores": "Positive",
       "oxidase": "Negative",
       "catalase": "Positive",
+      "nitrate": "Reducing",
+      "urease": "Negative",
       "fermentation": [
         "Glucose"
       ],
@@ -226,6 +234,8 @@ export const BACTERIA = [
       "spores": "Positive",
       "oxidase": "Negative",
       "catalase": "Positive",
+      "nitrate": "Reducing",
+      "urease": "Negative",
       "fermentation": [
         "Glucose"
       ],
@@ -272,6 +282,8 @@ export const BACTERIA = [
       "spores": "Negative",
       "catalase": "Variable",
       "aesculin": "Positive",
+      "nitrate": "Non-reducing",
+      "urease": "Negative",
       "of": "Fermentative",
       "atmosphere": "Anaerobe"
     }
@@ -355,6 +367,8 @@ export const BACTERIA = [
       "spores": "Negative",
       "oxidase": "Positive",
       "catalase": "Positive",
+      "nitrate": "Non-reducing",
+      "urease": "Negative",
       "of": "Non-reactive",
       "atmosphere": "Aerobe"
     }
@@ -437,6 +451,8 @@ export const BACTERIA = [
       "spores": "Negative",
       "oxidase": "Positive",
       "catalase": "Positive",
+      "nitrate": "Reducing",
+      "urease": "Positive",
       "of": "Non-reactive",
       "atmosphere": "Capnophilic"
     }
@@ -519,6 +535,8 @@ export const BACTERIA = [
       "spores": "Negative",
       "oxidase": "Positive",
       "catalase": "Positive",
+      "nitrate": "Reducing",
+      "urease": "Negative",
       "of": "Non-reactive",
       "atmosphere": "Microaerophilic"
     }
@@ -620,6 +638,8 @@ export const BACTERIA = [
       "spores": "Positive",
       "oxidase": "Negative",
       "catalase": "Negative",
+      "nitrate": "Non-reducing",
+      "urease": "Negative",
       "fermentation": [
         "Glucose"
       ],
@@ -644,6 +664,8 @@ export const BACTERIA = [
       "spores": "Positive",
       "oxidase": "Negative",
       "catalase": "Negative",
+      "nitrate": "Non-reducing",
+      "urease": "Negative",
       "fermentation": [
         "Glucose"
       ],
@@ -668,6 +690,8 @@ export const BACTERIA = [
       "spores": "Positive",
       "oxidase": "Negative",
       "catalase": "Negative",
+      "nitrate": "Reducing",
+      "urease": "Negative",
       "fermentation": [
         "Glucose",
         "Lactose",
@@ -707,6 +731,8 @@ export const BACTERIA = [
       "spores": "Positive",
       "oxidase": "Negative",
       "catalase": "Negative",
+      "nitrate": "Non-reducing",
+      "urease": "Negative",
       "of": "Non-reactive",
       "haemolysis": "Beta",
       "atmosphere": "Anaerobe"
@@ -730,6 +756,8 @@ export const BACTERIA = [
       "spores": "Negative",
       "oxidase": "Negative",
       "catalase": "Positive",
+      "nitrate": "Reducing",
+      "urease": "Negative",
       "fermentation": [
         "Glucose",
         "Maltose"
@@ -797,6 +825,8 @@ export const BACTERIA = [
       "spores": "Negative",
       "catalase": "Positive",
       "indole": "Positive",
+      "nitrate": "Reducing",
+      "urease": "Negative",
       "atmosphere": "Anaerobe"
     }
   },
@@ -862,6 +892,8 @@ export const BACTERIA = [
       "methylRed": "Negative",
       "vp": "Positive",
       "citrate": "Positive",
+      "nitrate": "Reducing",
+      "urease": "Variable",
       "fermentation": [
         "Glucose",
         "Lactose",
@@ -902,6 +934,8 @@ export const BACTERIA = [
       "catalase": "Negative",
       "aesculin": "Positive",
       "pyr": "Positive",
+      "nitrate": "Variable",
+      "urease": "Negative",
       "fermentation": [
         "Glucose"
       ],
@@ -931,6 +965,8 @@ export const BACTERIA = [
       "catalase": "Negative",
       "aesculin": "Positive",
       "pyr": "Positive",
+      "nitrate": "Variable",
+      "urease": "Negative",
       "fermentation": [
         "Glucose"
       ],
@@ -981,6 +1017,8 @@ export const BACTERIA = [
       "methylRed": "Positive",
       "vp": "Negative",
       "citrate": "Negative",
+      "nitrate": "Reducing",
+      "urease": "Negative",
       "fermentation": [
         "Glucose",
         "Lactose",
@@ -1031,6 +1069,8 @@ export const BACTERIA = [
       "spores": "Negative",
       "oxidase": "Negative",
       "catalase": "Variable",
+      "nitrate": "Non-reducing",
+      "urease": "Negative",
       "atmosphere": "Aerobe"
     }
   },
@@ -1062,6 +1102,8 @@ export const BACTERIA = [
       "spores": "Negative",
       "catalase": "Negative",
       "indole": "Positive",
+      "nitrate": "Non-reducing",
+      "urease": "Negative",
       "atmosphere": "Anaerobe"
     }
   },
@@ -1114,6 +1156,8 @@ export const BACTERIA = [
       "spores": "Negative",
       "oxidase": "Positive",
       "catalase": "Positive",
+      "nitrate": "Reducing",
+      "urease": "Variable",
       "fermentation": [
         "Glucose"
       ],
@@ -1170,6 +1214,8 @@ export const BACTERIA = [
       "spores": "Negative",
       "oxidase": "Positive",
       "catalase": "Positive",
+      "nitrate": "Non-reducing",
+      "urease": "Positive",
       "of": "Non-reactive",
       "atmosphere": "Microaerophilic"
     }
@@ -1226,6 +1272,8 @@ export const BACTERIA = [
       "methylRed": "Negative",
       "vp": "Positive",
       "citrate": "Positive",
+      "nitrate": "Reducing",
+      "urease": "Positive",
       "fermentation": [
         "Glucose",
         "Lactose",
@@ -1265,6 +1313,8 @@ export const BACTERIA = [
       "spores": "Negative",
       "oxidase": "Variable",
       "catalase": "Positive",
+      "nitrate": "Non-reducing",
+      "urease": "Negative",
       "of": "Non-reactive",
       "atmosphere": "Aerobe"
     }
@@ -1329,6 +1379,8 @@ export const BACTERIA = [
       "oxidase": "Negative",
       "catalase": "Positive",
       "aesculin": "Positive",
+      "nitrate": "Non-reducing",
+      "urease": "Negative",
       "fermentation": [
         "Glucose"
       ],
@@ -1365,7 +1417,8 @@ export const BACTERIA = [
       "spores": "Negative",
       "oxidase": "Positive",
       "catalase": "Positive",
-      "dnase": "Positive",
+      "nitrate": "Reducing",
+      "urease": "Negative",
       "of": "Non-reactive",
       "atmosphere": "Aerobe"
     }
@@ -1436,6 +1489,8 @@ export const BACTERIA = [
       "motility": "Non-motile",
       "spores": "Negative",
       "catalase": "Variable",
+      "nitrate": "Reducing",
+      "urease": "Positive",
       "atmosphere": "Aerobe"
     }
   },
@@ -1476,6 +1531,7 @@ export const BACTERIA = [
       "motility": "Non-motile",
       "spores": "Negative",
       "catalase": "Negative",
+      "urease": "Negative",
       "fermentation": [
         "Glucose"
       ],
@@ -1500,6 +1556,8 @@ export const BACTERIA = [
       "spores": "Negative",
       "oxidase": "Positive",
       "catalase": "Positive",
+      "nitrate": "Non-reducing",
+      "urease": "Negative",
       "fermentation": [
         "Glucose"
       ],
@@ -1536,6 +1594,8 @@ export const BACTERIA = [
       "spores": "Negative",
       "oxidase": "Positive",
       "catalase": "Positive",
+      "nitrate": "Non-reducing",
+      "urease": "Negative",
       "fermentation": [
         "Glucose",
         "Maltose"
@@ -1562,6 +1622,8 @@ export const BACTERIA = [
       "motility": "Non-motile",
       "spores": "Negative",
       "catalase": "Positive",
+      "nitrate": "Reducing",
+      "urease": "Positive",
       "atmosphere": "Aerobe"
     }
   },
@@ -1633,6 +1695,8 @@ export const BACTERIA = [
       "spores": "Negative",
       "catalase": "Negative",
       "indole": "Negative",
+      "nitrate": "Non-reducing",
+      "urease": "Negative",
       "atmosphere": "Anaerobe"
     }
   },
@@ -1658,6 +1722,8 @@ export const BACTERIA = [
       "methylRed": "Positive",
       "vp": "Negative",
       "citrate": "Variable",
+      "nitrate": "Reducing",
+      "urease": "Positive",
       "fermentation": [
         "Glucose"
       ],
@@ -1686,6 +1752,8 @@ export const BACTERIA = [
       "indole": "Positive",
       "methylRed": "Positive",
       "vp": "Negative",
+      "nitrate": "Reducing",
+      "urease": "Positive",
       "fermentation": [
         "Glucose",
         "Sucrose"
@@ -1733,6 +1801,8 @@ export const BACTERIA = [
       "oxidase": "Positive",
       "catalase": "Positive",
       "citrate": "Positive",
+      "nitrate": "Reducing",
+      "urease": "Variable",
       "fermentation": [],
       "of": "Oxidative",
       "haemolysis": "Beta",
@@ -1851,6 +1921,8 @@ export const BACTERIA = [
       "methylRed": "Positive",
       "vp": "Negative",
       "citrate": "Variable",
+      "nitrate": "Reducing",
+      "urease": "Negative",
       "fermentation": [
         "Glucose",
         "Maltose",
@@ -1878,10 +1950,11 @@ export const BACTERIA = [
       "spores": "Negative",
       "oxidase": "Negative",
       "catalase": "Positive",
-      "dnase": "Positive",
       "indole": "Negative",
       "vp": "Positive",
       "citrate": "Positive",
+      "nitrate": "Reducing",
+      "urease": "Negative",
       "fermentation": [
         "Glucose"
       ],
@@ -1921,6 +1994,8 @@ export const BACTERIA = [
       "methylRed": "Positive",
       "vp": "Negative",
       "citrate": "Negative",
+      "nitrate": "Reducing",
+      "urease": "Negative",
       "fermentation": [
         "Glucose"
       ],
@@ -1950,6 +2025,8 @@ export const BACTERIA = [
       "methylRed": "Positive",
       "vp": "Negative",
       "citrate": "Negative",
+      "nitrate": "Reducing",
+      "urease": "Negative",
       "fermentation": [
         "Glucose",
         "Maltose"
@@ -1988,12 +2065,13 @@ export const BACTERIA = [
       "oxidase": "Negative",
       "catalase": "Positive",
       "coagulase": "Positive",
-      "dnase": "Positive",
       "pyr": "Negative",
       "indole": "Negative",
       "methylRed": "Positive",
       "vp": "Positive",
       "citrate": "Negative",
+      "nitrate": "Reducing",
+      "urease": "Positive",
       "fermentation": [
         "Glucose",
         "Mannitol",
@@ -2026,7 +2104,8 @@ export const BACTERIA = [
       "oxidase": "Negative",
       "catalase": "Positive",
       "coagulase": "Negative",
-      "dnase": "Negative",
+      "nitrate": "Reducing",
+      "urease": "Positive",
       "fermentation": [
         "Glucose"
       ],
@@ -2065,7 +2144,8 @@ export const BACTERIA = [
       "oxidase": "Negative",
       "catalase": "Positive",
       "coagulase": "Negative",
-      "dnase": "Negative",
+      "nitrate": "Non-reducing",
+      "urease": "Positive",
       "of": "Fermentative",
       "haemolysis": "Gamma",
       "atmosphere": "Facultative"
@@ -2089,7 +2169,8 @@ export const BACTERIA = [
       "spores": "Negative",
       "oxidase": "Negative",
       "catalase": "Positive",
-      "dnase": "Positive",
+      "nitrate": "Non-reducing",
+      "urease": "Negative",
       "of": "Oxidative",
       "atmosphere": "Aerobe"
     }
@@ -2124,6 +2205,8 @@ export const BACTERIA = [
       "oxidase": "Negative",
       "catalase": "Negative",
       "pyr": "Negative",
+      "nitrate": "Non-reducing",
+      "urease": "Negative",
       "fermentation": [
         "Glucose"
       ],
@@ -2151,6 +2234,8 @@ export const BACTERIA = [
       "spores": "Negative",
       "oxidase": "Negative",
       "catalase": "Negative",
+      "nitrate": "Non-reducing",
+      "urease": "Negative",
       "fermentation": [
         "Glucose",
         "Sucrose",
@@ -2180,6 +2265,8 @@ export const BACTERIA = [
       "spores": "Negative",
       "oxidase": "Negative",
       "catalase": "Negative",
+      "nitrate": "Non-reducing",
+      "urease": "Negative",
       "fermentation": [
         "Glucose"
       ],
@@ -2208,6 +2295,8 @@ export const BACTERIA = [
       "oxidase": "Negative",
       "catalase": "Negative",
       "pyr": "Positive",
+      "nitrate": "Non-reducing",
+      "urease": "Negative",
       "fermentation": [
         "Glucose"
       ],
@@ -2305,6 +2394,8 @@ export const BACTERIA = [
       "oxidase": "Positive",
       "catalase": "Positive",
       "indole": "Positive",
+      "nitrate": "Reducing",
+      "urease": "Negative",
       "fermentation": [
         "Glucose",
         "Sucrose",
@@ -2334,6 +2425,8 @@ export const BACTERIA = [
       "oxidase": "Positive",
       "catalase": "Positive",
       "indole": "Positive",
+      "nitrate": "Reducing",
+      "urease": "Variable",
       "fermentation": [
         "Glucose",
         "Mannitol"
@@ -2371,6 +2464,8 @@ export const BACTERIA = [
       "oxidase": "Negative",
       "catalase": "Positive",
       "indole": "Variable",
+      "nitrate": "Reducing",
+      "urease": "Positive",
       "of": "Fermentative",
       "atmosphere": "Facultative"
     }
@@ -2394,6 +2489,8 @@ export const BACTERIA = [
       "oxidase": "Negative",
       "catalase": "Positive",
       "indole": "Negative",
+      "nitrate": "Reducing",
+      "urease": "Negative",
       "of": "Fermentative",
       "atmosphere": "Facultative"
     }

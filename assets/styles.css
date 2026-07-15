@@ -219,6 +219,10 @@ body[data-mode="identifier"] .lineage-card { display: none; }
 .message.good { color: #7ee2a8; }
 .message.warn { color: #ecc94b; }
 .message.error { color: #ff8f8f; }
+.message.bms {
+  color: #ffd7db; font-weight: 600; font-style: italic;
+  border-left: 3px solid var(--wrong); padding-left: 10px;
+}
 
 /* ── History ─────────────────────────────────────────────────────────────── */
 .history { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 6px; max-height: 220px; overflow: auto; }
