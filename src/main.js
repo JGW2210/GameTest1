@@ -25,7 +25,11 @@ const els = {
   modal: $('#win-modal'), modalBody: $('#win-body'), modalTitle: $('#win-title'),
   modalClose: $('#win-close'), modalNew: $('#win-newgame'),
   help: $('#help-modal'), helpOpen: $('#help-btn'), helpClose: $('#help-close'),
+  bmsModal: $('#bms-modal'), bmsModalBody: $('#bms-modal-body'), bmsModalClose: $('#bms-modal-close'),
 };
+
+const MALDI_LABEL = 'MALDI-TOF';
+const LOW_CONF_LABEL = 'No ID, low confidence.';
 
 // ── Combobox ────────────────────────────────────────────────────────────────
 function attachCombobox(input, listEl, getItems, onSelect) {
@@ -165,12 +169,34 @@ const BMS_TAUNTS = [
 function bmsTaunt() {
   return BMS_TAUNTS[Math.floor(Math.random() * BMS_TAUNTS.length)];
 }
+
+// In BMS mode the MALDI-TOF reveal is disabled: a real biomedical scientist
+// works the bench instead of letting the mass spec do the thinking. Clicking it
+// throws up a jeer; closing that leaves the button reading "No ID, low confidence."
+const BMS_REVEAL_JEERS = [
+  'Reaching for the MALDI-TOF already? A real biomedical scientist works the bench first.',
+  'Straight to the mass spec — because reading a Gram stain is apparently too much effort.',
+  'Giving up and letting the machine think for you? Bold, for someone this unsure.',
+  'The MALDI-TOF confirms an identification; it does not rescue people who never learned the biochemistry.',
+  'No. Earn it. The spectrometer is not your comfort blanket.',
+];
+function resetRevealButton() { els.giveUp.textContent = MALDI_LABEL; }
 function setBmsMode(on) {
   bmsMode = on;
   els.bms.classList.toggle('primary', on);
   els.bms.classList.toggle('ghost', !on);
   els.bms.setAttribute('aria-pressed', String(on));
   els.bms.textContent = `BMS mode: ${on ? 'on' : 'off'}`;
+  resetRevealButton(); // toggling either way restores a clean MALDI-TOF button
+}
+function bmsRefuseReveal() {
+  els.bmsModalBody.textContent =
+    BMS_REVEAL_JEERS[Math.floor(Math.random() * BMS_REVEAL_JEERS.length)];
+  openModal(els.bmsModal);
+}
+function closeBmsModal() {
+  closeModal(els.bmsModal);
+  els.giveUp.textContent = LOW_CONF_LABEL; // no result, no confidence — sign it off yourself
 }
 
 // ── Actions ─────────────────────────────────────────────────────────────────
@@ -222,6 +248,7 @@ function finishWin() {
 }
 function giveUp() {
   if (game.won) return;
+  if (bmsMode) return bmsRefuseReveal(); // BMS mode: the reveal is off-limits
   game.reveal();
   render();
   const t = game.target;
@@ -238,6 +265,7 @@ function newGame() {
   tree.reset(); idgrid.reset();
   els.submit.disabled = false;
   els.genus.value = ''; els.species.value = '';
+  resetRevealButton();
   closeModal(els.modal);
   render();
   setMessage(modeIntro(), '');
@@ -262,7 +290,7 @@ function buildModeTabs() {
       if (game.mode === key) return;
       game.setMode(key);
       lastGuessId = 0; tree.reset(); idgrid.reset();
-      els.submit.disabled = false;
+      els.submit.disabled = false; resetRevealButton();
       [...els.modeTabs.children].forEach((c) => c.classList.toggle('active', c.dataset.mode === key));
       updatePoolInfo();
       render(); setMessage(modeIntro(), '');
@@ -315,7 +343,7 @@ els.source && els.source.addEventListener('change', async () => {
     } catch (err) { els.sourceStatus.textContent = `Supabase error: ${err.message}`; return; }
   }
   lastGuessId = 0; tree.reset(); idgrid.reset();
-  els.submit.disabled = false;
+  els.submit.disabled = false; resetRevealButton();
   updatePoolInfo(); render(); setMessage(modeIntro(), ''); els.genus.focus();
 });
 
@@ -331,8 +359,14 @@ els.modalNew.addEventListener('click', newGame);
 els.modalClose.addEventListener('click', () => closeModal(els.modal));
 els.helpOpen.addEventListener('click', () => openModal(els.help));
 els.helpClose.addEventListener('click', () => closeModal(els.help));
+els.bmsModalClose.addEventListener('click', closeBmsModal);
 [els.modal, els.help].forEach((m) => m.addEventListener('click', (e) => { if (e.target === m) closeModal(m); }));
-document.addEventListener('keydown', (e) => { if (e.key === 'Escape') { closeModal(els.modal); closeModal(els.help); } });
+els.bmsModal.addEventListener('click', (e) => { if (e.target === els.bmsModal) closeBmsModal(); });
+document.addEventListener('keydown', (e) => {
+  if (e.key !== 'Escape') return;
+  closeModal(els.modal); closeModal(els.help);
+  if (!els.bmsModal.hidden) closeBmsModal();
+});
 
 // ── Boot ────────────────────────────────────────────────────────────────────
 buildModeTabs();

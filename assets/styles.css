@@ -330,6 +330,9 @@ body[data-mode="identifier"] .lineage-card { display: none; }
 .win-rank b { font-size: 14px; }
 .italic { font-style: italic; }
 
+.bms-modal .modal-box h2 { color: var(--wrong); }
+.bms-modal-body { font-size: 15px; line-height: 1.55; color: var(--text); font-style: italic; }
+
 .help-body { font-size: 14px; line-height: 1.6; color: var(--text); }
 .help-body ol { padding-left: 18px; }
 .help-body li { margin-bottom: 7px; }

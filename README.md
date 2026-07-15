@@ -35,6 +35,9 @@ lactose/maltose/sucrose/mannitol) and Hugh–Leifson O/F; haemolysis and atmosph
 The **MALDI-TOF** button on each mode reveals the answer outright — as the mass
 spectrometer would in the lab. An optional **BMS mode** toggle roasts you for
 every wrong guess after your first, in the finest biomedical-scientist tradition.
+With BMS mode on, the MALDI-TOF shortcut is taken away entirely: clicking it pops
+up a jeer for reaching for the easy way out, and once dismissed the button reads
+**"No ID, low confidence."** — you sign it out yourself.
 
 ## Running it
 
