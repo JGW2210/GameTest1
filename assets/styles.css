@@ -121,6 +121,72 @@ body[data-mode="taxonomy"] .idgrid-panel { display: none; }
 body[data-mode="identifier"] .tree-panel { display: none; }
 body[data-mode="identifier"] .lineage-card { display: none; }
 
+/* Quiz mode: hide the guess-driven surfaces and give the quiz the whole stage. */
+.quiz-panel { display: none; }
+body[data-mode="quiz"] .board,
+body[data-mode="quiz"] .side { display: none; }
+body[data-mode="quiz"] .layout { display: block; overflow: auto; }
+body[data-mode="quiz"] .quiz-panel { display: block; }
+
+/* ── Quiz ────────────────────────────────────────────────────────────────── */
+.quiz-panel { max-width: 640px; margin: 0 auto; width: 100%; }
+.quiz-card {
+  background: linear-gradient(180deg, var(--panel), var(--panel-2));
+  border: 1px solid var(--line-soft); border-radius: var(--radius);
+  box-shadow: var(--shadow); padding: 20px clamp(16px, 3vw, 26px);
+}
+.quiz-head { margin-bottom: 16px; }
+.quiz-meta { display: flex; justify-content: space-between; align-items: baseline; font-size: 12.5px; font-weight: 600; margin-bottom: 8px; }
+.quiz-count { color: var(--muted); text-transform: uppercase; letter-spacing: 0.4px; }
+.quiz-score { color: var(--accent); }
+.quiz-bar { height: 6px; border-radius: 999px; background: var(--bg-2); border: 1px solid var(--line-soft); overflow: hidden; }
+.quiz-bar span { display: block; height: 100%; background: linear-gradient(90deg, #3f97f0, #2f7fd6); transition: width 0.35s ease; }
+
+.quiz-prompt { font-size: 19px; line-height: 1.45; margin: 4px 0 6px; font-weight: 600; }
+.quiz-prompt i { color: #cfe0f5; }
+.quiz-hint { font-size: 12.5px; color: var(--muted-2); margin: 0 0 14px; }
+
+.quiz-options { display: grid; gap: 10px; margin-top: 12px; }
+.quiz-option {
+  font: inherit; font-size: 15px; font-weight: 600; text-align: left;
+  color: var(--text); background: var(--bg-2); border: 1px solid var(--line);
+  border-radius: 11px; padding: 13px 15px; cursor: pointer;
+  transition: border-color 0.15s ease, background 0.15s ease, transform 0.08s ease;
+}
+.quiz-option:hover:not(:disabled) { border-color: var(--accent); background: #16213340; }
+.quiz-option:active:not(:disabled) { transform: translateY(1px); }
+.quiz-option:disabled { cursor: default; }
+.quiz-option.correct { background: var(--correct-soft); border-color: var(--correct); color: #a6f0c2; }
+.quiz-option.wrong { background: var(--wrong-soft); border-color: var(--wrong); color: #f2b6b6; }
+
+.quiz-foot { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: 16px; min-height: 40px; }
+.quiz-feedback { margin: 0; font-size: 14px; font-weight: 600; min-height: 18px; }
+.quiz-feedback.good { color: #7ee2a8; }
+.quiz-feedback.bad { color: #ff8f8f; }
+.quiz-next { white-space: nowrap; }
+
+.quiz-empty h2 { margin: 0 0 8px; font-size: 18px; }
+.quiz-empty p { margin: 0; color: var(--muted); font-size: 14px; line-height: 1.55; }
+
+/* Results */
+.quiz-results-head { text-align: center; margin-bottom: 18px; }
+.quiz-results-head h2 { margin: 0 0 8px; font-size: 22px; }
+.quiz-final { font-size: 16px; margin: 0 0 4px; }
+.quiz-verdict { color: var(--mystery); font-size: 13.5px; margin: 0; font-style: italic; }
+.quiz-review { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
+.quiz-review-row { display: grid; grid-template-columns: 20px 1fr; gap: 10px; padding: 10px 12px; border-radius: 10px; background: var(--bg-2); border: 1px solid var(--line-soft); }
+.quiz-review-row.good { border-left: 3px solid var(--correct); }
+.quiz-review-row.bad { border-left: 3px solid var(--wrong); }
+.qr-mark { font-weight: 800; font-size: 14px; }
+.quiz-review-row.good .qr-mark { color: var(--correct); }
+.quiz-review-row.bad .qr-mark { color: var(--wrong); }
+.qr-body { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
+.qr-prompt { font-size: 13.5px; line-height: 1.4; }
+.qr-prompt i { color: #cfe0f5; }
+.qr-ans { font-size: 12.5px; color: var(--muted); }
+.qr-ans b { color: #a6f0c2; }
+.qr-ans i { color: #f2b6b6; font-style: italic; }
+
 /* Identifier grids — two sets side-by-side (Confirmed vs Last guess). They wrap
    to a stack when the panel is too narrow to hold both. */
 .idgrid-split { display: flex; flex-wrap: wrap; gap: 14px 20px; }

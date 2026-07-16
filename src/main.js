@@ -1,6 +1,7 @@
 import { Game, MODES, RANK_LABELS, RANKS } from './game.js';
 import { TreeView } from './tree.js';
 import { IdGrid } from './idgrid.js';
+import { Quiz, QuizView } from './quiz.js';
 import { BACTERIA, META } from './data.js';
 import { supabaseConfigured, fetchLists, fetchSupabaseRecords } from './supabase.js';
 
@@ -9,6 +10,7 @@ const $ = (sel) => document.querySelector(sel);
 const game = new Game(BACTERIA);
 const tree = new TreeView($('#tree'));
 const idgrid = new IdGrid($('#idgrid'));
+const quizView = new QuizView($('#quiz'));
 let lastGuessId = 0;
 let bmsMode = false;
 
@@ -131,6 +133,7 @@ function renderHistory() {
 }
 function render(revealId = null) {
   document.body.dataset.mode = game.mode;
+  if (game.mode === 'quiz') return; // quiz drives its own view (see startQuiz)
   const cfg = game.cfg();
   if (cfg.tree) tree.update(game.buildTree(), revealId);
   if (cfg.grid) idgrid.update(game.confirmedRows(), game.lastGuessRows());
@@ -267,14 +270,34 @@ function newGame() {
   els.genus.value = ''; els.species.value = '';
   resetRevealButton();
   closeModal(els.modal);
-  render();
-  setMessage(modeIntro(), '');
-  els.genus.focus();
+  refreshView();
 }
 function modeIntro() {
   if (game.mode === 'identifier') return 'Kingdom is Bacteria. Guess organisms to fill the identifier grid — matched results lock green.';
   if (game.mode === 'combined') return 'Kingdom is Bacteria. Each guess grows the tree and updates the identifier grid.';
+  if (game.mode === 'quiz') return 'Answer 20 multiple-choice questions drawn from the logged lab data.';
   return 'Kingdom is Bacteria. Guess a genus and species to grow the tree toward the answer.';
+}
+
+// Build a fresh 20-question quiz from the active dataset and render it. The Quiz
+// filters to organisms carrying logged identifier data itself.
+function startQuiz() {
+  quizView.render(new Quiz(game.data));
+}
+
+// Refresh whichever surface the current mode owns after a mode / dataset / new-game
+// change: the guess-driven modes render normally; quiz mode builds its own view.
+function refreshView() {
+  if (game.mode === 'quiz') {
+    render();
+    startQuiz();
+    setMessage(modeIntro(), '');
+  } else {
+    quizView.reset();
+    render();
+    setMessage(modeIntro(), '');
+    els.genus.focus();
+  }
 }
 
 // ── Mode tabs ────────────────────────────────────────────────────────────────
@@ -293,7 +316,7 @@ function buildModeTabs() {
       els.submit.disabled = false; resetRevealButton();
       [...els.modeTabs.children].forEach((c) => c.classList.toggle('active', c.dataset.mode === key));
       updatePoolInfo();
-      render(); setMessage(modeIntro(), '');
+      refreshView();
     });
     els.modeTabs.append(b);
   }
@@ -344,7 +367,7 @@ els.source && els.source.addEventListener('change', async () => {
   }
   lastGuessId = 0; tree.reset(); idgrid.reset();
   els.submit.disabled = false; resetRevealButton();
-  updatePoolInfo(); render(); setMessage(modeIntro(), ''); els.genus.focus();
+  updatePoolInfo(); refreshView();
 });
 
 // ── Modals ──────────────────────────────────────────────────────────────────

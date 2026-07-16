@@ -94,6 +94,8 @@
         <ol id="history" class="history"></ol>
       </div>
     </aside>
+
+    <section id="quiz" class="quiz-panel" aria-live="polite"></section>
   </main>
 
   <div id="win-modal" class="modal" hidden>
@@ -124,6 +126,11 @@
             <span class="dot orange"></span> orange (partial/variable) or <span class="dot red"></span>
             red (no match). <b>Green cells lock</b>; every other cell mirrors your last guess.</li>
           <li><b>Combined</b> — both surfaces update together.</li>
+          <li><b>Quiz</b> — no organism to guess: instead, answer <b>20 random multiple-choice
+            questions</b> drawn from the logged lab data (e.g. <i>"What is the Gram stain result
+            for Staphylococcus aureus?"</i>). Pick an answer to lock it in and see if you were
+            right, then move to the next. A sparse Supabase list serves as many questions as its
+            data allows.</li>
         </ul>
         <p class="help-foot">Taxonomy uses current (post-2021 ICNP) nomenclature — e.g.
           <i>Firmicutes</i> → <b>Bacillota</b>, <i>Proteobacteria</i> → <b>Pseudomonadota</b>.
