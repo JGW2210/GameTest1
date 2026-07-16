@@ -13,6 +13,10 @@ export const MODES = {
   taxonomy: { label: 'Taxonomic', tree: true, grid: false, needsProfile: false },
   identifier: { label: 'Identifier', tree: false, grid: true, needsProfile: true },
   combined: { label: 'Combined', tree: true, grid: true, needsProfile: true },
+  // Quiz: 20 multiple-choice questions built from logged identifier data. It
+  // needs lab profiles but drives its own view (see src/quiz.js) rather than the
+  // tree/grid surfaces.
+  quiz: { label: 'Quiz', tree: false, grid: false, needsProfile: true, quiz: true },
 };
 
 const eq = (a, b) => (a || '').toLowerCase() === (b || '').toLowerCase();

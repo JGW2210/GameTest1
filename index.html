@@ -3,18 +3,20 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <meta name="theme-color" content="#0d1117" />
+  <meta name="theme-color" content="#05070e" />
   <meta name="description" content="Phylotype — identify a pathogenic bacterium from its taxonomy and lab identifiers." />
   <title>Phylotype · Bacterial Taxonomy Game</title>
   <link rel="stylesheet" href="assets/styles.css" />
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧬</text></svg>" />
 </head>
 <body data-mode="taxonomy">
+  <canvas id="bg-helix" class="bg-helix" aria-hidden="true"></canvas>
+
   <header class="topbar">
     <div class="brand">
-      <span class="logo">🧬</span>
+      <span class="logo" aria-hidden="true">🧬</span>
       <div>
-        <h1>Phylotype</h1>
+        <h1 translate="no">Phylotype</h1>
         <p class="tagline">Identify the pathogen — by lineage, by lab bench, or both</p>
       </div>
     </div>
@@ -32,7 +34,7 @@
       <span>Data source</span>
       <select id="source-select"></select>
     </label>
-    <span id="source-status" class="source-status"></span>
+    <span id="source-status" class="source-status" aria-live="polite"></span>
   </div>
 
   <main class="layout">
@@ -94,6 +96,8 @@
         <ol id="history" class="history"></ol>
       </div>
     </aside>
+
+    <section id="quiz" class="quiz-panel" aria-live="polite"></section>
   </main>
 
   <div id="win-modal" class="modal" hidden>
@@ -124,6 +128,11 @@
             <span class="dot orange"></span> orange (partial/variable) or <span class="dot red"></span>
             red (no match). <b>Green cells lock</b>; every other cell mirrors your last guess.</li>
           <li><b>Combined</b> — both surfaces update together.</li>
+          <li><b>Quiz</b> — no organism to guess: instead, answer <b>20 random multiple-choice
+            questions</b> drawn from the logged lab data (e.g. <i>"What is the Gram stain result
+            for Staphylococcus aureus?"</i>). Pick an answer to lock it in and see if you were
+            right, then move to the next. A sparse Supabase list serves as many questions as its
+            data allows.</li>
         </ul>
         <p class="help-foot">Taxonomy uses current (post-2021 ICNP) nomenclature — e.g.
           <i>Firmicutes</i> → <b>Bacillota</b>, <i>Proteobacteria</i> → <b>Pseudomonadota</b>.
@@ -146,5 +155,9 @@
   </div>
 
   <script type="module" src="src/main.js"></script>
+  <script type="module">
+    import { initBackground } from './src/background.js';
+    initBackground(document.getElementById('bg-helix'));
+  </script>
 </body>
 </html>

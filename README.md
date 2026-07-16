@@ -2,7 +2,7 @@
 
 A browser game where you identify a random **pathogenic bacterium** in as few
 guesses as possible. You start knowing only its Kingdom (*Bacteria*) and work
-toward the answer through **three modes**:
+toward the answer through **four modes**:
 
 - **Taxonomic** — guess a genus + species; every matching rank (Phylum → Species)
   is confirmed and an animated **dendrogram** grows down the trunk. Wrong guesses
@@ -12,8 +12,20 @@ toward the answer through **three modes**:
   / variable), or **red** (no match). Green cells **lock**; each guess only
   updates the rest — a phenotypic Mastermind.
 - **Combined** — both surfaces update together.
+- **Quiz** — no organism to hunt: answer **20 random multiple-choice questions**
+  drawn from the logged lab data — e.g. *"What is the Gram stain result for
+  Staphylococcus aureus?"* — with options spanning that identifier's possible
+  results. Pick an answer to lock it in and see if you were right, track your
+  running score, and get a per-question review at the end. Questions are built
+  from whatever pool is active; a sparse Supabase list simply serves as many
+  questions as its data supports.
 
-Runs on desktop and mobile — no build step, no dependencies, no framework.
+Runs on desktop and mobile — no build step, no framework. A **rotating DNA
+double-helix** rendered with three.js drifts behind the glassy UI and parallaxes
+gently toward the pointer; it's purely decorative (`aria-hidden`, non-interactive)
+and honours `prefers-reduced-motion`. three.js is **vendored** in
+[`assets/vendor/`](assets/vendor/) so the site stays self-contained and offline —
+no CDN, no package install at serve time.
 
 ## The identifier grid
 
@@ -122,15 +134,18 @@ bundled facts for anything a row doesn't supply.
 ## Project layout
 
 ```
-index.html                 markup, mode tabs, panels, modals
+index.html                 markup, mode tabs, panels, modals, helix canvas
 assets/styles.css          responsive dark theme + tree/grid/animation styles
+assets/vendor/             vendored three.js (three.module.min.js) + its licence
 src/
+  background.js            three.js DNA-helix backdrop (pointer parallax)
   data.js                  generated dataset (BACTERIA + META)
   normalize.mjs            updated-nomenclature normalizer
   identifiers.js           identifier schema + comparison logic
   game.js                  game state: taxonomy comparison + identifier grid
   tree.js                  animated SVG dendrogram renderer
   idgrid.js                identifier grid renderer
+  quiz.js                  Quiz mode — question generation + view
   config.js                Supabase configuration (yours to fill in)
   supabase.js              Supabase data adapter
   main.js                  UI wiring: modes, data source, comboboxes, modals
