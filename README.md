@@ -20,7 +20,12 @@ toward the answer through **four modes**:
   from whatever pool is active; a sparse Supabase list simply serves as many
   questions as its data supports.
 
-Runs on desktop and mobile — no build step, no dependencies, no framework.
+Runs on desktop and mobile — no build step, no framework. A **rotating DNA
+double-helix** rendered with three.js drifts behind the glassy UI and parallaxes
+gently toward the pointer; it's purely decorative (`aria-hidden`, non-interactive)
+and honours `prefers-reduced-motion`. three.js is **vendored** in
+[`assets/vendor/`](assets/vendor/) so the site stays self-contained and offline —
+no CDN, no package install at serve time.
 
 ## The identifier grid
 
@@ -129,9 +134,11 @@ bundled facts for anything a row doesn't supply.
 ## Project layout
 
 ```
-index.html                 markup, mode tabs, panels, modals
+index.html                 markup, mode tabs, panels, modals, helix canvas
 assets/styles.css          responsive dark theme + tree/grid/animation styles
+assets/vendor/             vendored three.js (three.module.min.js) + its licence
 src/
+  background.js            three.js DNA-helix backdrop (pointer parallax)
   data.js                  generated dataset (BACTERIA + META)
   normalize.mjs            updated-nomenclature normalizer
   identifiers.js           identifier schema + comparison logic

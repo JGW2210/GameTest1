@@ -3,18 +3,20 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <meta name="theme-color" content="#0d1117" />
+  <meta name="theme-color" content="#05070e" />
   <meta name="description" content="Phylotype — identify a pathogenic bacterium from its taxonomy and lab identifiers." />
   <title>Phylotype · Bacterial Taxonomy Game</title>
   <link rel="stylesheet" href="assets/styles.css" />
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧬</text></svg>" />
 </head>
 <body data-mode="taxonomy">
+  <canvas id="bg-helix" class="bg-helix" aria-hidden="true"></canvas>
+
   <header class="topbar">
     <div class="brand">
-      <span class="logo">🧬</span>
+      <span class="logo" aria-hidden="true">🧬</span>
       <div>
-        <h1>Phylotype</h1>
+        <h1 translate="no">Phylotype</h1>
         <p class="tagline">Identify the pathogen — by lineage, by lab bench, or both</p>
       </div>
     </div>
@@ -32,7 +34,7 @@
       <span>Data source</span>
       <select id="source-select"></select>
     </label>
-    <span id="source-status" class="source-status"></span>
+    <span id="source-status" class="source-status" aria-live="polite"></span>
   </div>
 
   <main class="layout">
@@ -153,5 +155,9 @@
   </div>
 
   <script type="module" src="src/main.js"></script>
+  <script type="module">
+    import { initBackground } from './src/background.js';
+    initBackground(document.getElementById('bg-helix'));
+  </script>
 </body>
 </html>
