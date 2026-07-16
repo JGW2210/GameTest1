@@ -68,9 +68,12 @@ is included so the `src/` and `assets/` folders serve verbatim.
 ### The pool
 
 The bundled dataset is **151 pathogenic bacteria across 78 genera and 9 phyla**,
-each genus **capped at 4 species** so guessing stays tractable. **58 of them**
-carry hand-authored lab profiles — these form the pool for the Identifier and
-Combined modes; the Taxonomic mode uses the full list.
+each genus **capped at 4 species** so guessing stays tractable. **All 151** now
+carry hand-authored lab profiles — so the entire pool is playable in the
+Identifier and Combined modes (and drives the Quiz), not just a curated core.
+Obligate intracellular, wall-less, and spirochaete taxa are profiled by
+morphology and atmosphere only, since the routine biochemical panel doesn't
+apply to them.
 
 ### Updated nomenclature
 
@@ -111,7 +114,10 @@ node scripts/fetch-gbif.mjs       # rebuild from live GBIF (needs network)
 Hand-authored phenotypic profiles live in
 [`scripts/profiles.mjs`](scripts/profiles.mjs), keyed by current binomial and
 merged into records at build time. Only confidently-known results are filled in;
-anything omitted renders as a neutral cell and doesn't score.
+anything omitted renders as a neutral cell and doesn't score. Values are derived
+from standard clinical-microbiology references (Manual of Clinical Microbiology,
+Bergey's, Koneman's); for strain-level nuance, cross-check individual reactions
+against [BacDive](https://bacdive.dsmz.de/).
 
 ## Loading your own lists from Supabase (optional)
 
