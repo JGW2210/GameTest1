@@ -76,6 +76,14 @@ Obligate intracellular, wall-less, and spirochaete taxa are profiled by
 morphology and atmosphere only, since the routine biochemical panel doesn't
 apply to them.
 
+A **Difficulty** selector scopes the bundled set into three cumulative sizes
+(defined in [`src/tiers.js`](src/tiers.js)):
+
+- **Elementary (~40)** — the classic, instructive teaching organisms with
+  distinctive textbook lab results (the default on load);
+- **Expanded (~80)** — adds the more common clinical bacteria;
+- **Inclusive (151)** — the entire set.
+
 ### Updated nomenclature
 
 All taxonomy is normalized to current (post-2021 ICNP) names via

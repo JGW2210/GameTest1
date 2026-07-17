@@ -2,6 +2,7 @@ import { Game, MODES, RANK_LABELS, RANKS } from './game.js';
 import { TreeView } from './tree.js';
 import { IdGrid } from './idgrid.js';
 import { Quiz, QuizView } from './quiz.js';
+import { TIERS, poolForTier } from './tiers.js';
 import { BACTERIA, META } from './data.js';
 import { supabaseConfigured, fetchLists, fetchSupabaseRecords } from './supabase.js';
 
@@ -23,6 +24,7 @@ const els = {
   bms: $('#bms-btn'),
   poolInfo: $('#pool-info'), progress: $('#progress'),
   modeTabs: $('#mode-tabs'), source: $('#source-select'), sourceStatus: $('#source-status'),
+  difficulty: $('#difficulty-select'),
   lastGuess: $('#last-guess'),
   modal: $('#win-modal'), modalBody: $('#win-body'), modalTitle: $('#win-title'),
   modalClose: $('#win-close'), modalNew: $('#win-newgame'),
@@ -38,7 +40,9 @@ function attachCombobox(input, listEl, getItems, onSelect) {
   let active = -1;
   const close = () => { listEl.hidden = true; listEl.replaceChildren(); active = -1; };
   const open = () => {
-    const items = getItems(input.value).slice(0, 40);
+    // Show the whole matching set (the list scrolls). Kept generous rather than
+    // uncapped only to guard against a pathologically huge Supabase pool.
+    const items = getItems(input.value).slice(0, 500);
     listEl.replaceChildren();
     if (!items.length) return close();
     items.forEach((it, i) => {
@@ -331,6 +335,22 @@ function buildModeTabs() {
 
 // ── Data source ──────────────────────────────────────────────────────────────
 let bundled = BACTERIA;
+let currentTier = 'elementary';                      // difficulty scope of the bundled set (default)
+const bundledPool = () => poolForTier(bundled, currentTier);
+const tierLabel = (key) => (TIERS.find((t) => t.key === key) || {}).label || key;
+
+function initDifficulty() {
+  if (!els.difficulty) return;
+  els.difficulty.replaceChildren();
+  for (const t of TIERS) {
+    const o = document.createElement('option');
+    o.value = t.key;
+    o.textContent = `${t.label} (${poolForTier(bundled, t.key).length})`;
+    els.difficulty.append(o);
+  }
+  els.difficulty.value = currentTier;
+}
+
 function updatePoolInfo() {
   const pool = game.pool();
   els.poolInfo.textContent = `${pool.length} organisms · ${game.genera.length} genera` +
@@ -360,8 +380,9 @@ async function initSource() {
 els.source && els.source.addEventListener('change', async () => {
   const val = els.source.value;
   if (val === 'bundled') {
-    game.setDataset(bundled);
-    els.sourceStatus.textContent = 'Using the bundled set.';
+    game.setDataset(bundledPool());
+    if (els.difficulty) els.difficulty.disabled = false;
+    els.sourceStatus.textContent = `Bundled set · ${tierLabel(currentTier)} (${bundledPool().length}).`;
   } else {
     const listValue = val === 'sb:*' ? null : val.slice(3);
     els.sourceStatus.textContent = 'Loading from Supabase…';
@@ -369,9 +390,23 @@ els.source && els.source.addEventListener('change', async () => {
       const recs = await fetchSupabaseRecords(listValue, bundled);
       if (!recs.length) { els.sourceStatus.textContent = 'That list has no usable entries — kept current set.'; return; }
       game.setDataset(recs);
+      if (els.difficulty) els.difficulty.disabled = true; // difficulty scopes the bundled set only
       els.sourceStatus.textContent = `Loaded ${recs.length} organisms from Supabase.`;
     } catch (err) { els.sourceStatus.textContent = `Supabase error: ${err.message}`; return; }
   }
+  lastGuessId = 0; tree.reset(); idgrid.reset();
+  els.submit.disabled = false; resetRevealButton();
+  updatePoolInfo(); refreshView();
+});
+
+// Difficulty scopes the bundled set. Changing it snaps back to the bundled
+// source at the chosen tier (Supabase lists are user-defined, so it's disabled
+// while one is active).
+els.difficulty && els.difficulty.addEventListener('change', () => {
+  currentTier = els.difficulty.value;
+  els.source.value = 'bundled';
+  game.setDataset(bundledPool());
+  els.sourceStatus.textContent = `Bundled set · ${tierLabel(currentTier)} (${bundledPool().length}).`;
   lastGuessId = 0; tree.reset(); idgrid.reset();
   els.submit.disabled = false; resetRevealButton();
   updatePoolInfo(); refreshView();
@@ -400,6 +435,8 @@ document.addEventListener('keydown', (e) => {
 
 // ── Boot ────────────────────────────────────────────────────────────────────
 buildModeTabs();
+initDifficulty();
+game.setDataset(bundledPool()); // start scoped to the default difficulty tier
 updatePoolInfo();
 render();
 setMessage(modeIntro(), '');
