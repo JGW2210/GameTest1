@@ -119,6 +119,56 @@ from standard clinical-microbiology references (Manual of Clinical Microbiology,
 Bergey's, Koneman's); for strain-level nuance, cross-check individual reactions
 against [BacDive](https://bacdive.dsmz.de/).
 
+### Filling profile gaps from BacDive (optional)
+
+[`scripts/fetch-bacdive.mjs`](scripts/fetch-bacdive.mjs) pulls phenotypic data
+from the **[BacDive](https://bacdive.dsmz.de/) API v2** (DSMZ) to fill cells left
+blank in the curated profiles. **No credentials are needed** — API v2 (2026-02)
+is public; usage must comply with [BacDive's terms](https://bacdive.dsmz.de/about).
+
+```bash
+node scripts/fetch-bacdive.mjs --selftest        # offline: verify the field mapping
+node scripts/fetch-bacdive.mjs --limit 5         # try a handful of species first
+node scripts/fetch-bacdive.mjs --write           # full run; also emit the gap-fill module
+node scripts/build-dataset.mjs                   # rebuild data with the fills merged in
+```
+
+For each organism it queries `taxon/{genus}/{species}` → `fetch/{ids}`, maps
+BacDive's enzyme / metabolite / morphology fields onto the identifier vocabulary,
+and **aggregates across strains** (unanimous → that value; conflicting +/- →
+`Variable`). It writes a review table (`scripts/bacdive-proposals.md` + `.json`)
+and, with `--write`, `scripts/profiles.bacdive.mjs`. That module is merged
+**under** the curated profiles by [`scripts/finalize.mjs`](scripts/finalize.mjs),
+so a hand-authored value always wins and BacDive only fills genuine blanks.
+Delete the generated module to drop the BacDive-sourced fills.
+
+> Run it where BacDive is reachable (e.g. your machine or CI); some sandboxed
+> environments block egress to `api.bacdive.dsmz.de`.
+
+### Keeping the deployed site fresh (GitHub Actions)
+
+Because a static GitHub Pages site can't reliably call the BacDive API from the
+visitor's browser (cross-origin/CORS), the refresh runs in **CI** instead and
+commits the enriched dataset for Pages to serve.
+[`.github/workflows/refresh-bacdive.yml`](.github/workflows/refresh-bacdive.yml)
+runs `fetch-bacdive.mjs --write` → `build-dataset.mjs` on GitHub's runners (open
+network, no API key), then commits `src/data.js` + `data/bacteria.json` **only
+when BacDive actually changes the fills** (no timestamp-only churn). It runs
+monthly and on demand (**Actions → Refresh BacDive data → Run workflow**).
+
+Every run uploads the `bacdive-proposals` artifact (the review table) so you can
+audit what changed. Run it manually once and check that artifact before relying on
+the schedule. Safety: if BacDive is unreachable the run makes no changes and
+leaves existing fills intact; curated values are never overwritten.
+
+Setup notes:
+- Repo **Settings → Actions → General → Workflow permissions** must allow
+  **Read and write** (the job commits with the built-in `GITHUB_TOKEN`).
+- This assumes Pages serves from the `main` branch ("Deploy from a branch"), so a
+  commit redeploys the site. If you use a GitHub **Actions**-based Pages deploy
+  instead, a `GITHUB_TOKEN` push won't retrigger it — add a deploy step here or
+  push with a PAT.
+
 ## Loading your own lists from Supabase (optional)
 
 You can swap the bundled pool for bacteria lists stored in your **SpeciesDoc**
@@ -161,5 +211,8 @@ scripts/
   normalize / finalize     shared pipeline helpers
   build-dataset.mjs        seed → data
   fetch-gbif.mjs           live GBIF → data
+  fetch-bacdive.mjs        BacDive API v2 → gap-fill blank identifier cells
+.github/workflows/
+  refresh-bacdive.yml      CI: refresh BacDive fills + commit enriched data
 data/bacteria.json         portable generated dataset
 ```
