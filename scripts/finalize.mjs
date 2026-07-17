@@ -8,6 +8,15 @@ import { coerceValue, IDENTIFIERS } from '../src/identifiers.js';
 
 export const MAX_PER_GENUS = 4;
 
+// Optional BacDive-sourced gap-fill (scripts/profiles.bacdive.mjs, produced by
+// scripts/fetch-bacdive.mjs --write). Merged UNDER the curated profiles so a
+// hand-authored value always wins; BacDive only fills cells left blank. Absent
+// file → no-op, so the repo builds fine without it.
+let BACDIVE_PROFILES = {};
+try {
+  ({ BACDIVE_PROFILES = {} } = await import('./profiles.bacdive.mjs'));
+} catch { /* no BacDive gap-fill present */ }
+
 // Normalize a raw profile object onto the canonical identifier vocabulary.
 function cleanProfile(raw) {
   const out = {};
@@ -20,8 +29,10 @@ function cleanProfile(raw) {
   return out;
 }
 
+// Curated profiles take precedence; BacDive fills only the keys they omit.
+const PROFILE_NAMES = new Set([...Object.keys(BACDIVE_PROFILES), ...Object.keys(PROFILES)]);
 const CLEAN_PROFILES = Object.fromEntries(
-  Object.entries(PROFILES).map(([k, v]) => [k, cleanProfile(v)]),
+  [...PROFILE_NAMES].map((k) => [k, cleanProfile({ ...(BACDIVE_PROFILES[k] || {}), ...(PROFILES[k] || {}) })]),
 );
 
 // Cap each genus at MAX_PER_GENUS species. Species that carry a lab profile are
