@@ -31,6 +31,10 @@
   <div class="subbar">
     <span id="pool-info" class="pool-info"></span>
     <label class="source">
+      <span>Difficulty</span>
+      <select id="difficulty-select" title="Scope the bundled set: Elementary (classic core), Expanded (common bacteria), or Inclusive (all)"></select>
+    </label>
+    <label class="source">
       <span>Data source</span>
       <select id="source-select"></select>
     </label>
@@ -134,7 +138,9 @@
             an answer to lock it in and see if you were right, then move to the next. A sparse
             Supabase list serves as many questions as its data allows.</li>
         </ul>
-        <p class="help-foot">Taxonomy uses current (post-2021 ICNP) nomenclature — e.g.
+        <p class="help-foot">Use the <b>Difficulty</b> selector to scope the bundled set —
+          <b>Elementary</b> (~40 classic organisms), <b>Expanded</b> (~80) or <b>Inclusive</b> (all 151).
+          Taxonomy uses current (post-2021 ICNP) nomenclature — e.g.
           <i>Firmicutes</i> → <b>Bacillota</b>, <i>Proteobacteria</i> → <b>Pseudomonadota</b>.
           You can also load your own bacteria lists from Supabase (see <code>src/config.js</code>).</p>
       </div>

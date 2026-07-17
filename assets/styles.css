@@ -110,6 +110,7 @@ body {
 .source { display: inline-flex; align-items: center; gap: 8px; color: var(--muted-2); }
 .source select { font: inherit; font-size: 12.5px; color: var(--text); background-color: var(--bg-2); border: 1px solid var(--line); border-radius: 8px; padding: 6px 9px; cursor: pointer; }
 .source select:hover { border-color: var(--accent); }
+.source select:disabled { opacity: 0.45; cursor: not-allowed; }
 .source-status { color: var(--muted-2); font-style: italic; }
 
 /* ── Buttons ─────────────────────────────────────────────────────────────── */
