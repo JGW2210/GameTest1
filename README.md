@@ -145,6 +145,30 @@ Delete the generated module to drop the BacDive-sourced fills.
 > Run it where BacDive is reachable (e.g. your machine or CI); some sandboxed
 > environments block egress to `api.bacdive.dsmz.de`.
 
+### Keeping the deployed site fresh (GitHub Actions)
+
+Because a static GitHub Pages site can't reliably call the BacDive API from the
+visitor's browser (cross-origin/CORS), the refresh runs in **CI** instead and
+commits the enriched dataset for Pages to serve.
+[`.github/workflows/refresh-bacdive.yml`](.github/workflows/refresh-bacdive.yml)
+runs `fetch-bacdive.mjs --write` → `build-dataset.mjs` on GitHub's runners (open
+network, no API key), then commits `src/data.js` + `data/bacteria.json` **only
+when BacDive actually changes the fills** (no timestamp-only churn). It runs
+monthly and on demand (**Actions → Refresh BacDive data → Run workflow**).
+
+Every run uploads the `bacdive-proposals` artifact (the review table) so you can
+audit what changed. Run it manually once and check that artifact before relying on
+the schedule. Safety: if BacDive is unreachable the run makes no changes and
+leaves existing fills intact; curated values are never overwritten.
+
+Setup notes:
+- Repo **Settings → Actions → General → Workflow permissions** must allow
+  **Read and write** (the job commits with the built-in `GITHUB_TOKEN`).
+- This assumes Pages serves from the `main` branch ("Deploy from a branch"), so a
+  commit redeploys the site. If you use a GitHub **Actions**-based Pages deploy
+  instead, a `GITHUB_TOKEN` push won't retrigger it — add a deploy step here or
+  push with a PAT.
+
 ## Loading your own lists from Supabase (optional)
 
 You can swap the bundled pool for bacteria lists stored in your **SpeciesDoc**
@@ -188,5 +212,7 @@ scripts/
   build-dataset.mjs        seed → data
   fetch-gbif.mjs           live GBIF → data
   fetch-bacdive.mjs        BacDive API v2 → gap-fill blank identifier cells
+.github/workflows/
+  refresh-bacdive.yml      CI: refresh BacDive fills + commit enriched data
 data/bacteria.json         portable generated dataset
 ```

@@ -1,0 +1,72 @@
+# Refresh the bundled dataset with BacDive-sourced identifier data.
+#
+# Runs on GitHub's runners (open network → no browser/CORS limitation, no API key
+# needed for BacDive API v2), fills blank identifier cells, rebuilds the static
+# dataset, and commits it so GitHub Pages serves the enriched data. Curated
+# values in scripts/profiles.mjs always win; BacDive only fills genuine blanks.
+#
+# Trigger it by hand the first time (Actions tab → this workflow → "Run workflow")
+# and review the uploaded `bacdive-proposals` artifact before trusting the
+# schedule. A commit is made ONLY when BacDive actually changes the fills.
+name: Refresh BacDive data
+
+on:
+  workflow_dispatch: {}          # manual, on-demand
+  schedule:
+    - cron: '0 5 1 * *'          # 05:00 UTC on the 1st of each month
+
+permissions:
+  contents: write                # allow committing the refreshed dataset
+
+concurrency:
+  group: refresh-bacdive
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Fetch BacDive gap-fill
+        # No dependencies to install — the script uses Node's built-in fetch.
+        # If BacDive is unreachable it degrades to "no proposals" and leaves the
+        # existing fills untouched (so a bad network day can't wipe data).
+        run: node scripts/fetch-bacdive.mjs --write
+
+      - name: Upload proposals (audit trail)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: bacdive-proposals
+          path: |
+            scripts/bacdive-proposals.md
+            scripts/bacdive-proposals.json
+          if-no-files-found: ignore
+
+      - name: Rebuild dataset if the fills changed
+        id: build
+        run: |
+          if [ -n "$(git status --porcelain -- scripts/profiles.bacdive.mjs)" ]; then
+            echo "BacDive fills changed — rebuilding dataset."
+            node scripts/build-dataset.mjs
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "No BacDive changes since last run — nothing to commit."
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Commit & push refreshed data
+        if: steps.build.outputs.changed == 'true'
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add scripts/profiles.bacdive.mjs src/data.js data/bacteria.json
+          git commit -m "chore(data): refresh BacDive-sourced identifier fills"
+          git push
