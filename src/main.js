@@ -279,18 +279,25 @@ function modeIntro() {
   return 'Kingdom is Bacteria. Guess a genus and species to grow the tree toward the answer.';
 }
 
-// Build a fresh 20-question quiz from the active dataset and render it. The Quiz
-// filters to organisms carrying logged identifier data itself.
-function startQuiz() {
-  quizView.render(new Quiz(game.data));
+// Remembered opt-in identifier selection for the quiz (null = all identifiers).
+let quizKeys = null;
+
+// Show the quiz test-picker; starting it builds a fresh 20-question quiz limited
+// to the chosen identifiers (the Quiz filters to organisms with logged data).
+function showQuizSetup() {
+  quizView.renderSetup(quizKeys, (keys) => {
+    quizKeys = keys;
+    quizView.render(new Quiz(game.data, keys));
+  });
 }
+quizView.onChangeTests = showQuizSetup; // "Change tests" returns to the picker
 
 // Refresh whichever surface the current mode owns after a mode / dataset / new-game
-// change: the guess-driven modes render normally; quiz mode builds its own view.
+// change: the guess-driven modes render normally; quiz mode shows its test picker.
 function refreshView() {
   if (game.mode === 'quiz') {
     render();
-    startQuiz();
+    showQuizSetup();
     setMessage(modeIntro(), '');
   } else {
     quizView.reset();

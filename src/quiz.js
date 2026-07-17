@@ -10,7 +10,7 @@
 // list may not carry enough logged data to fill 20 questions — the quiz simply
 // serves as many as it can, and the view explains when a list is too sparse.
 
-import { IDENTIFIERS, displayValue } from './identifiers.js';
+import { IDENTIFIERS, ID_GROUPS, displayValue } from './identifiers.js';
 
 export const QUIZ_SIZE = 20;
 const PER_ORG_CAP = 2; // keep variety: at most N questions about one organism (relaxed if the pool is small)
@@ -55,7 +55,10 @@ const orgKey = (rec) => `${rec.genus} ${rec.species}`.trim();
 const multiLabel = (val) => [...val].sort().join(', ');
 
 export class Quiz {
-  constructor(data = []) {
+  // `keys` restricts questions to the given identifier keys (opt-in selection);
+  // null/empty means "all identifiers".
+  constructor(data = [], keys = null) {
+    this.keys = keys && keys.length ? new Set(keys) : null;
     this.build(data);
   }
 
@@ -74,10 +77,12 @@ export class Quiz {
       this._multiPools[spec.key] = [...set];
     }
 
-    // Every scorable (organism, identifier) pair is a candidate question.
+    // Every scorable (organism, identifier) pair is a candidate question, limited
+    // to the opt-in selection when one is set.
     const candidates = [];
     for (const rec of withId) {
       for (const spec of IDENTIFIERS) {
+        if (this.keys && !this.keys.has(spec.key)) continue;
         const v = rec.id[spec.key];
         if (v == null) continue;
         if (spec.type === 'multi' && (!Array.isArray(v) || !v.length)) continue;
@@ -178,6 +183,7 @@ export class QuizView {
   constructor(root) {
     this.root = root;
     this.quiz = null;
+    this.onChangeTests = null; // set by main.js to return to the test picker
   }
 
   render(quiz) {
@@ -189,14 +195,102 @@ export class QuizView {
 
   reset() { this.root.replaceChildren(); }
 
+  // A small "Change tests" control shown on every quiz screen (returns to the
+  // opt-in picker). Null when no handler is wired.
+  _changeBtn() {
+    if (!this.onChangeTests) return null;
+    const b = document.createElement('button');
+    b.type = 'button';
+    b.className = 'btn ghost quiz-change';
+    b.textContent = '‹ Change tests';
+    b.addEventListener('click', () => this.onChangeTests());
+    return b;
+  }
+
+  // Opt-in picker: choose which identifiers to be tested on, grouped by section.
+  // `selectedKeys` pre-checks the boxes (null → all); `onStart(keys)` starts the
+  // quiz with the chosen identifier keys.
+  renderSetup(selectedKeys, onStart) {
+    this.root.replaceChildren();
+    const selected = new Set(selectedKeys && selectedKeys.length ? selectedKeys : IDENTIFIERS.map((s) => s.key));
+
+    const card = document.createElement('div');
+    card.className = 'quiz-card quiz-setup';
+    const head = document.createElement('div');
+    head.className = 'quiz-setup-head';
+    head.innerHTML =
+      `<h2>Choose what to be tested on</h2>` +
+      `<p class="quiz-hint">Tick the lab results you want questions on — 20 random questions are drawn from your selection.</p>`;
+    card.append(head);
+
+    const boxes = [];
+    const ghost = (label) => { const b = document.createElement('button'); b.type = 'button'; b.className = 'btn ghost quiz-setup-btn'; b.textContent = label; return b; };
+    const update = () => { const n = boxes.filter((b) => b.checked).length; count.textContent = `${n} of ${boxes.length} selected`; start.disabled = n === 0; };
+
+    const controls = document.createElement('div');
+    controls.className = 'quiz-setup-controls';
+    const selAll = ghost('Select all'), clr = ghost('Clear');
+    selAll.addEventListener('click', () => { boxes.forEach((b) => { b.checked = true; }); update(); });
+    clr.addEventListener('click', () => { boxes.forEach((b) => { b.checked = false; }); update(); });
+    controls.append(selAll, clr);
+    card.append(controls);
+
+    const groups = document.createElement('div');
+    groups.className = 'quiz-setup-groups';
+    for (const group of ID_GROUPS) {
+      const specs = IDENTIFIERS.filter((s) => s.group === group);
+      if (!specs.length) continue;
+      const fs = document.createElement('fieldset');
+      fs.className = 'quiz-setup-group';
+      const lg = document.createElement('legend');
+      lg.textContent = group;
+      fs.append(lg);
+      for (const spec of specs) {
+        const label = document.createElement('label');
+        label.className = 'quiz-check';
+        const cb = document.createElement('input');
+        cb.type = 'checkbox';
+        cb.value = spec.key;
+        cb.checked = selected.has(spec.key);
+        cb.addEventListener('change', update);
+        const span = document.createElement('span');
+        span.textContent = spec.label;
+        label.append(cb, span);
+        fs.append(label);
+        boxes.push(cb);
+      }
+      groups.append(fs);
+    }
+    card.append(groups);
+
+    const foot = document.createElement('div');
+    foot.className = 'quiz-setup-foot';
+    const count = document.createElement('span');
+    count.className = 'quiz-setup-count';
+    const start = document.createElement('button');
+    start.type = 'button';
+    start.className = 'btn primary';
+    start.textContent = 'Start quiz';
+    start.addEventListener('click', () => onStart(boxes.filter((b) => b.checked).map((b) => b.value)));
+    foot.append(count, start);
+    card.append(foot);
+
+    this.root.append(card);
+    update();
+  }
+
   _renderEmpty() {
     this.root.replaceChildren();
     const box = document.createElement('div');
     box.className = 'quiz-card quiz-empty';
-    box.innerHTML =
-      `<h2>Not enough lab data</h2>` +
-      `<p>This pool doesn't carry enough logged identifier results to build a quiz. ` +
-      `Try the bundled set or pick another Data source with lab profiles.</p>`;
+    const change = this._changeBtn();
+    if (change) box.append(change);
+    const body = document.createElement('div');
+    body.innerHTML =
+      `<h2>No questions for this selection</h2>` +
+      `<p>The current pool has no logged results for the identifiers you picked. ` +
+      `Choose more tests, or switch to a Data source with richer lab data.</p>`;
+    box.append(body);
     this.root.append(box);
   }
 
@@ -207,6 +301,8 @@ export class QuizView {
 
     const card = document.createElement('div');
     card.className = 'quiz-card';
+    const change = this._changeBtn();
+    if (change) card.append(change);
 
     const pct = Math.round((quiz.index / quiz.total) * 100);
     const head = document.createElement('div');
@@ -290,6 +386,8 @@ export class QuizView {
     this.root.replaceChildren();
     const card = document.createElement('div');
     card.className = 'quiz-card quiz-results';
+    const change = this._changeBtn();
+    if (change) card.append(change);
 
     const pct = quiz.total ? Math.round((quiz.score / quiz.total) * 100) : 0;
     const verdict =

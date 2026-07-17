@@ -12,13 +12,14 @@ toward the answer through **four modes**:
   / variable), or **red** (no match). Green cells **lock**; each guess only
   updates the rest — a phenotypic Mastermind.
 - **Combined** — both surfaces update together.
-- **Quiz** — no organism to hunt: answer **20 random multiple-choice questions**
-  drawn from the logged lab data — e.g. *"What is the Gram stain result for
-  Staphylococcus aureus?"* — with options spanning that identifier's possible
-  results. Pick an answer to lock it in and see if you were right, track your
-  running score, and get a per-question review at the end. Questions are built
-  from whatever pool is active; a sparse Supabase list simply serves as many
-  questions as its data supports.
+- **Quiz** — no organism to hunt: **opt in to which identifiers you want tested**
+  (grouped checkboxes), then answer **20 random multiple-choice questions** drawn
+  from your selection — e.g. *"What is the Gram stain result for Staphylococcus
+  aureus?"* — with options spanning that identifier's possible results. Pick an
+  answer to lock it in and see if you were right, track your running score, and get
+  a per-question review at the end. Questions are built from whatever pool is
+  active; a sparse Supabase list simply serves as many questions as its data
+  supports.
 
 Runs on desktop and mobile — no build step, no framework. A **rotating DNA
 double-helix** rendered with three.js drifts behind the glassy UI and parallaxes
